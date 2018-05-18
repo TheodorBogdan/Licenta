@@ -1,0 +1,77 @@
+\documentclass[a4paper,12pt]{report}
+    \title{Service Registry}
+\author{Theodor Bogdan Vr\^ancean}
+\date {Iunie 2018}
+
+\usepackage[romanian]{babel}
+
+\usepackage[
+    backend=biber,
+    style=verbose,
+    sorting=ynt
+]{biblatex}
+\addbibresource{References.bib}
+
+\begin{document}
+\maketitle 
+\chapter{Introducere} 
+\section{Arhitectura de microservicii}
+
+Arhitectura de microservicii este o abrodare relativ nou\u a \^ in dezvoltarea de software.
+Microserviciile reprezint\u a aplica\c tii mici \c si autonome care lucreaz\u a \^ impreun\u a 
+\footcite{buildingMicroservices}. Ele sunt considerate mici relativ la un sistem monolitic care ar
+oferi toate func\c tionalit\u a\c tiile de care aplica\c tia are nevoie.Cu toate acestea un mictoserviciu poate oferi orice
+fel de func\c tionalit\u a\c ti,incep\^and cu ceva simplu precum desc\u arcarea de fi\c siere, p\^an\u a la 
+ complexe precum analizarea imaginilor.
+ Aceast\u a aboradare arhitecturala a venit ca o alternativ\u a la arhitectura monolitic\u a, \^in care exist\u a 
+ un singur server care satisface toate necesit\u a\c tile unei aplica\c tii.
+ \begin{itemize}
+     \item Din cauza dimensiunii \c si complexit\u a\c tii unui proiect monolitic,
+    acesta este dificil de in\c teles \c ,motiv pentru care schimb\u arile sunt mai dificil de facut \c si exist\u a 
+    un risc mai mare ca acestea s\u a produc\u a efecte nedorite.Schimb\u arile aduse unui microserviciu nu afecteaz\u a alte
+    module \c si datorit\u a dimensiunii reduse a acestora, ele sunt \c si mai u\c sor de \^inteles pentru programtori, astfel 
+    scade probabilitatea erorilor.
+    \item Este imposibil\u a adoptarea a noi tehnologii pentru dezvoltarea aplica\c tiei. 
+    Microserviciile nu au aceast\u a limitare, fiecare dintre ele poate fi f\u acut folosind tehnologii diferite,
+    
+
+\end{itemize}
+
+
+
+ Ele ofer\u a servicii care pot fi utilizate in de c\u atre alte aplica\c tii.
+\iffalse Utilizarea unui microserviciu se
+ poate asem\u ana cu o clas\u a, apelarea metodelor fiind similara cu trimiterea unei
+ cereri c\u atre server.Probabil cea mai mare deosebire intre acestea const\u a in faptul
+ c\u a Microserviciile sunt  
+\fi
+Printre avantajele aduse de microservicii, este faptul c\u a acestea pot fi utilizate de
+mai multe aplica\c tii.\^In func\c tie de aceast\u a tr\u as\u atura microserviciile se pot impar\c ti \^in 
+trei categorii:
+\begin{itemize}
+    \item Publice.
+    Acestea pot fi puse la dispozi\c tia utilizatorilor pe baza unor chei,gratuite sau nu,
+    sau nerestrictionate.
+    \item \^Imp\u ar\c tite intre un grup de aplica\c tii.
+    Spre exemplu toate aplica\c tiile unei compani pot integra acela\c si serviciu de securitate
+    \item Dedicate.
+    Acestea sunt folosite doar pentru o singur\u a aplica\c tie 
+\end{itemize} 
+
+
+
+
+\chapter{Tehnologii}
+
+    C\# este un limbaj de programare. \^ s \c t \^a
+
+    \section{.Net Framework}
+    \section{Entity Framework}
+        EntityFramework este un ORM(Object Relational Mapper) open-source pentru platforma .Net.
+    \section{Asp.Net}
+    \section{MVC pattern}
+    \section{Microsoft Sql Server}
+    
+\chapter{Utilizare}
+
+\end{document}
