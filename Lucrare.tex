@@ -24,15 +24,21 @@ oferi toate func\c tionalit\u a\c tiile de care aplica\c tia are nevoie.Cu toate
 fel de func\c tionalit\u a\c ti,incep\^and cu ceva simplu precum desc\u arcarea de fi\c siere, p\^an\u a la 
  complexe precum analizarea imaginilor.
  Aceast\u a aboradare arhitecturala a venit ca o alternativ\u a la arhitectura monolitic\u a, \^in care exist\u a 
- un singur server care satisface toate necesit\u a\c tile unei aplica\c tii.
+ un singur server care satisface toate necesit\u a\c tile unei aplica\c tii.Limit\u arile acestei abord\u ari ies la iveal\u a
+ odat\u a cu cre\c sterea aplica\c tiei:
  \begin{itemize}
      \item Din cauza dimensiunii \c si complexit\u a\c tii unui proiect monolitic,
     acesta este dificil de in\c teles \c ,motiv pentru care schimb\u arile sunt mai dificil de facut \c si exist\u a 
-    un risc mai mare ca acestea s\u a produc\u a efecte nedorite.Schimb\u arile aduse unui microserviciu nu afecteaz\u a alte
+    un risc mai mare ca acestea s\u a produc\u a efecte nedorite.Aceste probleme pot fi atenuate printr-un 
+    cod de calitate dar acest lucru se \^ inatmpla de prea pu\c tine ori. Schimb\u arile aduse unui microserviciu nu afecteaz\u a alte
     module \c si datorit\u a dimensiunii reduse a acestora, ele sunt \c si mai u\c sor de \^inteles pentru programtori, astfel 
-    scade probabilitatea erorilor.
-    \item Este imposibil\u a adoptarea a noi tehnologii pentru dezvoltarea aplica\c tiei. 
-    Microserviciile nu au aceast\u a limitare, fiecare dintre ele poate fi f\u acut folosind tehnologii diferite,
+    scade probabilitatea erorilor.Se poate spune ca microserviciile duc un pas mai departe principiul singurei responsabilit\u a\c ti,
+    definit de Robert C. Martin.
+    \item Pentru dezvoltarea unei aplica\c tii monolitice trebuie sa alegem un tehnologii standardizate care s\u a poata 
+    realiza toate cerin\c tele aplica\c tiei. Pe de alta parte,daca avem mai multe microservicii care colaboreaz\u a nu exist\u a aceast\u a limitare,ceea ne permite s\u a alegem 
+    unealta cea mai portivit\u a pentru fiecare serviciu.
+
+
     
 
 \end{itemize}
