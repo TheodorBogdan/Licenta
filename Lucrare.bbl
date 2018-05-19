@@ -19,7 +19,7 @@
 
 \refsection{0}
   \datalist[entry]{ynt/global//global/global}
-    \entry{buildingMicroservices}{book}{}
+    \entry{buildingMicroservices1}{book}{}
       \name{author}{1}{}{%
         {{hash=b6be43602c2787d279f8522a7d9713db}{%
            family={Newman},
@@ -43,6 +43,32 @@
       \field{title}{Building Microservices: Designing Fine-Grained Systems}
       \field{year}{2014}
       \field{pages}{1}
+      \range{pages}{1}
+    \endentry
+    \entry{buildingMicroservices5}{book}{}
+      \name{author}{1}{}{%
+        {{hash=b6be43602c2787d279f8522a7d9713db}{%
+           family={Newman},
+           familyi={N\bibinitperiod},
+           given={Sam},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{fullhash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{bibnamehash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{authorbibnamehash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{authornamehash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{authorfullhash}{b6be43602c2787d279f8522a7d9713db}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Building Microservices: Designing Fine-Grained Systems}
+      \field{year}{2014}
+      \field{pages}{5}
       \range{pages}{1}
     \endentry
   \enddatalist
