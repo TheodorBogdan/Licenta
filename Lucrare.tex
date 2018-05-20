@@ -11,7 +11,9 @@
 \usepackage[
     backend=biber,
     style=verbose,
-    sorting=ynt
+	sorting=ynt,
+	maxbibnames=99,
+	maxcitenames=6
 ]{biblatex}
 \addbibresource{References.bib}
 
@@ -81,6 +83,7 @@ ofer\u a.Pentru a remedia aceast\u a situa\c tie ar trebui sa schimb\u am adrese
 gaseasc\u a serviciul respectiv, dup\u a care ar trebui sa to\c ti utilizatorii sa sa fac\u a un update la noua versiune.
 Aceast\u a solu\c tie simpl\u a nu doar c\u a nu este convenabil\u a ,dar devine imposibil\u a dac\u a avem servicii care ruleaz\u a 
 pe ma\c sini virtuale sau containere de docker care suntcreate dinamic \^in func\c tie de nevoie.
+\section{Serviciu de \^inregistrare}
 Solu\c tia pe care eu am implementat-o este un sistem de tip service registry.
 Acesta este la baz\u a un serviciu web care face leg\u atura \^intre microservicii.Astfel aplica\c tia \c si serviciile trebuie 
 s\u a cunoasc\u a doar serviciul de \^inregistrare si el se va furniza datele despre celelalte servicii necesare func\c tionarii aplica\c tiei. 
@@ -101,17 +104,76 @@ Serverul de \^ inregistrare ofer\u a trei opera\c tii de baza:
 
 		  Aplica\c tia \c si microserviciile pot c\u auta un serviciu \^inregistrat \^in server.
 \end{enumerate}	
+
+
 \chapter{Tehnologii}
 
-C\# este un limbaj de programare. \^ s \c t \^a
-
 \section{.Net Framework}
+.Net este o platform\u a de dezvoltare a software-ului gratuit\u a pentru diverse sisteme de operare.
+Platforma include o bibliotec\u a de mari dimensiunii numit\u a Framework Class Library \c si permite interoperabilitatea
+a multor limbaje de programare.Programele scrise \^in .Net Framework ruleaz\u a \^intr-un mediu numit
+Common Language Runtime(CLR), o ma\c sin\u a virtual\u a de aplica\c tie care ofer\u a servicii precum
+securitatea, managementul memoriei \c si tratarea excep\c tiilor.Biblioteca de clase \c si CLR formeaz\u ua 
+.Net Framework.\footcite{wikidotNet}
 \section{Entity Framework}
 EntityFramework este un ORM(Object Relational Mapper) open-source pentru platforma .Net.
 \section{Asp.Net}
-\section{MVC pattern}
+
+ASP.NET este un framework open-source pentru dezvoltarea web.A fost dezvoltat de Microsoft pentru a
+le permite programatorilor s\u a creeze site-uri si servicii web dinamice.A fost introdus odat\u a cu
+.Net framework 1.0 \c si ca urmare este construit pe CLR,ceea ce permite programatorilor sa utilizeze cod
+scris in oricare limbaj suportat de platform\u a.La \^incpeuturile sale, dezvoltarea web site-urilor Asp.Net
+era asociat\u a cu WebForms, care datorit\u a limit\u arilor sale a fost \^inlocuit e Asp.Net MVC. 
+
+\subsection{Asp.Net MVC}
+
+
+\subsection{MVC pattern}
+Model View Controller(MVC) este un \c sablon arhitectural care prezint\u a o solu\c tie pentru tratarea interfe\c tei grafice.
+Arhitectura MVC este una dintre cele mai frecvent \^int\^alnite arhitecturi \^in dezvoltarea aplica\c tiilor web, deoarce
+contribuie la scalabilitatea si extensibilitatea proiectelor.Separarea explicit\u a a responsabilit\u at\c tilor
+cre\c ste pu\c tin complexitatea designului aplica\c tiei,dar beneficiile eclipseaz\u a efortul extra.\footcite{proAspNetMVC5Pattern}
+MVC separ\u a aplica\c tia \^in trei componente:
+\begin{enumerate}
+	\item \textbf{Model}
+
+		Componenta model corespunde logicii legate de date \c si prelucrarea lor.Asta poate \^insemna
+		datele care sunt transferate \^intre componentele view \c si controller sau orice alte date care \c tin de
+		logica aplica\c tiei.
+	\item \textbf{View}
+
+		Componenta View este folosit\u a pentru toat\u a logica ce \c tine de logica \^ interfe\c tei.
+		\^In cazul aplica\c tilor web, view-ul este un \c sablon dupa care este generat codul HTML.
+	\item \textbf{Controller}
+
+		Componenta Controller func\c tioneaz\u a ca o interfa\c ta \^intre componentele view \c si model.
+		Aceast\u a comonent\u a r\u aspunde inputului utilizatorului,comunic\u a cu modelul \c si decide 
+		care view trebuie folosit ca rezultat al cererii.
+\end{enumerate}
+\begin{figure}[!htb]
+	\includegraphics[width=\textwidth,keepaspectratio]{MVCPattern}
+	\caption{Arhitectur\u a MVC}
+	\label{fig:MVCPattern}
+\end{figure}
+\subsection{Asp.Net WebApi}
+Un web api este o interfa\c t\u a programatic\u a la un sistem care este accesat\u a prin metode standard HTTP.
+Un web api poate fi accesat de o varietate larg\u a de clienti HTTP, incluz\^and browser \c si dispozitive mobile \footcite{evolvableWebApi}.
+
+Asp.net MVC este construit cu scopul de a face website-uri.Acest lucru este evident din func\c tionarea acestui framework,
+r\u aspunde la cereri primite din browser \c si returneaz\u a HTML.Cu toate acestea Asp.Net MVC permite un control minu\c tios
+asupra r\u aspunsului dat,\c si MVC este util \^in formarea unui web api.Dezvoltatorii asp.net au realizat c\u a puteau folosi
+acest framework pentru dezvoltarea de servicii web \c si aceasta improviza\c tie era preferabil\u a alternativelor.\footcite{proAspNetMVC5Asp}
+
+Din acest motiv,odat\u a cu Asp.Net MVC 4,a fost introdus si Asp.net Web Api,un framework care ofer\u a 
+stilul de lucru din Asp.Net MVC adaptat pentru a scrie servicii web.
+
+
+
 \section{Microsoft Sql Server}
+\chapter{Implementare}
 
 \chapter{Utilizare}
+
+\printbibliography
 
 \end{document}
