@@ -108,15 +108,48 @@ Serverul de \^ inregistrare ofer\u a trei opera\c tii de baza:
 
 \chapter{Tehnologii}
 
-\section{.Net Framework}
-.Net este o platform\u a de dezvoltare a software-ului gratuit\u a pentru diverse sisteme de operare.
+\section{.NET Framework}
+.NET este o platform\u a de dezvoltare a software-ului gratuit\u a pentru diverse sisteme de operare.
 Platforma include o bibliotec\u a de mari dimensiunii numit\u a Framework Class Library \c si permite interoperabilitatea
-a multor limbaje de programare.Programele scrise \^in .Net Framework ruleaz\u a \^intr-un mediu numit
+a multor limbaje de programare.Programele scrise \^in .NET Framework ruleaz\u a \^intr-un mediu numit
 Common Language Runtime(CLR), o ma\c sin\u a virtual\u a de aplica\c tie care ofer\u a servicii precum
 securitatea, managementul memoriei \c si tratarea excep\c tiilor.Biblioteca de clase \c si CLR formeaz\u ua 
-.Net Framework.\footcite{wikidotNet}
+.NET Framework.\footcite{wikidotNet}
 \section{Entity Framework}
-EntityFramework este un ORM(Object Relational Mapper) open-source pentru platforma .Net.
+P\^ana la .NET 3.5,programatorii obi\c snuiau sa foloseasc\u a ADO.NET pentru a alva sau prelua date din 
+baza de date.Trebuiau deschise conexiuni, create DataSeturi pentru a citi sau scrie date care mai apoi trebuiau 
+convertite \^in obiect sau invers.Acesta era un proces greoi \c si predispus la erori.Odat\u a cu .NET 3.5
+Microsoft a introdus EntityFramework cu scopul de automatiza lucrul cu baze date.
+
+EntityFramework este un ORM(Object Relational Mapper) open-source creat de Microsoft pentru platforma .NET.
+Framework-ul premite programatorilor s\u a utilizeze datele prin intermediul  unor obiecte specifice domeniului
+far\u a a se concentra pe tabelele \c si coloanele \^in care datele sunt stocate.Acest lucru permite dezvoltatorilor 
+s\u a lucreze la un nivel mai \^inalt de abstractizare atunci c\^ and lucreaz\u a cu date persistente.
+
+EntityFramework ofer\u a dou\u a modalit\u a\c ti de lucru:
+\begin{itemize}
+	\item \textbf{Code First}
+
+		Aceast\u a abordare necesit\u a ca programatorul s\u ascrie clasele corespunz\u atoare datelor care trebuie s\u a persiste \^in baza de date \c si 
+		o clasa speciala numit\u a context.Pe baza acestora el poate genera o baz\u a de date.Baza de date generat\u a
+		se poate actualiza prin migra\c tii.Migra\c tie ofer\u a un mode incremental de a aplica schimb\u ari unei baze
+		de date generate cu EntityFramework pentru a o sincroniza pe aceasta cu clasele care consitiuie modelul. O migra\c tie
+		con\c tine toate scimb\u arile modelului care trebuie reflectate \^in baza de date de la ultima actualizare.
+		\^Impreun\u a toate migra\c tile formeaz\u a istoria bazei de date.
+
+	\item \textbf{Database First}
+
+		\^In aceast\u a abordare EntityFramework creaz\u a clasele model be baza unei baze de date deja existente printr-un proces numit
+		scaffolding.Termenul scaffolding provine din domeniul construc\c tiilor \c si \^inseamna procesul de montare a schelelor unei cl\u adiri.
+		Precum schelele fac posibil\u a construc\c tia unei cl\u adiri, a\c sa modelul face posibil\u a prelucrarea datelor din baza de date.
+		Aceast\u a este abordarea pe care am decis s\u a o folosesc \^in realizarea acestui proiect.
+	\item \textbf{Model First}
+		Abordarea Model first presupune creare entit\u a\c tilor \c si rela\c tilor dintre acestea \^intr-o schem\u a,utiliz\^and un designer grafic.
+		Pe baza schemei sunt generate clasele ce constituie modelul \c si baza de date.
+\end{itemize} 
+Din experien\c ta mea cu variantele prezentate, am ajus s\u a prefer varianta database first, deoarce consider c\u a astfel am mai mult control
+asupra datelor \c si opera\c tiilor.
+
 \section{Asp.Net}
 
 ASP.NET este un framework open-source pentru dezvoltarea web.A fost dezvoltat de Microsoft pentru a

@@ -19,6 +19,134 @@
 
 \refsection{0}
   \datalist[entry]{ynt/global//global/global}
+    \entry{evolvableWebApi}{book}{}
+      \name{author}{5}{}{%
+        {{hash=e73e4c18f2ada3de60a760eff5dbf2af}{%
+           family={Block},
+           familyi={B\bibinitperiod},
+           given={Glenn},
+           giveni={G\bibinitperiod}}}%
+        {{hash=a2c74997f9d0ef00e4e815b9cf022bf4}{%
+           family={Felix},
+           familyi={F\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod}}}%
+        {{hash=b542cb94476bbf3dab46315c870089a0}{%
+           family={Dierking},
+           familyi={D\bibinitperiod},
+           given={Howard},
+           giveni={H\bibinitperiod}}}%
+        {{hash=6e7aa02f19928d1193f925810a8e8e6b}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Darrel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=be476872d60e70cf33dc5982c1ef0307}{%
+           family={Cibraro},
+           familyi={C\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{86decfd686d6018b746c51f9be681117}
+      \strng{fullhash}{86decfd686d6018b746c51f9be681117}
+      \strng{bibnamehash}{86decfd686d6018b746c51f9be681117}
+      \strng{authorbibnamehash}{86decfd686d6018b746c51f9be681117}
+      \strng{authornamehash}{86decfd686d6018b746c51f9be681117}
+      \strng{authorfullhash}{86decfd686d6018b746c51f9be681117}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Designing Evolvable Web APIs with ASP.NET: Harnessing the Power of the Web}
+      \field{year}{2014}
+      \field{pages}{23}
+      \range{pages}{1}
+    \endentry
+    \entry{proAspNetMVC5Pattern}{book}{}
+      \name{author}{4}{}{%
+        {{hash=6b018c02762d141f2f7b862ec17167bb}{%
+           family={Galloway},
+           familyi={G\bibinitperiod},
+           given={Jon},
+           giveni={J\bibinitperiod}}}%
+        {{hash=93bfa621f79e2023881ff62e36f51581}{%
+           family={Matson},
+           familyi={M\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=9a95b7ddb7d62091ff6c46b3f1f2883f}{%
+           family={Wilson},
+           familyi={W\bibinitperiod},
+           given={Brad},
+           giveni={B\bibinitperiod}}}%
+        {{hash=39d31961923ce1fddb73b17de7c9ac04}{%
+           family={Allen},
+           familyi={A\bibinitperiod},
+           given={K.\bibnamedelimi Scott},
+           giveni={K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wrox}%
+      }
+      \strng{namehash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{fullhash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{bibnamehash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{authorbibnamehash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{authornamehash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{authorfullhash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Professional ASP.NET MVC 5}
+      \field{year}{2014}
+      \field{pages}{2}
+      \range{pages}{1}
+    \endentry
+    \entry{proAspNetMVC5Asp}{book}{}
+      \name{author}{4}{}{%
+        {{hash=6b018c02762d141f2f7b862ec17167bb}{%
+           family={Galloway},
+           familyi={G\bibinitperiod},
+           given={Jon},
+           giveni={J\bibinitperiod}}}%
+        {{hash=93bfa621f79e2023881ff62e36f51581}{%
+           family={Matson},
+           familyi={M\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=9a95b7ddb7d62091ff6c46b3f1f2883f}{%
+           family={Wilson},
+           familyi={W\bibinitperiod},
+           given={Brad},
+           giveni={B\bibinitperiod}}}%
+        {{hash=39d31961923ce1fddb73b17de7c9ac04}{%
+           family={Allen},
+           familyi={A\bibinitperiod},
+           given={K.\bibnamedelimi Scott},
+           giveni={K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wrox}%
+      }
+      \strng{namehash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{fullhash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{bibnamehash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{authorbibnamehash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{authornamehash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \strng{authorfullhash}{e5038ec8be67635591a2992bdfa7b8e2}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Professional ASP.NET MVC 5}
+      \field{year}{2014}
+      \field{pages}{7}
+      \range{pages}{1}
+    \endentry
     \entry{buildingMicroservices1}{book}{}
       \name{author}{1}{}{%
         {{hash=b6be43602c2787d279f8522a7d9713db}{%
@@ -70,6 +198,13 @@
       \field{year}{2014}
       \field{pages}{5}
       \range{pages}{1}
+    \endentry
+    \entry{wikidotNet}{misc}{}
+      \field{sortinit}{9}
+      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://en.wikipedia.org/wiki/.NET_Framework}}
+      \field{title}{.Net Framework}
     \endentry
   \enddatalist
 \endrefsection
