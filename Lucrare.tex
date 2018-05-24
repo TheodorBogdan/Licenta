@@ -8,6 +8,8 @@
 \usepackage{graphicx}
 \graphicspath{{"./Images/"}}
 
+\usepackage{listings}
+
 \usepackage[
     backend=biber,
     style=verbose,
@@ -115,6 +117,122 @@ a multor limbaje de programare.Programele scrise \^in .NET Framework ruleaz\u a 
 Common Language Runtime(CLR), o ma\c sin\u a virtual\u a de aplica\c tie care ofer\u a servicii precum
 securitatea, managementul memoriei \c si tratarea excep\c tiilor.Biblioteca de clase \c si CLR formeaz\u ua 
 .NET Framework.\footcite{wikidotNet}
+
+\section{C\#}
+
+C\# este un limbaj de programare modern, orientat pe obiecte \c si puternic tipizat.C\# \^i\c si are r\u ada\u 1cinile
+\^in familia de limbaje C \c si le este imediat familiar programatorilor C,C++ sau Java.C\# are multe caracteristici care
+ajut\u a la construc\c tia palica\c tilor  robuste \c si durabile:
+\begin{itemize}
+	\item Garbage Collector-ul elibereaz\u a automat memoria ocupat\u a de obiectele care nu mai sunt folosite.
+	\item Tratarea excep\c tilor ofer\u a o abordare structurat\u a \c si extensibil\u a pentru detectarea 
+	erorilor \c si recuperare
+	\item Designul puternic tipizat care face imposibil\u a existen\c ta variablilelor neini\c tializate,
+		indec\c silor \^in afara limitelor \c sirurilor sau convertirea neverificat\u a a tipurilor.
+\end{itemize}
+C\# are un sistem de unificat de tipuri.Toate tipurile din limbaj,incluz\^and primitivele precum int,
+mo\c stenesc dintr-o singur\u a r\u ad\u acin\u a tipul object.De aceea toate tipurile au un set de 
+opera\c tii \c si valori de orice tip pot fi stocate,transportate \c si folosite pentru opera\c tii
+\^intr-un mod consistent.
+
+Pentru a se asigura faptul c\u a programele \c si bibliotecile C\# pot evolua \^in timp intr-o manier\u a compatibil\u a,
+s-a pus accent pe versionare \^in designul limbajului.Multe limbaje de programare nu acord\u a suficient\u a aten\c tie
+version\u arii \c si de aceea programele scrise \^in acele limbaje crap\u a nejustificat de frecvent atunci c\u and sunt
+introduse veriuni noi ale bibliotecilor de care programul depinde.Aspecte din limbajul C\# care au fost influen\c tate 
+de aceast\u a decizie includ modificatorii \verb1virtual1 \c si \verb1override1,regulile de supra\^inc\u arcare 
+ale metodelor \c si suportul pentru declarare explicit\u a a interfe\c telor membre.\footcite{Hejlsberg:2003:CLS:861332}
+
+\section{Asp.NET}
+
+ASP.NET este un framework open-source pentru dezvoltarea web.A fost dezvoltat de Microsoft pentru a
+le permite programatorilor s\u a creeze site-uri si servicii web dinamice.A fost introdus odat\u a cu
+.NET framework 1.0 \c si ca urmare este construit pe CLR,ceea ce permite programatorilor sa utilizeze cod
+scris in oricare limbaj suportat de platform\u a.La \^incpeuturile sale, dezvoltarea web site-urilor Asp.NET
+era asociat\u a cu WebForms, care datorit\u a limit\u arilor sale a fost \^inlocuit e Asp.NET MVC. 
+
+\subsection{Asp.NET MVC}
+Asp.NET MVC reprezint\u a o alternativ\u a la WebForms pentru construc\c tia aplica\c tilor web \^in cadrul
+platformei .NET.Asp.NET MVC are o abordare diferit\u a \^in ceea ce prive\c ste structura aplica\c tiei, folosind
+arhitectura MVC.
+Asp.NET MVC este mai aproape de protocoloul HTTP.spre deosebire de Web Forms care \^incearca s\u a ascunda 
+natura far\u a stare a protocolului.Folosind arhitectura MVC \c si asociind o singur\u a cerere HTTP apel\u arii 
+unei metode, experien\c ta dezvoltatorilor este mai naturala.
+
+\^In timp ce Web Forms are o str\^ans\u a leg\u atur\u a \^intre logica aplica\c tiei \c si interfa\c ta grafic\u a,
+Asp.NET MVC \^incurajeaz\u a un design \^in care interfa\c ta grafic\u a(view-ul) este separat\u a de codul
+care o conduce(controller-ul).Atunci c\^and acest design este implementat corect, aplica\c tia devine mult mai u\c sor de men\c tinut
+\c si dezvolatat.
+De asemenea aceast\u a separare face componentele aplica\c tiei s\u a fie mult mai u\c sor de testat \^in isolare,
+ceea ce faciliteaz\u a testarea automat\u a.
+
+Una din componentele centrale ale paginilor Asp.NET MVC este motorul Razor.Acesta ofer\u a un mode concis
+de a combina cod C\# \c si marcaj HTML pentru a crea pagini dinamic.Razor este esen\c tial pentru a afi\c sa 
+utilizatorului rezultatul cererilor sale.Cu ajutorul Razor aceea\c si pagin\u a poate fi diferit\u a pentru 
+fiecare utilizator.
+
+\subsection{MVC pattern}
+Model View Controller(MVC) este un \c sablon arhitectural care prezint\u a o solu\c tie pentru tratarea interfe\c tei grafice.
+Arhitectura MVC este una dintre cele mai frecvent \^int\^alnite arhitecturi \^in dezvoltarea aplica\c tiilor web, deoarce
+contribuie la scalabilitatea si extensibilitatea proiectelor.Separarea explicit\u a a responsabilit\u at\c tilor
+cre\c ste pu\c tin complexitatea designului aplica\c tiei,dar beneficiile eclipseaz\u a efortul extra.\footcite{proAspNetMVC5Pattern}
+MVC separ\u a aplica\c tia \^in trei componente:
+\begin{enumerate}
+	\item \textbf{Model}
+
+		Componenta model corespunde logicii legate de date \c si prelucrarea lor.Asta poate \^insemna
+		datele care sunt transferate \^intre componentele view \c si controller sau orice alte date care \c tin de
+		logica aplica\c tiei.
+	\item \textbf{View}
+
+		Componenta View este folosit\u a pentru toat\u a logica ce \c tine de logica \^ interfe\c tei.
+		\^In cazul aplica\c tilor web, view-ul este un \c sablon dupa care este generat codul HTML.
+	\item \textbf{Controller}
+
+		Componenta Controller func\c tioneaz\u a ca o interfa\c ta \^intre componentele view \c si model.
+		Aceast\u a comonent\u a r\u aspunde inputului utilizatorului,comunic\u a cu modelul \c si decide 
+		care view trebuie folosit ca rezultat al cererii.
+\end{enumerate}
+\begin{figure}[!htb]
+	\includegraphics[width=\textwidth,keepaspectratio]{MVCPattern}
+	\caption{Arhitectur\u a MVC}
+	\label{fig:MVCPattern}
+\end{figure}
+\subsection{Asp.NET WebApi}
+Un web api este o interfa\c t\u a programatic\u a la un sistem care este accesat\u a prin metode standard HTTP.
+Un web api poate fi accesat de o varietate larg\u a de clienti HTTP, incluz\^and browser \c si dispozitive mobile \footcite{evolvableWebApi}.
+
+Asp.net MVC este construit cu scopul de a face website-uri.Acest lucru este evident din func\c tionarea acestui framework,
+r\u aspunde la cereri primite din browser \c si returneaz\u a HTML.Cu toate acestea Asp.NET MVC permite un control minu\c tios
+asupra r\u aspunsului dat,\c si MVC este util \^in formarea unui web api.Dezvoltatorii asp.net au realizat c\u a puteau folosi
+acest framework pentru dezvoltarea de servicii web \c si aceasta improviza\c tie era preferabil\u a alternativelor.\footcite{proAspNetMVC5Asp}
+
+Din acest motiv,odat\u a cu Asp.NET MVC 4,a fost introdus si Asp.net Web Api,un framework care ofer\u a 
+stilul de lucru din Asp.NET MVC adaptat pentru a scrie servicii web.
+
+\section{JavaScript}
+JavaScript este un limbaj de programare interpretat cu capabilit\u a\c ti de orientare pe obiect.
+JavaScript este sintactic similar cu C,Java \c si C\#,\^inc\u a similarit\u a\c tile se termina la sintax\u a.
+JavaScript este un limbaj slab tipizat,ceea ce \^inseamn\u a c\u a variabilele nu au un tip specificat.
+Obiectele asociaz\u a nume de propriet\u a\c ti unor valori arbitrare \c si se aseam\u n\u a mai mult
+cu hashtable-urile din C\# dec\^at cu obiectele.Mecanismul de mo\c stenire din JavaScript este bazat pe
+prototip \c si nu se aseam\u an\u a cu cea din C++ sau c\#.
+Tipurile primive din JavaScript sunt numere,stringuri \c si valori booleene dar limbajul include \c si
+date,\c siruri \c si expresii regulate.\footcite{Flanagan:2011:JDG:2029041}
+
+Motivul principal pentru care am les s\u a folosesc acest limbaj \^in proiectul meu este faptul c\u a 
+JavaScript este limbajul cunoscut de toate browser-ele \c si \^in acel context este extins cu obiecte care
+permit interac\c tiunea cu utilizatorul, alterarea con\c tinutului paginii care 
+este \^inc\u arcat\u a \^in browser \c si  controlul browser-ului.Aceast\u a versiune a limbajului
+este numit\u a \c si JavaScript \verb1client-side1 pentru a sublinia faptul c\u a scripturile func\c tioneaz\u a
+\^in browser-ul clientului \c si nu pe server.
+
+De\c si JavaScript este utilizat predominant \^in dezvoltarea paginilor web,datorit\u a popularit\u a\c tii 
+acestuia, s-au dezvoltat numeroase 
+framework-uri dedicate acestui limbaj care permit dezvoltarea pe diferite platforme.
+Cu Node.js JavaScript poate fi folosit pentru a face servere web.Electron.js permite ca JavaScript
+s\u a fie folosit pentru aplica\c tii desktop cross-platform.JavaScript poate fi folosit \c si pentru
+aplica\c tii pentru dispozitivele mobile prin intermediul frameworkurilor Ionic sau React.js. 
+
 \section{Entity Framework}
 P\^ana la .NET 3.5,programatorii obi\c snuiau sa foloseasc\u a ADO.NET pentru a alva sau prelua date din 
 baza de date.Trebuiau deschise conexiuni, create DataSeturi pentru a citi sau scrie date care mai apoi trebuiau 
@@ -150,60 +268,28 @@ EntityFramework ofer\u a dou\u a modalit\u a\c ti de lucru:
 Din experien\c ta mea cu variantele prezentate, am ajus s\u a prefer varianta database first, deoarce consider c\u a astfel am mai mult control
 asupra datelor \c si opera\c tiilor.
 
-\section{Asp.Net}
+\section{Microsoft SQL Server}
+Microsoft SQL Server este un sitem de management al bazelor de date rela\c tionale,care sus\c tine o varietate
+larg\u a de aplica\c tii.Precum alte sisteme de management al bazelor de date relaz\c tionale,SQL Server
+este construit peste SQL, un limbaj standardizat pe care administratorii de baze de date \c si profesioni\c stii IT
+\^il folosesc pentru a manageria baze de date \c si pentru a interoga dateele pe care acestea le con\c tin.
+SQL Server este legat de Transact-SQL, o Implementare a SQL de la Microsoft care adaug\u a un set de extensii 
+de programare limbajului standard.
+Componenta central\u a a SQL Server este motorul bazei de data,care controleaz\u a stocarea datelor, procesarea lor
+\c si securitatea.Acesta include un motor rela\c tional care proceseaz\u a comenzi \c si interog\u ari \c si 
+un motor de stocare ce manageriaz\u a fi\c sierele, tabele, paginile, indec\c si, buffer-ele de date \c si tranzac\c tile.
+Procedurile stocate, trigger-ele,view-urile \c si celelalte obiecte ale bazei de date sunt deasemenea create \c si executate 
+de motorul bazei de date.\footcite{sqlServer}
+Mai jos dec\^at motorul bezei de date se alfa sistemul de operare al SQL Server(SQLOS) care se ocup\u a
+de opera\c tii de nivel sc\u azut precum managementul memoriei \c si intr\u arilor \c si ie\c sirilor, programarea joburilor 
+\c si blocarea datelor pentru a evita conflictele la actualizare.Deasupra motorului bazei de date se afla un strat de re\c tea,
+care folose\c ste protocolul Tabular Data Stream al Microsoft pentru a facilita interac\c tiunile de tip cerere \c si r\u aspuns
+cu serverul.
 
-ASP.NET este un framework open-source pentru dezvoltarea web.A fost dezvoltat de Microsoft pentru a
-le permite programatorilor s\u a creeze site-uri si servicii web dinamice.A fost introdus odat\u a cu
-.Net framework 1.0 \c si ca urmare este construit pe CLR,ceea ce permite programatorilor sa utilizeze cod
-scris in oricare limbaj suportat de platform\u a.La \^incpeuturile sale, dezvoltarea web site-urilor Asp.Net
-era asociat\u a cu WebForms, care datorit\u a limit\u arilor sale a fost \^inlocuit e Asp.Net MVC. 
-
-\subsection{Asp.Net MVC}
-
-
-\subsection{MVC pattern}
-Model View Controller(MVC) este un \c sablon arhitectural care prezint\u a o solu\c tie pentru tratarea interfe\c tei grafice.
-Arhitectura MVC este una dintre cele mai frecvent \^int\^alnite arhitecturi \^in dezvoltarea aplica\c tiilor web, deoarce
-contribuie la scalabilitatea si extensibilitatea proiectelor.Separarea explicit\u a a responsabilit\u at\c tilor
-cre\c ste pu\c tin complexitatea designului aplica\c tiei,dar beneficiile eclipseaz\u a efortul extra.\footcite{proAspNetMVC5Pattern}
-MVC separ\u a aplica\c tia \^in trei componente:
-\begin{enumerate}
-	\item \textbf{Model}
-
-		Componenta model corespunde logicii legate de date \c si prelucrarea lor.Asta poate \^insemna
-		datele care sunt transferate \^intre componentele view \c si controller sau orice alte date care \c tin de
-		logica aplica\c tiei.
-	\item \textbf{View}
-
-		Componenta View este folosit\u a pentru toat\u a logica ce \c tine de logica \^ interfe\c tei.
-		\^In cazul aplica\c tilor web, view-ul este un \c sablon dupa care este generat codul HTML.
-	\item \textbf{Controller}
-
-		Componenta Controller func\c tioneaz\u a ca o interfa\c ta \^intre componentele view \c si model.
-		Aceast\u a comonent\u a r\u aspunde inputului utilizatorului,comunic\u a cu modelul \c si decide 
-		care view trebuie folosit ca rezultat al cererii.
-\end{enumerate}
-\begin{figure}[!htb]
-	\includegraphics[width=\textwidth,keepaspectratio]{MVCPattern}
-	\caption{Arhitectur\u a MVC}
-	\label{fig:MVCPattern}
-\end{figure}
-\subsection{Asp.Net WebApi}
-Un web api este o interfa\c t\u a programatic\u a la un sistem care este accesat\u a prin metode standard HTTP.
-Un web api poate fi accesat de o varietate larg\u a de clienti HTTP, incluz\^and browser \c si dispozitive mobile \footcite{evolvableWebApi}.
-
-Asp.net MVC este construit cu scopul de a face website-uri.Acest lucru este evident din func\c tionarea acestui framework,
-r\u aspunde la cereri primite din browser \c si returneaz\u a HTML.Cu toate acestea Asp.Net MVC permite un control minu\c tios
-asupra r\u aspunsului dat,\c si MVC este util \^in formarea unui web api.Dezvoltatorii asp.net au realizat c\u a puteau folosi
-acest framework pentru dezvoltarea de servicii web \c si aceasta improviza\c tie era preferabil\u a alternativelor.\footcite{proAspNetMVC5Asp}
-
-Din acest motiv,odat\u a cu Asp.Net MVC 4,a fost introdus si Asp.net Web Api,un framework care ofer\u a 
-stilul de lucru din Asp.Net MVC adaptat pentru a scrie servicii web.
-
-
-
-\section{Microsoft Sql Server}
 \chapter{Implementare}
+
+\section{Add-In}
+
 
 \chapter{Utilizare}
 
