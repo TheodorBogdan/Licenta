@@ -106,6 +106,34 @@ Serverul de \^ inregistrare ofer\u a trei opera\c tii de baza:
 
 		  Aplica\c tia \c si microserviciile pot c\u auta un serviciu \^inregistrat \^in server.
 \end{enumerate}	
+\section{Extensibilitate}
+Extensibilitatea este o problem\u a permanent\u a \^in dezvoltarea de software.Un program poate \c si deobicei 
+trebuie dezvoltat continuu.Serviciu de \^inregistrare, din cauza rolulului pe care \^il are, nu ar trebui oprit 
+pentru actuazliz\u ari doar dac\u a acestea sunt absolut necesare \c si acest lucru trebuie s\u a se \^intample
+c\^at mai rar posibil.\^In acest sens am implementat un mecanism de extensibilitate care nu necesit\u a oprirea
+serverului.Aplica\c tia poate fi extins\u a prin add-inuri.Din acest motiv am expus un API pe care \^il pot folosi 
+pentru dezvoltarea acestor add-inuri.Bine\^inteles, schimb\u arile mai importante nu pot fi f\u acute prin add-inuri
+dar acestea reprezint\u a un mecanism suficient de bun pentru a ad\u auga func\c tionalit\u ati aplica\c tiei far\u a
+a \^intrerupe fun\c tionarea serverului.Un alt avantaj al acestei abord\u ari const\u a \^in posibilitatea de 
+ad\u augare de func\c tionalit\u ati la aplica\c tie de c\u atre utilizator. Acesta poate face un add-in 
+folsind API-ul pe care \^il pun la dispozi\c tie.
+Am ales s\u a ofer trei tipuri de add-inuri:
+\begin{enumerate}
+		\item \textbf{Add-In ac\c tiune}
+
+			Acesta poate fi declan\c sat de c\u atre utilizator prin interfa\c ta grafic\u a.
+		\item \textbf{Add-In periodic}
+
+			Acest tip de add-in se execut\u a la un interval de timp.
+		\item \textbf{Add-In pentru echilibrarea \^inc\u arc\u aturii}
+		
+			Acesta este un add-in special care con\c tine implementarea unui algoritm de echilibrare a \^inc\u arc\u aturii.
+			\^In aplica\c tie poate exista un singur add-in pentru echilibrarea \^inc\u arc\u aturii.\^In cazul \^in care
+			programul g\u ase\c ste mai multe astfel de add-inuri, este selectat aleator unul dintre ele.
+\end{enumerate}
+
+\section{Load Balancer}
+
 
 
 \chapter{Tehnologii}
