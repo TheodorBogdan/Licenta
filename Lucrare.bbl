@@ -19,6 +19,70 @@
 
 \refsection{0}
   \datalist[entry]{ynt/global//global/global}
+    \entry{Hejlsberg:2003:CLS:861332}{book}{}
+      \name{author}{3}{}{%
+        {{hash=bb89b7cdaca604acd67f90b17383b583}{%
+           family={Hejlsberg},
+           familyi={H\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5ac29df759655d92d1b059bf48342ca4}{%
+           family={Wiltamuth},
+           familyi={W\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod}}}%
+        {{hash=85956d59597c66457ba8a052f905f543}{%
+           family={Golde},
+           familyi={G\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boston, MA, USA}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley Longman Publishing Co., Inc.}%
+      }
+      \strng{namehash}{4f1ada9a48020e2cb363ca7b47310c35}
+      \strng{fullhash}{4f1ada9a48020e2cb363ca7b47310c35}
+      \strng{bibnamehash}{4f1ada9a48020e2cb363ca7b47310c35}
+      \strng{authorbibnamehash}{4f1ada9a48020e2cb363ca7b47310c35}
+      \strng{authornamehash}{4f1ada9a48020e2cb363ca7b47310c35}
+      \strng{authorfullhash}{4f1ada9a48020e2cb363ca7b47310c35}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0321154916}
+      \field{title}{C\# Language Specification}
+      \field{year}{2003}
+    \endentry
+    \entry{Flanagan:2011:JDG:2029041}{book}{}
+      \name{author}{1}{}{%
+        {{hash=2caeb722af2e88c021f73029f9740851}{%
+           family={Flanagan},
+           familyi={F\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media, Inc.}%
+      }
+      \strng{namehash}{2caeb722af2e88c021f73029f9740851}
+      \strng{fullhash}{2caeb722af2e88c021f73029f9740851}
+      \strng{bibnamehash}{2caeb722af2e88c021f73029f9740851}
+      \strng{authorbibnamehash}{2caeb722af2e88c021f73029f9740851}
+      \strng{authornamehash}{2caeb722af2e88c021f73029f9740851}
+      \strng{authorfullhash}{2caeb722af2e88c021f73029f9740851}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{6th}
+      \field{isbn}{0596805527, 9780596805524}
+      \field{title}{JavaScript: The Definitive Guide Activate Your Web Pages}
+      \field{year}{2011}
+    \endentry
     \entry{evolvableWebApi}{book}{}
       \name{author}{5}{}{%
         {{hash=e73e4c18f2ada3de60a760eff5dbf2af}{%
@@ -205,6 +269,13 @@
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://en.wikipedia.org/wiki/.NET_Framework}}
       \field{title}{.Net Framework}
+    \endentry
+    \entry{sqlServer}{misc}{}
+      \field{sortinit}{9}
+      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://searchsqlserver.techtarget.com/definition/SQL-Server}}
+      \field{title}{Microsoft SQL Server}
     \endentry
   \enddatalist
 \endrefsection

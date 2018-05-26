@@ -8,8 +8,9 @@
 \usepackage{graphicx}
 \graphicspath{{"./Images/"}}
 
+\usepackage{indentfirst}
 \usepackage{listings}
-
+\usepackage{csquotes}
 \usepackage[
     backend=biber,
     style=verbose,
@@ -17,7 +18,9 @@
 	maxbibnames=99,
 	maxcitenames=6
 ]{biblatex}
+
 \addbibresource{References.bib}
+
 
 \begin{document}
 \maketitle
@@ -134,7 +137,31 @@ Am ales s\u a ofer trei tipuri de add-inuri:
 
 \section{Load Balancer}
 
+Aplica\c tia mea, fiind un serviciu de \^inregistrare trebuie s\u a ia \^in calcul posibilitatea de a avea mai multe servicii
+\^inregistrate cu acela\c si nume.Acest lucru poate p\u area c\u a ar trebui interzis \^ins\u a eu am ales s\u a accept \c si 
+chiar s\u a \^incurajez aceast\u a situa\c tie.Cu acest scop am ad\u augat func\c tionalitatea de load balancing.
+Load balanacing se traduce mot a mot \^in balansarea \^inc\u arc\u aturii \c si const\u a \^in distribu\c tia cererilor 
+c\u atre un server \^intre mai multe servere identice.Cea mai direct\u a metod\u a de scalare a unui server este 
+multiplicarea lui.Nu este suficient s\u a avem mai multe servere identice \c si s\u a las\u am utilizatorii s\u a
+decid\u a ce server doresc s\u a foloseasc\u a,a\c sa c\u a folosim un load balancer care s\u a decid\u a care dintre
+copiile serverului s\u a proceseze fiecare cerere \^in func\ tie de un algoritm.Doar serverul de balansare 
+\c stie de existen\c ta serverelor pe care le are \^in grij\u a.
+\begin{figure}[!htb]
+	\includegraphics[width=\textwidth,keepaspectratio]{LoadNotBalanced}
+	\caption{Accesarea unui server}
+	\label{fig:notLoadBalanced}
+\end{figure}
+\begin{figure}[!htb]
+	\includegraphics[width=\textwidth,keepaspectratio]{LoadBalanced}
+	\caption{Accesarea unui server prin intermediul unei load balancer}
+	\label{fig:loadBalanced}
+\end{figure}
 
+A\c s fi putut s\u a nu accept \^inregistrarea mai multor servicii cu acela\c si nume \c si echilibrarea \^inc\u arc\u aturii 
+de munc\u a s\u a fie f\u acut\u a de fiecare serviciu \^in parte iar aplica\c tia mea s\u a \^inregistreze doar acest server
+dar dac\u a rezolv \c si responsabilitatea de balansare elimin un punct de e\c sec.Dac\u a toate serviciile care au nevoie 
+de scalare folosesc un load balancer atunci func\c tionarea lor depinde de acesta.Elimin\u and nevoia existen\c tei a \^inc\u a
+unui risc cre\c ste siguran\c ta.
 
 \chapter{Tehnologii}
 
@@ -200,7 +227,7 @@ fiecare utilizator.
 
 \subsection{MVC pattern}
 Model View Controller(MVC) este un \c sablon arhitectural care prezint\u a o solu\c tie pentru tratarea interfe\c tei grafice.
-Arhitectura MVC este una dintre cele mai frecvent \^int\^alnite arhitecturi \^in dezvoltarea aplica\c tiilor web, deoarce
+Arhitectura MVC este una dintre cele mai frecvent \^int\^alnite arhitecturi \^in dezvoltarea aplica\c tiilor web, deoarece
 contribuie la scalabilitatea si extensibilitatea proiectelor.Separarea explicit\u a a responsabilit\u at\c tilor
 cre\c ste pu\c tin complexitatea designului aplica\c tiei,dar beneficiile eclipseaz\u a efortul extra.\footcite{proAspNetMVC5Pattern}
 MVC separ\u a aplica\c tia \^in trei componente:
@@ -293,7 +320,7 @@ EntityFramework ofer\u a dou\u a modalit\u a\c ti de lucru:
 		Abordarea Model first presupune creare entit\u a\c tilor \c si rela\c tilor dintre acestea \^intr-o schem\u a,utiliz\^and un designer grafic.
 		Pe baza schemei sunt generate clasele ce constituie modelul \c si baza de date.
 \end{itemize} 
-Din experien\c ta mea cu variantele prezentate, am ajus s\u a prefer varianta database first, deoarce consider c\u a astfel am mai mult control
+Din experien\c ta mea cu variantele prezentate, am ajus s\u a prefer varianta database first, deoarece consider c\u a astfel am mai mult control
 asupra datelor \c si opera\c tiilor.
 
 \section{Microsoft SQL Server}
@@ -315,6 +342,79 @@ care folose\c ste protocolul Tabular Data Stream al Microsoft pentru a facilita 
 cu serverul.
 
 \chapter{Implementare}
+
+\section{Arhitectura}
+
+Aplica\c tia este construit\u a urm\^and o arhitectur\u a pe straturi.
+\^in arhitectura pe straturi componentele apicla\c tiei sunt organizate \^in starturi orizontale,
+fiecare \^indeplinind un rol specific \^in cadrul aplica\c tiei.Fiecare strat este o abstractizare 
+a \^in jurul cerin\t elor aplica\c tiei.Una din tr\u as\u aturile definitorii ale acestei arhitecturi
+este separarea responsabilit\u a\c tilor.Componentele unui strat al aplica\c tiei se procup\u a doar 
+cu logica specific\u a stratului \c si nu se intersecteaz\u a cu logica altor straturi.
+Nu exist\u a un num\u ar impus de straturi, \^in unele cazuri anumite straturi pot lipsi sau pot 
+ap\u area noi straturi.
+
+Serviciul meu de \^inregistrare este compus din 4 straturi, \c si anume:
+\begin{enumerate}
+	\item Un strat de stocare al datelor
+	\item Un strat de accesare a date
+	\item Un strat de logic\u a de business
+	\item Un strat de prezentare
+\end{enumerate}
+
+\subsection{Stratul de stocare a datelor}
+
+Acest strat const\u a \^in baza de date.
+Pentru c\u a am folosit EntityFramework \^in modul Database First pentru a avea mai mult control asupra arhitecturii
+bazei de date.Dac\u a \^in viitor vor ap\u area probleme de performan\c t\u a voi putea optimiza accesarea datelor
+scriind prorpile proceduri stocate mai eficiente dec\^at cele generate de EntityFramework pe baza codului.
+Pentru a putea interac\c tiona cu aplica\c tia prin interfa\c ta grafic\u a \^intr-un mod securizat este nevoie 
+de un sitem de autentificare deci trebuie stocate date despre utilizator.Pentru autentificare fiecare utilizator
+trebuie s\u a poate fi indentificat unic \c si din motive de securitate evindente el are nevoie de o parol\u a
+a c\u arei valoare hash este stocat\u a \^in baza de date.Pentru partea de autorizare este nevoie ca fiec\u arui 
+utilizator s\u a \^ii fie asociat unul sau mai multe roluri.\^In func\c tie de rolul unui utilizator,aplica\c tia decide
+dac\u a acestui \^ii este permis accesul la o anumit\u a func\c tionalitate.Administratorul serviciului
+va avea toate rolurile \c si ca urmare va avea acces nerestric\c tionat.\^In prezent  mai exist\u a un singur alt tip
+de utilizator, al c\u arui singur nu rol \^ii permite s\u a fac\u a modific\u ari pe server.Acest rol este inte\c tionat
+pentru programatorii care lucreaz\u a cu unul sau mai multe din serviciile \^inregistrate \c si le pune la dispozi\c tie 
+informa\c tii legate de starea serviciilor.
+
+Pentru ca utilizatorii s\u a aib\u a mai multe informa\c tii, am implementat un mecanism de mesagerie.Acesta nu este 
+inten\c tionat ca un mijloc de comunicare \^intre utilizatori, ci este un mod ca ei s\u a fie informa\c ti de sistem.
+Deoarece add-inurile au acces la mesaje, nu exist\u a o regul\u a cu privire trebuie s\u a cont\c tin\u a un mesaj.
+Acestea pot con\c tine orice de la inform\u ari cu privire la servicii care nu au mai fost folosite de mult, p\^an\u a
+la mesaje de \^in\^ampinare a unui nou utilizator.
+
+\begin{figure}[!htb]
+	\includegraphics[width=\textwidth,keepaspectratio]{DbDiagramUsers}
+	\caption{Diagrama rela\c tiilor utilizatorului} 
+	\label{fig:DbUser}
+\end{figure}
+
+Pentru un serviciu de \^integistrare cele mai importante date sunt cele referitoare la serviciile \^inregistrate.
+
+\begin{figure}[!htb]
+	\includegraphics[width=\textwidth,keepaspectratio]{DbDiagramServices}
+	\caption{Diagrama serviciilor}
+	\label{fig:DbServices}
+\end{figure}
+
+
+\subsection{Stratul de prezentare}
+
+La acest strat aplica\c tia se bifurc\u a form\^and dou\u a servere.Primul server este serviciul de \^inregistrare
+care este component\u a principal\u a a proiectului meu.Acesta este un server de tip Web Api astfel interfa\c ta grafic\u a
+\^int\^alnit\u a \^in mode obi\c snuit \^in stratul de prezentare este \^inlocuit\u a de o interfa\c t\u a de comunicare
+cu serverul prin intermediul HTTP.Stratul de prezentare din webapi are o arhitectur\u a MVC \^in care lipse\c ste partea
+de View.
+
+Al doilea server este interfa\c ta grafic\u a a aplica\c tiei \c si permite administrarea aplica\c tiei.\^In cazul 
+acestui server stratul de prezentare se reg\u ase\c ste \^in sensul clasic.Arhitectura stratului este MVC complet spre
+deosebire de cazul anterior.
+
+Toate starturile precedente sunt comune \^in cele servere.
+Separarea aplica\c tiei ini\c tiale \^in dou\u a servere distincte nu doar reduce munca fiec\u arui server,
+dar \c si faciliteaz\u a dezvoltarea.
 
 \section{Add-In}
 
