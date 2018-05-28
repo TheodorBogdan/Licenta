@@ -365,7 +365,7 @@ Serviciul meu de \^inregistrare este compus din 4 straturi, \c si anume:
 \subsection{Stratul de stocare a datelor}
 
 Acest strat const\u a \^in baza de date.
-Pentru c\u a am folosit EntityFramework \^in modul Database First pentru a avea mai mult control asupra arhitecturii
+Pentru c\u a am folosit EntityFramework \^in modul Database First am \^inceput proiectul cu arhitecturii
 bazei de date.Dac\u a \^in viitor vor ap\u area probleme de performan\c t\u a voi putea optimiza accesarea datelor
 scriind prorpile proceduri stocate mai eficiente dec\^at cele generate de EntityFramework pe baza codului.
 Pentru a putea interac\c tiona cu aplica\c tia prin interfa\c ta grafic\u a \^intr-un mod securizat este nevoie 
@@ -377,28 +377,100 @@ dac\u a acestui \^ii este permis accesul la o anumit\u a func\c tionalitate.Admi
 va avea toate rolurile \c si ca urmare va avea acces nerestric\c tionat.\^In prezent  mai exist\u a un singur alt tip
 de utilizator, al c\u arui singur nu rol \^ii permite s\u a fac\u a modific\u ari pe server.Acest rol este inte\c tionat
 pentru programatorii care lucreaz\u a cu unul sau mai multe din serviciile \^inregistrate \c si le pune la dispozi\c tie 
-informa\c tii legate de starea serviciilor.
+informa\c tii legate de starea serviciilor.Sistemul de roluri este g\^andit \^in a\c sa fel \^inc\^at  s\u a fi u\c sor 
+de ad\u augat \c si integrat un rol nou.Introducerea unui rol nou nu va afecta cu nimic rolurile existente \c si nici
+utilizatorii existen\c ti.Rolurile pot fi asgnate \c si utilizatorilor vechi d\^andule astfel noi permisiuni.
+
 
 Pentru ca utilizatorii s\u a aib\u a mai multe informa\c tii, am implementat un mecanism de mesagerie.Acesta nu este 
 inten\c tionat ca un mijloc de comunicare \^intre utilizatori, ci este un mod ca ei s\u a fie informa\c ti de sistem.
 Deoarece add-inurile au acces la mesaje, nu exist\u a o regul\u a cu privire trebuie s\u a cont\c tin\u a un mesaj.
 Acestea pot con\c tine orice de la inform\u ari cu privire la servicii care nu au mai fost folosite de mult, p\^an\u a
-la mesaje de \^in\^ampinare a unui nou utilizator.
+la mesaje de \^in\^ampinare a unui nou utilizator.Dup\u a cum se vede \c si in Figura \ref{fig:DbUser}, un mesaj 
+are un destinatar \c si un expiditor.Acest lucru poate fi folosit dac\u a pe viitor utilizatorii vor avea nevoie s\u a
+ \^i\c si poat\u a trimite mesaje unul altuia, dar \^in prezen expeditorii mesajelor sunt add-inurile.
+ Fiecare add-in are asociat un utilizator special f\u a\u a nici un rol.
 
-\begin{figure}[!htb]
+
+\begin{figure}
 	\includegraphics[width=\textwidth,keepaspectratio]{DbDiagramUsers}
-	\caption{Diagrama rela\c tiilor utilizatorului} 
+	\caption{Diagrama rela\c tiilor utilizatorului}
 	\label{fig:DbUser}
 \end{figure}
 
 Pentru un serviciu de \^integistrare cele mai importante date sunt cele referitoare la serviciile \^inregistrate.
+Un serviciu este identificat prin numele de cluster \c si numele de aplica\c tie.Cluster-ul define\c ste grupul
+din care face parte un serviciu.Nu exist\u a o restric\c tie de unicitate pentru combina\c tia nume de cluster \c si
+nume de aplica\c tie, deoarece func\c tia de load balancing se func\c tioneaz\u a atunci c\^and exist\u a mai multe 
+servere identice. Pentru a putea fi folosit,un serviciu are nevoie \c si de un URL.URL-ul trebuie s\u a fie unic \^in 
+cadrul unui cluster.Nu are sens ca acela\c si serviciu s\u a fie \^inregistrat de dou\u a ori,\^ins\u a nu ar trebui 
+s\u a fie oprit din a fi folosit \^in mai multe clustere, astfel URL-ul nu trebuie s\u a fie unic, ci combina\c tia 
+cluster,URL. Dup\u a cum se poate observa \c si \^in figura \ref{fig:DbServices}, am ad\u augat un tabel destinat
+monitoriz\u arii acces\u arii serviciilor.\^In etapa ini\c tial\u a a proiectului acest tabel era \^inlocuit de 
+c\u atre o coloan\u a \^in tabelul Services care con\c tinea data ultimei acces\u ari a serviciului.De\c si 
+data ultimei acces\u ari este o informa\c tie important\u a, nu este suficient\u a.Stoc\^and fiecare accesare 
+pot realiza statistici relevante pentru utilizatori.
 
-\begin{figure}[!htb]
+\begin{figure}[!ht]
 	\includegraphics[width=\textwidth,keepaspectratio]{DbDiagramServices}
 	\caption{Diagrama serviciilor}
 	\label{fig:DbServices}
 \end{figure}
 
+
+\pagebreak
+
+\subsection{Stratul de accesare a datelor}
+
+Stratul de accesare a datelor const\u a \^intr-un proiect separat ce con\c tine interfe\c te \c si clase 
+ care au responsabilitatea de a prelua sau prelucra datele din baza de date.Aceast\u a separare aduce numeroase
+ beneficii:
+ \begin{itemize}
+	 \item Am eliminat duplicarea codului de acces la date.
+	 \item Separearea responsabilit\u a\c tiilor cre\c ste mentenabilitatea \c si citibilitatea codului
+	 \item Datorit\u a decupl\u arii am f\u acut codul testabil \^in izolare.Un alt avantaj
+	 \item Am decuplat aplica\c tia de framework-ul de persisten\c t\u a, astfel este mai u\c soar\u a schimbarea
+	 	acestuia dac\u a \^in viitor va ap\u area nevoia. 
+ \end{itemize}
+ 
+Accesarea datelor se face prin interfe\c te, a c\u aror implementare este ob\c tinut\u a prin injectare de dependen\c te
+Am definit c\^ate o interfa\c t\u a pentru fiecare entitate persistent\u a major\u a.
+
+Interfa\c ta IUserRepository con\c tine 
+metode pentru accesarea datelor despre utilizatori, sau trimiterea mesajelor c\u atre utilizatori.Un mesaj poate fi trimis c\u atre 
+un singur utilizator sau c\u atre to\c ti utilizatorii care \^indeplinesc o anumit\u a condi\c tie.Pentru a stabili o condi\c tie 
+de trimitere c\u atre mai mul\c ti utilizator am folosit un delegat pentru o metod\u a ce prime\c ste ca parametru un obiect de tip 
+User \c si returneaz\u a un r\u aspuns boolean.
+
+Interfa\c ta IClusterRepository define\c ste metodele clasice ale unui repository, \c si anume opera\c tiile CRUD \c si o metod\u a de
+filtrare folosind un delegat.
+
+Interfa\c ta IServiceRepository este probabil cea mai important\u a, deoarce corespunde fun\c tionalit\u atii principale ale aplica\c tiei.
+Este evident c\u a aceast\u a trebuie s\u a aib\u a metode pentru \^inregistrarea,de\^inregistrarea \c si g\u asirea serviciilor.
+PT. balanc
+
+Tot \^in stratul de accesare a datelor se afl\u a \c si Interfa\c ta ILoadBalancer.\ref{lst:ILoadBalancer}Interfa\c ta este folosit\u a 
+de impelmentarea interfe\c tei IServiceRepository, ca o strategie.
+Pentru interfa\c ta ILoadBalancer am f\u acut \c si o implementare implicit\u a, care este folosit\u a \^in cazul \^in care nu exist\u a o implementare sub form\u a de 
+add-in.Acest\u a implementare va returna url-ul serverului care a fost folosit \^in urma cu cea mai \^indelungat\u a perioad\u a \c si se potrive\c ste 
+serviciului c\u autat.
+
+\begin{lstlisting}[caption={Interfa\c ta ILoadBalancer},label={lst:ILoadBalancer}, breaklines]	
+    /// <summary>
+    ///     Strategy for load balancing algorithm
+    /// </summary>
+    public interface ILoadBalancer
+    {
+        /// <summary>
+        ///  Get a service using a load balancing algortihm
+        /// </summary>
+        /// <param name="clusterName"></param>
+        /// <param name="appName"></param>
+        /// <param name="ipAddress"></param>
+        /// <returns></returns>
+        Service GetService(string clusterName, string appName, string ipAddress);
+    }
+\end{lstlisting}
 
 \subsection{Stratul de prezentare}
 
@@ -418,8 +490,14 @@ dar \c si faciliteaz\u a dezvoltarea.
 
 \section{Add-In}
 
+\section{Testare}
 
 \chapter{Utilizare}
+
+\chapter{Planuri de viitor}
+
+Add-Inuri cu javascript
+Testare mai multa
 
 \printbibliography
 
