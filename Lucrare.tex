@@ -445,15 +445,22 @@ User \c si returneaz\u a un r\u aspuns boolean.
 Interfa\c ta IClusterRepository define\c ste metodele clasice ale unui repository, \c si anume opera\c tiile CRUD \c si o metod\u a de
 filtrare folosind un delegat.
 
-Interfa\c ta IServiceRepository este probabil cea mai important\u a, deoarce corespunde fun\c tionalit\u atii principale ale aplica\c tiei.
+Interfa\c ta IServicesRepository este probabil cea mai important\u a, deoarce corespunde fun\c tionalit\u atii principale ale aplica\c tiei.
 Este evident c\u a aceast\u a trebuie s\u a aib\u a metode pentru \^inregistrarea,de\^inregistrarea \c si g\u asirea serviciilor.
-PT. balanc
+De asemena este nevoie \c si de o metod\u a pentru a ob\c tine toate serviciile, astfel \^inc\^at acestea s\u a poat\u a fi 
+afi\c sate \^in interfa\c ta grafic\u a.Tot pentru partea vizual\u a a aplica\c tiei am avut nevoie \c si de un mod de a aduce 
+din baza de date toate acces\u arile unui serviciu dintr-un interval e timp.Pe baza dateloe de acces pot realiza staticstici referiotare
+la accesul la servicii.
 
-Tot \^in stratul de accesare a datelor se afl\u a \c si Interfa\c ta ILoadBalancer.\ref{lst:ILoadBalancer}Interfa\c ta este folosit\u a 
-de impelmentarea interfe\c tei IServiceRepository, ca o strategie.
+Tot \^in stratul de accesare a datelor se afl\u a \c si Interfa\c ta ILoadBalancer\ref{lst:ILoadBalancer}.Clasa ServicesRepository care implementeaz\u a
+interfa\c ta IServicesRepository se folose\c ste de un obiect ce implementeaz\u a interfe\c ta ILoadBalancer, ca o strategie.
+Strategia este un \c sablon de proiectare comportamental care permite schimbarea algoritmului \^in timpul rul\u arii aplia\c tiei.
+Acest lucru se face trimi\c t\^and un obiect ce implementeaz\u a ILoadBalancer prin constructorul clasei ServicesRepository.
 Pentru interfa\c ta ILoadBalancer am f\u acut \c si o implementare implicit\u a, care este folosit\u a \^in cazul \^in care nu exist\u a o implementare sub form\u a de 
 add-in.Acest\u a implementare va returna url-ul serverului care a fost folosit \^in urma cu cea mai \^indelungat\u a perioad\u a \c si se potrive\c ste 
-serviciului c\u autat.
+serviciului c\u autat.Parametrii clusterName \c si appName ai metodei GetService sunt folosi\c ti pentru a identifica serviciul,
+iar  parametrul ipAddress reprezint\u a adresa ip a celui care solicitat serviciul respectiv.Adresa ip trebuie stocat\u a odat\u a
+cu data acces\u arii serviciului.
 
 \begin{lstlisting}[caption={Interfa\c ta ILoadBalancer},label={lst:ILoadBalancer}, breaklines]	
     /// <summary>
@@ -471,6 +478,67 @@ serviciului c\u autat.
         Service GetService(string clusterName, string appName, string ipAddress);
     }
 \end{lstlisting}
+
+\pagebreak
+
+\subsection{Startul de logic\u a de business}
+
+Startul  de logic\u a de business con\c tine 2 proiect.Un proiect dedicat Add-inurilot \c si unul dedicat utiliz\u arii 
+datelor venite din stratul de acces al datelor.\^In acest proiect se g\u asesc trei interfe\c te \c si implement\u ariile lor.
+Interfe\c telor IServicesRepository,IUserRepository \c si IClusterRepository  din stratul precedent,le corespunde o 
+interfa\c t\u a \^in acest strat.Pentru IServicesRepository exist\u a IServicesManager,pentru IClusterRepository exist\u a 
+IClusterManager \c si pentru IUserRepository exist\u a IUserManager.Implement\u arile interfe\c telor de tip manager se folosesc
+de obiecte de ce implementeaz\u a interfe\c tele repository corespunz\u atoare pentru a accesa datele.Aceste obiecte sunt 
+furnizate prin procedeul inject\u arii dependen\c telor.Astfel ServicesManager care  implementeaz\u a interfa\c ta 
+IServicesManager, prime\c te o implementare a IServicesRepository prin care realizeaz\u a accesarea \c si prelucrarea datelor.
+Folosind interfe\c te, managerii nu depind de modul \^in care datele sunt stocate.Metodele managerilor au rolul de a face 
+valid\u arii asupra parametriilor cu are sunt apelate pentru a preveni caut\u ari inutile printre datele stocate sau
+inserarea unor date are ar putea afeta consisten\c ta datelor stocate.Cu toate aceastea managerii nu se limiteaz\u a 
+la valid\u ari,clasele repository doar aduc datele,tot resutl logicii se petrce \^in manageri.Se poate spune c\u a un repository
+este o unealt\u a care \^ii d\u a acces la date unui manager.
+
+\^In cel\u alalt proiect din acest strat se afl\u a logica ce guverneaz\u a add-inurile.Ca un add-in 
+s\u a fie \^inc\u arcat \^in aplica\c tie acesta trebuie s\u a fie fac\u t cunoscut aplica\c tiei.
+Acest lucru se face printr-un fisier de tip *.sAddIn care define\c ste add-inul.Fi\c sierele *.sAddIn sunt fi\c siere
+\^in format JSON care conc\c tin informa\c tii despre addIn.Dup\u a  cum se vede \^in \ref{lst:addInDef}, defini\c tia 
+unui add-in trebuie s\u a con\c tin\u a numele add-inului,o scurt\u a descriere,tipul de add-in, intervalul la care 
+acesta trebuie executat \c si calea c\u atre add-in.Intervalul este exprimat \^in ore \c si este luat \^in considerare 
+doar pentru add-inurile periodice.
+loca\c tia de pe disc a add-inului. 
+\begin{lstlisting}[caption={Defini\c tie a unui AddIn},label={lst:addInDef},breaklines]
+{
+	"Name":"UnusedServiceNotifier",
+	"ShortDescription":"Sends a notification to the administrators regarding unused services",
+	"Type":"Periodic",
+	"RunInterval":4,
+	"Path":"/AddIns/Periodic/USN.dll"
+}
+\end{lstlisting}
+Pe l\^ang\u a un fis\c ier \^il define\c ste, pentru a putea fi executat un add-in trebuie s\u a con\c tin\u a o clas\u a 
+ce implementeaz\u a Interfa\c ta IAddin.Aceast\u a clas\u a este punctul de intrare \^in add-in.
+
+\^In prezent din punct de vedere al limbajului de programare folosit, add-inurile se \^impart in dou\u a categorii, \c si
+anume add-inuri scrise \^in C\# \c si add-inuri scrise \^in CSScript.Add-inurile C\# sunt sub form\u a de dll iar 
+cele scris \^in CSScript sunt fi\c siere text cu extensia .csscript.Problema \^in aceast\u a situa\c tie este c\u a 
+ambele tipuri de add-inuri trebuie tratate la fel \^ins\u a este evident c\u a execu\c tia acestor se face diferit.
+Bilbiotecile trebuie \^inc\u arcate \^in aplica\c tie apoi prin mecanismul reflection trebuie g\u asit\u a 
+clasa ce implementeaz\u a interfa\c ta IAddin \c si apoi exceutat\u a metoda Run a acesteia.
+Pe de alt\u a parte fi\c siere CSSript sunt fi\c siere text \c si acestea trebuie interpretate de un interpretor CSScript.
+Interpretorul caut\u a punctul de intrare \^in add-in \c si apoi execut\u a metoda Run.Cu siguran\c t\u a nu pot \^In ciuda diferen\c tei dintre 
+cele dou\u a tipuri de add-inuri, ele trebuie tratate similar de c\u atre aplica\c tie.
+Am rezolvat o parte din problem\u a definind o interfa\c t\u a IAddinRunner care s\u a se ocupe de lansarea \^in execu\c tie 
+a extensilor.Prin intermediul acesteia, procesul de ad\a ugare al unui nou tip de add-in se reduce la crearea unei noi
+implement\u ari a interfe\c tei, potrivit\u a pentru tipul dorit.Nu doar c\u a am fac\u at posibil\u a implementarea add-inurilor
+ sub forma de bibliotec\u a cu leg\u atur\u a dinamic\u a \c si sub form\u a de scrip CSScript, dar am \c si preg\u atit
+ aplica\c tia pentru dezvoltare viitoare.Singur a problem\u a r\u amas\u a este faptul c\u a aplca\c tia are nevoie de un mod
+ de a \c sti ce fel de add-inuri s\u a foloseasc\u a.Decizia cu privire la tipul de add-in se face dintr-un fi\c sier de 
+ configurare.O posibil\u a solu\c tie ar fi ca la oric\^and este nevoie ca aplica\c tia s\u a stie ce fel de extensii trebuie 
+ s\u a foloseas\u a, aceast\u a s\u a fac\u a o verificare.Aceast\u a abordare nu doar c\u a va polua codul cu interog\u ari
+ \c si va cauza duplicare de cod, dar este \c si foarte greu de \^intre\c tinut \c si dezvoltat.Solu\c tia mea a fost
+s\u a folosesc o implementare de tip abstract factory.
+
+
+
 
 \subsection{Stratul de prezentare}
 
@@ -502,3 +570,10 @@ Testare mai multa
 \printbibliography
 
 \end{document}
+
+idei:
+bootstrap
+HTML
+css
+jquery
+autofac
