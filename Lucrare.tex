@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \graphicspath{{"./Images/"}}
 
+\usepackage[parfill]{parskip}
 \usepackage{indentfirst}
 \usepackage{listings}
 \usepackage{csquotes}
@@ -20,7 +21,19 @@
 ]{biblatex}
 
 \addbibresource{References.bib}
+%Rejne / Sonny
+\usepackage[Sonny]{fncychap}
+\iffalse
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+\fi
 
+\let\oldref\ref
+\renewcommand{\ref}[1]{[\oldref{#1}]}
+
+\lstset{
+	frame=single
+}
 
 \begin{document}
 \maketitle
@@ -290,7 +303,7 @@ aplica\c tii pentru dispozitivele mobile prin intermediul frameworkurilor Ionic 
 
 \section{HTML}
 
-Hypertext Markup Language(HTML) este limbajul de marcaj standard pentru creearea paginilor web \c si aplica\c tiilor web.\^Impreun\u a cu 
+Hypertext Markup Language(HTML) este limbajul de marcaj standard pentru creearea paginilor web \c si aplica\c tiilor web.\footcite{wikiHTML}\^Impreun\u a cu 
 CSS \c si JavaScript formeaz\u a cele trei limbaje esen\c tiale care definesc interfa\c ta grafic\u a a unei aplica\c tii web.
 Navigatoarele web primesc documente HTML de la un server \c si pe baza acestuia afi\c seaz\u a o pagin\u a web.HTML descrie 
 structura semantic\u a a unei pagini.
@@ -304,6 +317,25 @@ Navigatoarele nu afi\c seaz\u a direct documentele HTML, ci stiu s\u a le interp
 HTML se pot da informa\c tii suplimentare prin atributele acestora.Majoritatea atributelor sunt perechi
 de tip cheie valoare separate prin semnul "=".De asemenea valoarea atributelor trebuie specificat\u a \^intre ghilimele.
 Atributele se g\u asesc mereu \^in tagul de \^inceput al elementelor HTML.
+
+\section{CSS}
+
+Cascading Style Sheets(CSS) este un limbaj de stil folosite pentru descrierea prezent\u arii documentelor scrise \^in HTML.
+CSS a fost conceput pentru a permite separarea \^intre prezentare \c si con\c tinut, incluz\^and forme,culori \c si fonturi.
+Aceast\u a separare poate \^imbun\u at\u a\c ti accesibilitatea con\c tinutului.De asemenea separarea permite mai mult\u a 
+flexibilitate \c si control \^in specificarea caracteristicilor prezent\u arii.Un alt beneficiu pe care \^il aduce CSS este 
+faptul c\u a mai multe pagini web pot folosi acelea\c si stiluri, dintr-un fi\c sier .css, ceea ce reduce complexitatea
+\c si repetabilitatea.Mai mult,folosind acela\c si fi\c ier css putem  da un aspect similar paginilor care fac parte din 
+aceea\c si aplica\c tie,cree\^and o unitate \^inte acestea.Numele cascading din CSS provine de la metoda pe prioritizare 
+a stilurilor care afecteaz\u a un element.CSS folose\c ste prioritate de tip cascade pentru a determina regula de stil aplicat\u a 
+unui element atunci c\^and acesta este afectat de mai mult reguli.CSS alege regula care va fi folosit\u a parcurg\^and \^in cascad\u a toate
+regulile aplicate elementului pornind de la cea mai general\u a p\^an\u a la cea mai specific\u a. 
+
+\^Inainte de CSS,HTML era folosit \c si pentru partea prezentare, motiv pentru care au ap\u arut foarte multe taguri HTML
+cu rol de prezentare.HTML a fost conceput pentru a avea un rol structural \^in pagin\u a dar a devenit din ce \^in ce mai 
+aglomerat cu taguri de prezentare\footcite{cssDef}.Aceast\u a poluare a limbajului a fost sesizat\u a \c si de c\u atre World Wide Web Consortium (W3C)
+care au c\u autat o solu\c tie la problem\u a.Solu\c tia propus\u a de W3C a fost CSS care a devenit o recomandare cu aceea\c si greutate
+ca HTML.De atunci CSS a evoluat odat\u a cu dezvoltarea web, p\^an\u a la starea \^in care se afl\u a ast\u azi.
 
 \section{Entity Framework}
 P\^ana la .NET 3.5,programatorii obi\c snuiau sa foloseasc\u a ADO.NET pentru a alva sau prelua date din 
@@ -464,7 +496,7 @@ filtrare folosind un delegat.
 
 Interfa\c ta IServicesRepository este probabil cea mai important\u a, deoarce corespunde fun\c tionalit\u atii principale ale aplica\c tiei.
 Este evident c\u a aceast\u a trebuie s\u a aib\u a metode pentru \^inregistrarea,de\^inregistrarea \c si g\u asirea serviciilor.
-De asemena este nevoie \c si de o metod\u a pentru a ob\c tine toate serviciile, astfel \^inc\^at acestea s\u a poat\u a fi 
+De asemenea este nevoie \c si de o metod\u a pentru a ob\c tine toate serviciile, astfel \^inc\^at acestea s\u a poat\u a fi 
 afi\c sate \^in interfa\c ta grafic\u a.Tot pentru partea vizual\u a a aplica\c tiei am avut nevoie \c si de un mod de a aduce 
 din baza de date toate acces\u arile unui serviciu dintr-un interval e timp.Pe baza dateloe de acces pot realiza staticstici referiotare
 la accesul la servicii.
@@ -543,7 +575,7 @@ clasa ce implementeaz\u a interfa\c ta IAddin \c si apoi exceutat\u a metoda Run
 Pe de alt\u a parte fi\c siere CSSript sunt fi\c siere text \c si acestea trebuie interpretate de un interpretor CSScript.
 Interpretorul caut\u a punctul de intrare \^in add-in \c si apoi execut\u a metoda Run.Cu siguran\c t\u a nu pot \^In ciuda diferen\c tei dintre 
 cele dou\u a tipuri de add-inuri, ele trebuie tratate similar de c\u atre aplica\c tie.
-Am rezolvat o parte din problem\u a definind o interfa\c t\u a IAddinRunner care s\u a se ocupe de lansarea \^in execu\c tie 
+Am rezolvat o parte din problem\u a definind o interfa\c t\u a IAddInRunner care s\u a se ocupe de lansarea \^in execu\c tie 
 a extensilor.Prin intermediul acesteia, procesul de ad\a ugare al unui nou tip de add-in se reduce la crearea unei noi
 implement\u ari a interfe\c tei, potrivit\u a pentru tipul dorit.Nu doar c\u a am fac\u at posibil\u a implementarea add-inurilor
  sub forma de bibliotec\u a cu leg\u atur\u a dinamic\u a \c si sub form\u a de scrip CSScript, dar am \c si preg\u atit
@@ -552,10 +584,35 @@ implement\u ari a interfe\c tei, potrivit\u a pentru tipul dorit.Nu doar c\u a a
  configurare.O posibil\u a solu\c tie ar fi ca la oric\^and este nevoie ca aplica\c tia s\u a stie ce fel de extensii trebuie 
  s\u a foloseas\u a, aceast\u a s\u a fac\u a o verificare.Aceast\u a abordare nu doar c\u a va polua codul cu interog\u ari
  \c si va cauza duplicare de cod, dar este \c si foarte greu de \^intre\c tinut \c si dezvoltat.Solu\c tia mea a fost
-s\u a folosesc o implementare de tip abstract factory.
+s\u a folosesc o implementare de tip abstract factory \ref{fig:IAddInRunnerFactory}.Abstract Factory este un \c sablon de proiectare care ofer\u a 
+o interfa\c t\u a pentru creearea unei familii de obiecte \^inrudite sau dependente f\u ar\u a specificarea claselor
+lor concrete.\footcite{Freeman:2004:HFD:1076324} 
 
+\begin{figure}[!ht]
+	\includegraphics[width=\textwidth,keepaspectratio]{IAddInRunnerFactory}
+	\label{fig:IAddInRunnerFactory}
+\end{figure}
 
+\^In func\c tie de tipul de addIn specificat \^in fi\c sierul de configurare al serverului,se va alege care implementare a 
+interfe\c tei IAddInRunnerFactory va fi folosit\u a de aplica\c tie.Implementarea aleas\u a va fi folosit\u a \^in \^intreaga
+aplica\c tie  \c si astfel cu o singur\u a verificare programul va folosi tipul de add-inuri dorit.
 
+Exist\u a situa\c tii \^in care un add-in devine irelevant sau nedorit de utilizator, din acest motiv,Add-Inurile trebuie 
+s\u a poat\u a fi \c sterse de utilizator.Pentru a ad\u auga aceast\u a func\c tionalitate, am creat \c si implementat o
+ interfa\c ta dedicat\u a st\u arii de pe disc a add-inurilor.Aceast\u a interfa\c t\u a poate reg\u asi add-inurile de pe disc
+ \c si le poate \c sterge.
+
+ Dup\u a cum am men\c tionat mai devreme exist\u a un tip de add-inuri care sunt executate periodic.Fiecare add-in de acest tip 
+ are un alt interval orar la care trebuie executat.Cu scopul de a planifica \c si lansa \^in execu\c tie aceste add-inuri am f\u a cut
+ clasa AddInScheduler.AddInScheduler opereaz\u a \^intr-un fir de execu\c tie separat datorit\u a naturii asincrone a acestuia.
+  AddInScheduler se ocup\u a de lansarea \^in execu\c tie a tuturor add-inurilor ce trebuie executate periodic.
+ Clasa ofer\u aposibilitatea ad\u aug\u arii unui add-in nou oric\^and \c si la dispari\c tia unui add-in de pe disc, AddInScheduler
+ \^il va scoate automat din lista de excu\c tie.Din nou intervine problema lans\u arii \^in execu\c tie a add-inurilor,
+ dar de data aceasta este \^in cadrul AddInScheduler.De\c si \^in cazul unei implement\u ari naive, execu\c tia add-inurilor
+ de c\u atre AddInScheduler ar putea p\u area o problem\u a,defapt execu\c tia nu este treaba acestei clase.
+ Tot ce trebuie s\u a fac\u a clasa AddInScheduler este s\u a foloseasc\u a o implementare a interfe\c tei IAddInRunner 
+ care la r\^andul ei s\u a se ocupe de execu\c tia add-inurilor.\c Si dup\u a cum am stabilit anterior, AddInScheduler
+ va ob\c tine o implementare corect\u a a IAddInRunner printr-un factory. 
 
 \subsection{Stratul de prezentare}
 
@@ -569,14 +626,114 @@ Al doilea server este interfa\c ta grafic\u a a aplica\c tiei \c si permite admi
 acestui server stratul de prezentare se reg\u ase\c ste \^in sensul clasic.Arhitectura stratului este MVC complet spre
 deosebire de cazul anterior.
 
-Toate starturile precedente sunt comune \^in cele servere.
+Toate starturile precedente sunt comune \^in cele dou\u a servere.
 Separarea aplica\c tiei ini\c tiale \^in dou\u a servere distincte nu doar reduce munca fiec\u arui server,
 dar \c si faciliteaz\u a dezvoltarea.
 
-\section{Add-In}
+Inte\c tia implement\u arii pe straturi este o cuplare mai slab\u a \^intre modulele aplica\c tiei.Acest lucru este 
+realizat prin folosirea interfe\c telor \^in locul implement\u arilor concrete \c si prin injectarea dependen\c telor.
+\^In Asp.NET MVC \c si Web Api toate cererile utilizatorilor sunt trimise c\u atre un Controller care se ocup\u a de
+r\u astpunsul la acestea.Controller-ele sunt instan\c tiate de c\u atre framework ceea ce m\u a \^impideic\u a s\u a 
+fac o injectare de dependen\c te clasic\u a.Asta nu \^inesamn\u a c\u a trebuie s\u a deteriorez  arhitectura, ci 
+trebuie s\u a fac injectarea dependen\c telor printr-un alt mod.Abordarea alternativ\u a este oferit\u a de c\u atre 
+Autofac.Autofac este un container pentru inversarea controlului.Cu autofac pot \^inregistra \^intr-un container 
+implement\u arile interfe\c telor de care am nevoie \c si atunci c\^and va fi nevoie de o implementare, se va folosi tipul
+\^inregistrat \^in container.De exemplu,c\^and se va crea o instan\c t\u a a clasei AccountController, care necesit\u a 
+implement\u area interfe\c tei IUserManger,acesta va primi o nou\u a instan\c t\u a a clasei UserManager \c si pentru ca 
+aceasta necesit\u a o implementare a IUserRepository, \c si UserManager va primi implementarea IUserRepository \^inregistrat\u a
+\^in container.Cu autofac pot \^inregistra \c si tipuri \^in timpul rul\u arii, cum am f\u acut \^in cazul interfe\c tei 
+ILoadBalancer, a c\u arei implementare se caut\u a \^intr-un add-in.
+
+ 
+
+\section{Autentificarea \c si autorizarea}
+
+\^In asp.net exist\u a un framework numit IdentityModel care se ocup\u a de o mare parte din autentificarea \c si autorizarea
+utilizatorilor.Acesta se integreaz\u a bine cu framework-ul ASP.NET MVC \c si este suficient pentru securitatea majorit\u atii 
+aplica\c tiilor.IdentityModel este de asemenea u\c sor de folosit \c si cu un efort minim o aplica\c tie poate avea partea de 
+autentificare \c si autorizare func\c tional\u a.Din aceste motive este foarte comun \^in aplica\c tiile ASP.NET.
+
+Cu toate aceste beneficii pe care le aduce, IdentityModel este un framework destul de restrictiv.Utilizarea acestul framework
+ar fi presupus compromisuri \^in arhitectura pe care o doresc.IdentityModel se preteaz\u a cel mai bine pentru o arhitectur\u a
+mai simpl\u a.IdentityModel necesit\u a acces direct la baza de date, ceea ce nu este valabil \^intr-o arhitectur\u a pe straturi
+precum cea a aplica\c tiei mele.De asemenea framework-ul este g\^andit pentru a fi folosit cu EntityFramework \^intr-o abordare 
+Code First.IdentityModel aduce cu el ni\c ste clase model \c si o clas\u a context, ceea ce \^in abordarea Code First simplific\u a
+munca dezvoltatorului.Cum eu am ales aboradarea Database First, acest lucru este un impediment.Acest obstacol poate fi 
+ocolit dac\u a generez baza de date \^intr-o alt\u a aplica\c tie, apoi copiez exact tabelele create de IdentityModel \^in 
+baza de date a aplica\c tiei mele.Totu\c si chiar cu aceast\u a metod\u a de ocolire r\u am\^ane problema accesului direct
+la baza de date.Din cauza restric\c tilor impuse de acest framework am ales s\u a renun\c t la acesta \c si s\u a \^imi fac 
+propriul sistem de autentificare \c si autorizare pe care s\u a \^il integrez cu ASP.NET.
+
+\begin{figure}[ht]
+	\includegraphics[width=\textwidth,keepaspectratio]{LogIn}
+	\label{fig:LogIn}
+\end{figure}
+Pentru a putea folosi aplica\c tia, utilizatorul trebuie s\u a se autentifice.Dac\u a acesta \^incerc\u a s\u a intre pe o pagin\u a a site-ului
+de administrare f\u ar\u a s\u a fie atuentificat, va fi redirec\c tionat c\u atre pagina de autentificare\ref{fig:LogIn}.Autentificarea se face prin 
+intermediul adresei de email \c si o parol\u a.Un utilizator nu \^i\c si poate crea un cont nou deoarece,serviciul 
+de \^inregistrare nu este un serviciu public,acesta destinat utiliz\u arii \^in cadrul unei companii, doar de 
+persoane autorizate.Din acest punct de vedere, serviciul este similar cu o re\c tea intranet.
+Pentru comfortul utilizatorului, am ales s\u a folosesc pentru autentificare cookie-uri a\c sa \^inc\^at
+utilizatorul s\u a nu fie nevoit s\u a se autentifice de fiecare dat\u a c\^and dore\c ste s\u a intre \^in
+aplica\c tie.Termenul de expirare al cookie-ului am decis s\u a fie 30 de minute.Cookie-ul este creat imediat dup\u a ce 
+utilizatorul s-a atuentificat cu succes.
+
+Mecanismul de autorizare din ASP.NET se bazeaz\u a pe atributul AuthorizeAttribute . Acesta se poate aplica unei metode
+sau unui controller, caz \^in care va afecta toate metodele acestuia.Defapt exist\u a dou\u a atribute AuthorizeAttribute ,
+unul pentru ASP.NET MVC \c si unul pentru Web Api.Diferen\c tele \^intre ele sunt destul de mici \c si din punct de vedere al utiliz\u arii
+sunt identice.Aceste atribute se folosesc de o interfa\c t\u a numit\u a IPrincipal\ref{lst:IPrincipal}, care reprezint\u a utilizatorul.Am creat o interfa\c t\u a nou\u a care mo\c stene\c ste 
+interfa\c ta IPrincipal, care s\u a \^imi ofere o metod\u a de a accesa rolurile utilizatorului.Implementarea noii interfe\c te implementeaz\u a
+\c si interfa\c ta IPrincipal, deci poate fi folosit\u a pentru autorizare de c\u atre atributul AuthorizeAttribute.Pentru 
+controllerele de Web APi pot folosi AuthorizeAttribute  \c si nu mai este nevoie s\u a fac o clas\u a derivat\u a a acestuia.
+Pentru controllerele ASP.NET MVC,deoarece atributul este diferit de\c si se numes\c te la fel ca cel din Web Api, am ales s\u a
+fac un nou atribut care s\u a mo\c steneasc\u a AuthorizeAttribute.Noul atribut \c stie s\u a trateze situa\c tiile 
+\^in care utilizatorul nu este autorizat \c si s\u a \^il redirec\c tioneze pe acesta c\u atre o pagin\u a potrivit\u a situa\c tiei \^in 
+care se afl\u a.Dac\u a utilizatorul nu este autentificat, atunci va fi redirec\c tionat c\u atre pagina de autentificare.Dac\u a 
+este autentificat dar nu ar permisiunea necesar\u a acces\u arii pagini respective va fi redirec\c tionat c\u atre o pagin\u a de eroare 
+corespunz\u atoare.
+
+\^In momentul \^in care un utilizator se \^incearc\u a s\u a se autentifice,din motive de securitate,se calculeaz\u a o valoare hash a parolei
+introduse.Apoi se caut\u a un cont \^in baza de date cu acela\c i email ca cel introdus de utilizator, dac\u a un asemenea cont este g\u asit,
+se compar\u a hash-ul nou cu hash-ul salvat \^in baza de date.Dac\u a \^in urma compara\c tia,se decide c\u a parola utilizatorului este gre\c sit\u a,el
+va fi \^intros c\u atre pagina de autentificare.Dac\u a parola introdus\u a este corect\u a se creaz\u a un principal de care este criptat \c si 
+introdus \^intr-un cookie.Dup\u a ce este setat\u a durata p\^an\u a la expirarea cookie-ului, acesta este trimis c\u atre utilizator.
+
+Pentru ca atributele de autorizare s\u a aib\u a un IPrincipal corect, acesta trebuie extras din cookie
+
+
+
+\begin{lstlisting}[caption={Interfa\c ta IPrincipal},label={lst:IPrincipal},breaklines]
+    //
+    // Summary:
+    //     Defines the basic functionality of a principal object.
+    [ComVisible(true)]
+    public interface IPrincipal
+    {
+        //
+        // Summary:
+        //     Gets the identity of the current principal.
+        //
+        // Returns:
+        //     The System.Security.Principal.IIdentity object associated with the current principal.
+        IIdentity Identity { get; }
+
+        //
+        // Summary:
+        //     Determines whether the current principal belongs to the specified role.
+        //
+        // Parameters:
+        //   role:
+        //     The name of the role for which to check membership.
+        //
+        // Returns:
+        //     true if the current principal is a member of the specified role; otherwise, false.
+        bool IsInRole(string role);
+    }
+\end{lstlisting}
 
 \section{Testare}
 
+\section{Error Handling}
 \chapter{Utilizare}
 
 \chapter{Planuri de viitor}
@@ -594,3 +751,4 @@ HTML
 css
 jquery
 autofac
+ce e un cookie
