@@ -762,6 +762,28 @@ NuGet permite setarea surselor de pachete.NuGet se poate configura s\u a folosea
 mai multe servere pe post de surse.Pachetele mele ar trebui s\u a se afle pe un server 
 privat, pentru a fi consumat intern \^in compania care folose\c ste serviciul de \^inregistrare.
 
+Prima bibliotec\u a,IRegistryConnector ofer\u a un mod simplu de utilizare al serviciului.
+Serviciul expune o interfa\c t\u a prin intermediul c\u areia utiliziatorul poate
+cere url-ul pentru un anumit serviciu.Interfa\c ta are dou\u a metode, una pentru ob\c tinerea
+adresei unui serviciu \c si una pentru re\^improsp\u atarea cache-ului.
+Deoarece implementarea RegistryConnector folose\c ste un mecanism de caching bazat pe un fi\c sier,
+aceast\u a clas\u a trebuie s\u a fie sigur\u a din punct de vedere al lucrului
+cu fire de execu\c tie.Dac\u a acela\c si fi\c sier este folosit din dou\u a fire de execu\c tie 
+diferite pot ap\u area erori.Problemele apar atunci c\^and sunt scrise date \^in fi\c sier,
+iar citirea simutan\u a nu este o problem\u a.Implementarea mea blocheaz\u a opera\c tiile 
+ce folosesc fi\c sierul, dac\u a un alt fir de execu\c tie scrie \^in fi\c sier \^in acel moment.
+Dup\u a ce se termin\u a scrierea \^in fi\c sier, se poate opera din nou pe fi\c sier.
+Mul\c tumit\u a sistemului de caching cre\c ste viteza de execu\c tie a programului pentru
+c\u a nu mai este nevoie de o cerere c\u atre server.Mai important ^este faptul c\u a
+av\^and un cache local scade dependen\c ta aplica\c tie de serviciul de \^inregistrare.
+Un alt beneficiu, de data aceasta pentru server, este c\u a serverul nu mai este at\^at de 
+solicitat.
+
+\section{RegistryRegister}
+
+A doua component\u a pe care am f\u acut-o este destinat\u a serverlor care vor s\u a se 
+\^inregistreze \^in serviciul de \^inregstrare.Componenta con\c tine on interfa\c t\u a,
+care permite \^inregistrarea \c si de\^inregistrarea serviciilor.
 
 \chapter{Utilizare}
 
