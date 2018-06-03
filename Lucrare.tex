@@ -630,6 +630,8 @@ Toate starturile precedente sunt comune \^in cele dou\u a servere.
 Separarea aplica\c tiei ini\c tiale \^in dou\u a servere distincte nu doar reduce munca fiec\u arui server,
 dar \c si faciliteaz\u a dezvoltarea.
 
+\section{Injectarea dependen\c telor}
+
 Inte\c tia implement\u arii pe straturi este o cuplare mai slab\u a \^intre modulele aplica\c tiei.Acest lucru este 
 realizat prin folosirea interfe\c telor \^in locul implement\u arilor concrete \c si prin injectarea dependen\c telor.
 \^In Asp.NET MVC \c si Web Api toate cererile utilizatorilor sunt trimise c\u atre un Controller care se ocup\u a de
@@ -644,7 +646,7 @@ aceasta necesit\u a o implementare a IUserRepository, \c si UserManager va primi
 \^in container.Cu autofac pot \^inregistra \c si tipuri \^in timpul rul\u arii, cum am f\u acut \^in cazul interfe\c tei 
 ILoadBalancer, a c\u arei implementare se caut\u a \^intr-un add-in.
 
- 
+
 
 \section{Autentificarea \c si autorizarea}
 
@@ -698,7 +700,14 @@ se compar\u a hash-ul nou cu hash-ul salvat \^in baza de date.Dac\u a \^in urma 
 va fi \^intros c\u atre pagina de autentificare.Dac\u a parola introdus\u a este corect\u a se creaz\u a un principal de care este criptat \c si 
 introdus \^intr-un cookie.Dup\u a ce este setat\u a durata p\^an\u a la expirarea cookie-ului, acesta este trimis c\u atre utilizator.
 
-Pentru ca atributele de autorizare s\u a aib\u a un IPrincipal corect, acesta trebuie extras din cookie
+Pentru ca atributele de autorizare s\u a aib\u a un IPrincipal corect, acesta trebuie extras din cookie.
+\^In ASP.NET punctul de intrare \^in aplica\c tie este un fi\c sier numit Global.asax.cs \^in care se 
+afl\u a clasa din care porne\c ste aplica\c tia.Aceast\u a clas\u a este derivat\u a din -----------TODO--------------
+\c si din acest motiv se pot schimba comportamente ale aplicac\c tiei prin suprascrierea 
+unor metode mo\c stenite.Un dintre aceste metode este ----TODO----------,pe care am suprascris-o 
+cu scopul de a extrage datele pentru IPrincipalul meu.Aici se caut\u a cookie-ul \c si dac\u a este 
+g\u asit, se decripteaz\u a conc\c tinutul acestuia \c si se creaz\u a principalul corespunz\u ator 
+utilizatorului autentificat.
 
 
 
@@ -731,9 +740,62 @@ Pentru ca atributele de autorizare s\u a aib\u a un IPrincipal corect, acesta tr
     }
 \end{lstlisting}
 
-\section{Testare}
+\section{Managementul serviciilor}
 
-\section{Error Handling}
+Una dintre cele mai importante pagini din aplica\c tie este pagina de management a
+serviciilor, care se poate vedea \^in figura ----TODO-----.\^In aceast\u a pagin\u a
+administratorul serviciului de \^inregistrare poate observa toate serviciile \^inregistrate,
+organizate \^in clusterele din care acestea fac parte.Utilizatorul poate accesa custerele 
+pentru a le vedea activitatea mai \^in detaliu,sau poate accesa un serviciu pentru 
+a-i monitoriza activitatea.De asemenea el poate \c sterge servicii din server, sau chiar
+clustere \^intregi.Pentru a efectua o opera\c tie de \c stegere, utilizatorului i se cere 
+confirmarea printr-un alert al browser-ului.
+
+\section{Managementul cluster-elor}
+
+Aplica\c tia are 
+
+\section{Monitorizarea unui serviciu}
+
+Am considerat ca fiind de interes activitatea unui serviciu \^inregistrat \^in program,
+ceea ce m-a determinat s\u a fac o pagin\u a dedicat\u a monitoriz\u arii unui serviciu.
+Dup\u a cum se vede \c si in exemplul din Figura  ----TODO------,pagina con\c tine un 
+grafic al activit\u a\c tii serviciului \^intr-un interval de timp precum \c si toate 
+acces\u arile serviciului.Graficul este f\u acut \^in JavaScript, folosind biblioteca
+Chart.js.Prin controller pot returna o pagin\u a care folosind Razor,transform\u a 
+datele din viewmodel-ul pagini \^in structuri de date care pot fi folosite 
+din cod JavaScript.Graficul poate fi minimizat ,\^intruc\^at nu am dorit s\u a ocup prea 
+mult din ecranul utilizatorului dac\u a acesta este interesat la momentul respectiv de 
+cererile f\u acute.Sub reprezentarea grafic\u a s afl\u a o list\u a cu fiecare accesare
+a serviciului din intervalul de timp selectat.Pentru fiecare accesare se cunoa\c ste 
+adresa ip de provenien\c t\u a a cererii \c si data la care aceasta a fost f\u acut\u a. 
+
+
+\section{Tratarea errorilor}
+
+Func\c tionarea serviciului de \^inregistrare este critic\u a deoarece mai multe 
+aplica\c tii se bazeaz\ua pe acesta.Din cauza rolului important pe care serviciul
+\^il are, acesta trebuie s\u a fie c\^at mai robust.Prima problem\u a care poate  
+ap\u area const\u a \^in cererile primite cu parametrii gre\c si\c ti sau cu scop
+mali\c tiios.Fiecare ac\c tiune a aplica\c tiei trebuie s\u a \c stie s\u a returneze
+un r\u aspuns adecvat, fie el mesaj de eroare, o pagin\u a web sau ni\c ste date.
+Decizia r\u aspunsului \^in cazul \^in care o cerere e\c sueaz\u a se bazeaz\u a pe tipul
+de excep\c tie primit \^in metodele controllerului.
+Dac\u a pe parcursul proces\u arii cererii venite prin controller nu apare nici o 
+excep\c tie sau apar doar excep\c tii din care aplica\c tia \^i\c si revine cu succes,
+cererea va primi r\u aspunsul dorit.\^In caz contrar depinde de tipul de cerere f\u acut\u a.
+Dac\u a utilizatorul \^incearc\u a s\u a acceseze o pagin\u a a site-ului f\u ar\u a a fi
+autentificat, acesta va fi redirec\c tionat c\u atre pagina de autentificare.
+Dac\u a se \^incearc\u a accesarea unei pagini la care utilizatorul nu are acces, acesta 
+va fi redirec\c tionat la o pagin\u a de eroare care \^ii va explica situa\c tia \^in care 
+se afl\u a.\^In ceea ce prive\c ste parte de Web API,unde r\u aspunsul nu este sub form\u a 
+de pagin\u a web,utilizatorul care a f\u acut o cerere eronat\u a va primi un cod de 
+r\u aspuns de eroare,Bad Request sau Not Found.
+Am ales s\u a nu dau mai multe detalii despre eroare, din cauz\u a problemelor de securitate
+care pot fi cauzate de aceste informa\c tii.O persoan\u a r\u au inten\c tionat\u a ar putea 
+profita de informa\c tiile suplimentare pentru a produce daune serverului.
+Bine\^inteles toate excep\c tile care apar pe parcursul derul\u arii aplica\c tiei,
+sunt salvate \^intr-un fi\c sier de tip log.
 
 \section{Componente}
 
@@ -779,11 +841,15 @@ av\^and un cache local scade dependen\c ta aplica\c tie de serviciul de \^inregi
 Un alt beneficiu, de data aceasta pentru server, este c\u a serverul nu mai este at\^at de 
 solicitat.
 
-\section{RegistryRegister}
+\subsection{Registry Register}
 
 A doua component\u a pe care am f\u acut-o este destinat\u a serverlor care vor s\u a se 
 \^inregistreze \^in serviciul de \^inregstrare.Componenta con\c tine on interfa\c t\u a,
 care permite \^inregistrarea \c si de\^inregistrarea serviciilor.
+
+
+\section{Testare}
+
 
 \chapter{Utilizare}
 
