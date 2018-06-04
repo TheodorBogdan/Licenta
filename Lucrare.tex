@@ -8,8 +8,9 @@
 \usepackage{graphicx}
 \graphicspath{{"./Images/"}}
 
-\usepackage[parfill]{parskip}
+\usepackage{parskip}
 \usepackage{indentfirst}
+\setlength{\parindent}{1cm}
 \usepackage{listings}
 \usepackage{csquotes}
 \usepackage[
@@ -702,9 +703,9 @@ introdus \^intr-un cookie.Dup\u a ce este setat\u a durata p\^an\u a la expirare
 
 Pentru ca atributele de autorizare s\u a aib\u a un IPrincipal corect, acesta trebuie extras din cookie.
 \^In ASP.NET punctul de intrare \^in aplica\c tie este un fi\c sier numit Global.asax.cs \^in care se 
-afl\u a clasa din care porne\c ste aplica\c tia.Aceast\u a clas\u a este derivat\u a din -----------TODO--------------
+afl\u a clasa MvcApplication din care porne\c ste aplica\c tia.Aceast\u a clas\u a este derivat\u a din HttpApplication
 \c si din acest motiv se pot schimba comportamente ale aplicac\c tiei prin suprascrierea 
-unor metode mo\c stenite.Un dintre aceste metode este ----TODO----------,pe care am suprascris-o 
+unor metode mo\c stenite.Un dintre aceste metode este Application\_PostAuthenticateRequest, pe care am suprascris-o 
 cu scopul de a extrage datele pentru IPrincipalul meu.Aici se caut\u a cookie-ul \c si dac\u a este 
 g\u asit, se decripteaz\u a conc\c tinutul acestuia \c si se creaz\u a principalul corespunz\u ator 
 utilizatorului autentificat.
@@ -740,16 +741,93 @@ utilizatorului autentificat.
     }
 \end{lstlisting}
 
+\section{Aspectul comun}
+
+\^In aplica\c tia mea exist\u a c\^ateva elemente comune care trebuie s\u a apar\u a \^in fiecare pagin\u a.
+Bara de naviga\c tie trebuie s\u a fac\u a parte din fiecare pagin\u a \^intruc\^at utilizatorul trebuie 
+s\u a poat\u a schimba paginile site-ului cu u\c surin\c t\u a.Utilizatorul trebuie s\u a se poate 
+deautentifica \c si ar fi absurd s\u a poate face asta doar dintr-o anumit\u a pagin\u a.Este mult mai 
+convenabil pentru utilizator s\u a poat\u a vedea dac\u a are mesaje noi din orice pagin\u a,nu doar 
+din pagina dedicat\u a.Pe l\^ang\u a acestea \c si func\c tionailatea de c\u autae ar fi bine s\u a fie accesibil\u a
+de oriunde \^in aplica\c tie.Av\^and aceste tr\u as\u aturi comune pentru fiecare pagin\u a am nevoie de 
+o metod\u a de implementare mai bun\u a dec\^at s\u a copiez partea comun\u a \^in fiecare pagin\u a.
+Din fericire \^in ASP.NET exist\u a un tip de pagini numite pagini layout.Aceste pagini permit crearea 
+unei pagini care are scopul de a aduna toate tr\u as\u aturile comune ale paginilor.Pagina layout nu este o pagin\u a de sine
+st\u at\u atoare,ea trebuie folosit\u a \^impreun\u a cu o pagin\u a care s\u a con\c tin\u a partea specific\u a 
+a paginii ce va fi prezentat\u a utilizatorului.\^In pagina layout se poate specifica exact locul \^in care pagina
+ce folose\c ste aceaat\u a pagin\u a de aspect va ap\u area.Numele paginii de aspect trebuie s\u a \^inceap\u a cu \_.
+Caracterul \_ este foarte important deoarece el \^in\c stiin\c teaz\u a framework-ul s\u a nu trimit\u a niciodat\u a
+direct pagina layout. 
+
+\begin{figure}[ht]
+	\includegraphics[width=\textwidth,keepaspectratio]{Layout}
+	\label{fig:Layout}
+\end{figure}
+
+\^In cardul aplica\c tiei mele, am introdus \^in pagina de aspect,elementele comune ale tuturor paginilor \ref{fig:Layout}.
+Pagina are o bar\u a de naviga\c tie, mimizabil\u a care poate trimite utilizatorul la pagina de management a
+serviciilor, la pagina de management a add-inurilor sau la pagina de introducere a unui nou serviciu.
+Bara de naviga\c tie se afl\u a \^in parrte din st\^anga a paginii.Butonul din josul barei reduce dimensiunea
+acesteia.Interfa\c ta grafic\u a este receptiv\u a,incluz\^and bara de naviga\c tie.C\^and ecranul este prea mic
+bara va fi \^inlocuit\u a de un buton.La ap\u asarea butonului va ap\u area con\c tinutul barei de naviga\c tie.
+
+Butonul Logout deschide o fereastr\u a modal\u a care cere confimarea utilizatorului pentru a preveni,
+ie\c sira din aplica\c tie neinten\c tionat\u a.Dac\u a utilizatorul confirm\u a deautentificarea,
+sesiunea sa va fi distrus\u a \c si data de expirare a cookie-ului s\u au va fi redus\u a \^in a\c sa fel
+\^inc\^at cookie-ul s\u a fie expirat la ie\c sirea din aplica\c tie.
+
+Dupa\u acum se vede \c si \^in figura \ref{fig:Layout} l\^ang\u a butonul Logout se afl\u a o bar\u a de 
+c\u autare.Aceast\u a bar\u a est folosit\u a pentru a c\u auta servicii sau clustere \^intregistrare \^in 
+aplica\c tie.Dup\u a ce utilizatorul a scris numele sau o parte a numelui serviciului sau cluster-ului c\u autat,
+c\^and va ap\u asa butonul de c\u autare, va fi trimis c\u atre o pagin\u a ce con\c tine rezultatul c\u aut\u arii
+sale.Dac\u a nu exist\u a nimic care s\u a se potriveasc\u a cu ce a c\u autat el, \^in pagin\u a va fi afi\c sat un mesaj
+de informare.
+
+\^In st\^ anga barei de c\u autare se afl\u a un buton cu semnul unui colpot.La click pe buton va ap\u area
+o fereastr\u a \^in care apar ultimele mesaje primite de utilizator \c si un buton.Mesajele sunt caracterizate 
+prin subiect, con\c tinut, expeditor \c si data expedierii.Butonul de sub mesaje duce utilizatorul c\u atre o 
+pagin\u a \^in care acesta poate vedea toate mesajele pe care le-a primit.
+
+\^In ASP.NET MVC fiec\u arei pagini \^ii corespunde un model.Nu exist\u a nici o restric\c tie de unicitate
+pe modele, mai multe pagini pot folosi acela\c si model.Dac\u a modelul este folosit doar pentru pagini,
+atunci acesta este numit viewmodel, deoarece este specific view-ului aplica\c tiei.Modelul unei pagini 
+este folosit prin intermediul Razor pentru a genera pagina html care este trimis\u a \^in final utilizatorului
+site-ului.
+
+Pentru c\u a sunt date care sunt comune pentru toate paginile, acestea ar fi bine s\u a fac\u a parte dintr-un
+viewmodel.Solu\c tia mea la aceast\u a problem\u a a fost crearea unei clase BaseViewModel care con\c tine informa\c tiile 
+comune.Toate celelalte viewmodel-e deriv\u a din clasa BaseViewModel \c si pagina de aspect se folose\c ste de clasa
+de baz\u a pentru a-\c si lua datele necesare.
+
+\^In ASP.NET fi\c sierele de stiluri CSS \c si fi\c sierele de scripturi JavaScript pot fi grupate \^in ni\c ste 
+pachete numite bundle.Aceast\u a grupare se face \^intr-io clas\u a BundleConfig,care este apelat\u a din clasa 
+MVCApplication care reprezint\u a punctul de intrare \^in aplica\c tie.Motivul pentru care este mai bine ca aceste fi\c siere s\u a fie trimise \^impreun\u a 
+este c\u a este mai reapid s\u a fi trimise unitar c\u atre client dec\^at separat.\^In pagina layout a aplica\c tiei 
+mele am setat un  bundle de fi\c siere CSS \c si unul de fi\c siere JavaScript care sunt folosite de c\u atre toate paginile
+site-ului.
+
+Singura pagin\u a din site care nu folose\c ste aspectul comun este pagina de autentificare, deoarece toate 
+func\c tionalit\u a\c tile comune, necesit\u a ca utilizatorul s\u a fie autentificat.
+
 \section{Managementul serviciilor}
 
 Una dintre cele mai importante pagini din aplica\c tie este pagina de management a
-serviciilor, care se poate vedea \^in figura ----TODO-----.\^In aceast\u a pagin\u a
+serviciilor, care se poate vedea \^in figura \ref{fig:AllServices}.\^In aceast\u a pagin\u a
 administratorul serviciului de \^inregistrare poate observa toate serviciile \^inregistrate,
-organizate \^in clusterele din care acestea fac parte.Utilizatorul poate accesa custerele 
+organizate \^in clusterele din care acestea fac parte.Ini\c tial toate clusterele sunt expandate, \^ins\u a
+acestea pot fi minimizate.Dac\u a utilizatorul va da click pe numele sau \^in zona gri din jurul numelui cluster-ului,
+serviciile care apar\c tin clusterului se vor \^indrepta c\u atre acesta p\^an\u a ce vor disp\u area.
+Utilizatorul poate accesa cluster-ele 
 pentru a le vedea activitatea mai \^in detaliu,sau poate accesa un serviciu pentru 
 a-i monitoriza activitatea.De asemenea el poate \c sterge servicii din server, sau chiar
 clustere \^intregi.Pentru a efectua o opera\c tie de \c stegere, utilizatorului i se cere 
 confirmarea printr-un alert al browser-ului.
+
+
+\begin{figure}[ht]
+	\includegraphics[width=\textwidth,keepaspectratio]{AllServices}
+	\label{fig:AllServices}
+\end{figure}
 
 \section{Managementul cluster-elor}
 
@@ -759,22 +837,30 @@ Aplica\c tia are
 
 Am considerat ca fiind de interes activitatea unui serviciu \^inregistrat \^in program,
 ceea ce m-a determinat s\u a fac o pagin\u a dedicat\u a monitoriz\u arii unui serviciu.
-Dup\u a cum se vede \c si in exemplul din Figura  ----TODO------,pagina con\c tine un 
+Dup\u a cum se vede \c si in exemplul din Figura  \ref{fig:ServiceDetails},pagina con\c tine un 
 grafic al activit\u a\c tii serviciului \^intr-un interval de timp precum \c si toate 
 acces\u arile serviciului.Graficul este f\u acut \^in JavaScript, folosind biblioteca
 Chart.js.Prin controller pot returna o pagin\u a care folosind Razor,transform\u a 
 datele din viewmodel-ul pagini \^in structuri de date care pot fi folosite 
-din cod JavaScript.Graficul poate fi minimizat ,\^intruc\^at nu am dorit s\u a ocup prea 
+din cod JavaScript.Graficul poate fi minimizat ca \^in pagina de management a cluster-elor,\^intruc\^at nu am dorit s\u a ocup prea 
 mult din ecranul utilizatorului dac\u a acesta este interesat la momentul respectiv de 
 cererile f\u acute.Sub reprezentarea grafic\u a s afl\u a o list\u a cu fiecare accesare
 a serviciului din intervalul de timp selectat.Pentru fiecare accesare se cunoa\c ste 
 adresa ip de provenien\c t\u a a cererii \c si data la care aceasta a fost f\u acut\u a. 
 
 
+\begin{figure}[ht]
+	\caption{Pagina de management a unui serviciu}
+	\includegraphics[width=\textwidth,keepaspectratio]{ServiceDetails}
+	\caption{Pagina de management a unui serviciu \^ in care graficul este minimizat}
+	\includegraphics[width=\textwidth,keepaspectratio]{ServiceDetailsCollapsed}
+	\label{fig:ServiceDetails}
+\end{figure}
+
 \section{Tratarea errorilor}
 
 Func\c tionarea serviciului de \^inregistrare este critic\u a deoarece mai multe 
-aplica\c tii se bazeaz\ua pe acesta.Din cauza rolului important pe care serviciul
+aplica\c tii se bazeaz\u a pe acesta.Din cauza rolului important pe care serviciul
 \^il are, acesta trebuie s\u a fie c\^at mai robust.Prima problem\u a care poate  
 ap\u area const\u a \^in cererile primite cu parametrii gre\c si\c ti sau cu scop
 mali\c tiios.Fiecare ac\c tiune a aplica\c tiei trebuie s\u a \c stie s\u a returneze
@@ -836,7 +922,7 @@ iar citirea simutan\u a nu este o problem\u a.Implementarea mea blocheaz\u a ope
 ce folosesc fi\c sierul, dac\u a un alt fir de execu\c tie scrie \^in fi\c sier \^in acel moment.
 Dup\u a ce se termin\u a scrierea \^in fi\c sier, se poate opera din nou pe fi\c sier.
 Mul\c tumit\u a sistemului de caching cre\c ste viteza de execu\c tie a programului pentru
-c\u a nu mai este nevoie de o cerere c\u atre server.Mai important ^este faptul c\u a
+c\u a nu mai este nevoie de o cerere c\u atre server.Mai important este faptul c\u a
 av\^and un cache local scade dependen\c ta aplica\c tie de serviciul de \^inregistrare.
 Un alt beneficiu, de data aceasta pentru server, este c\u a serverul nu mai este at\^at de 
 solicitat.
