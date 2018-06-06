@@ -284,7 +284,7 @@ JavaScript este sintactic similar cu C,Java \c si C\#,\^inc\u a similarit\u a\c 
 JavaScript este un limbaj slab tipizat,ceea ce \^inseamn\u a c\u a variabilele nu au un tip specificat.
 Obiectele asociaz\u a nume de propriet\u a\c ti unor valori arbitrare \c si se aseam\u n\u a mai mult
 cu hashtable-urile din C\# dec\^at cu obiectele.Mecanismul de mo\c stenire din JavaScript este bazat pe
-prototip \c si nu se aseam\u an\u a cu cea din C++ sau c\#.
+prototip \c si nu se aseam\u an\u a cu cea din C++ sau C\#.
 Tipurile primive din JavaScript sunt numere,stringuri \c si valori booleene dar limbajul include \c si
 date,\c siruri \c si expresii regulate.\footcite{Flanagan:2011:JDG:2029041}
 
@@ -648,6 +648,40 @@ aceasta necesit\u a o implementare a IUserRepository, \c si UserManager va primi
 ILoadBalancer, a c\u arei implementare se caut\u a \^intr-un add-in.
 
 
+\section{Cur\u a\c tarea automat\u a}
+
+Una dintre situa\c tile care pot cauza erori este situa\c tia \^in care un serviciu este inactiv.
+Dac\u a acest serviciu este solicitat \c si serverul furnizeaz\u a acest serviciu aplica\c tie 
+care a f\u acut cererea, cel mai probabil vor ap\u area erori \^in aplica\c tia respectiv\u a.
+Serviciul d \^inregistrare trebuie s\u a fie c\^at mai de \^incredere.Acesta trebuie s\u a rezolve problemele
+de conexiune \^intre aplica\c tii, nu s\u a le cauzeze.
+
+Pentru a evita situa\c tia \^in care exist\u a servicii inactive, toate servicile trebuie monitorizate.
+Serviciu de \^inregistrare trebuie s\u a \c stie mereu starea serviciilor pentru a evita trimiterea lor solicitan\c tilor.
+Cu acest scop creat clasele din figura \ref{fig:MonitorDiagram}.Clasa ServicesCleaner are rolul de cur\u a\c tare a servicilor
+inactive.Aceast\u a cur\u a\c tare presupune c\u a servicile inactive nu vor putea fi percepute ca servicii func\c tionale de 
+c\u atre aplica\c tie.Cur\u a\c tarea propriuzis\u a este f\u acut\u a printr-o strategie.Strategia folosit\u a \^in prezent este 
+RemovalCelaningStrategy, o implementare a ICleaningStrategy care elimin\u a din sistem  serviciile inactive.Pentru a avea acces la servicii, 
+RemovalCelaningStrategy se folose\c ste de o implementare a IServicesManager despre care am discutat \^intr-o sec\c tiune anterioar\u a.
+ ServicesCleaner folose\c ste
+interfa\c ta IServicesMonitor pentru a c\u auta serviciile inactive.Interfa\c ta are o singur\u a metod\u a \c si anume GetInactiveServices 
+care returneaz\u a o list\u a de servicii.Implementarea acestei interfe\c te se nume\c ste ServicesMonitor.Se ServicesMonitor se folose\c ste 
+de o implementare a interfe\c tei IServicesManager pentru a extrage serviciile \^inregistrate din baza de date.Serviciile \^inregistrare 
+sunt mai apoi verificate prin intermediul interfe\c tei IConnectionChecker.ConnectionChecker care implementeaz\u a IConnectionChecker,
+\c si unica sa metod\u a, CheckConnection, \^incearc\u a s\u a trimit\u a un ping c\u atre un server \c si \^in func\c tie de
+r\u aspunsul primit stabile\c ste dac\u a conexiunea la server se poate realiza.
+
+ServicesCleaner are dou\u a metode publice, BeginCleanUp \c si StopCleanUp.BeginCleanUp semnaleaz\u a faptul c\u a obiectul trebuie
+s\u a \^inceap\u a verificarea \c si cur\u a\c tarea serviciilor. Aceast\u a verificare este realizat\u a la un interval fix de timp,
+specificat prin parametrul metodei BeginCleanUp. Intervalul de timp este transmis c\u atre obiectul Timer din al obiectului de tip 
+ServicesCleaner.
+
+\begin{figure}[!ht]
+	\includegraphics[width=\textwidth,keepaspectratio]{MonitorDiagram}
+	\label{fig:MonitorDiagram}
+\end{figure}
+Pentru a putea folosi
+
 
 \section{Autentificarea \c si autorizarea}
 
@@ -831,7 +865,33 @@ confirmarea printr-un alert al browser-ului.
 
 \section{Managementul cluster-elor}
 
-Aplica\c tia are 
+Aplica\c tia include \c si o pagin\u a dedicat\u a cluster-elor.\^in aceast\u a pagin\u a se afl\u a 
+un grafic al activit\u a\c tii serviciilor membre al cluster-ului ca \^in figura \ref{fig:ClusterDetails}.Sub grafic se  
+alf\u a lista serviciilor care fac parte din cluster, caracterizate prin numele de aplica\c tie, 
+numele cluster-ului, adresa serviciului \c si data ultimei sale acces\u ari.
+
+Graficul este f\u acut \^in JavaScript, folosind biblioteca
+Chart.js.Prin controller poate returna o pagin\u a care folosind Razor,transform\u a 
+datele din viewmodel-ul pagini \^in structuri de date care pot fi folosite 
+din cod JavaScript.Pentru ca un obiect C\# s\u a fie folosibil \^in cod JavaScript, acesta trebuie 
+serializat \^in formatul JSON.Prin Razor folosesc cod C\# pentru a serializa obiectul din viewmodel care corespunde datelor 
+care vor defini graficul. Motivul pentru care pot folosi obeictul serializat este faptul c\u a codul C\# este executat \^inainte ca 
+pagina s\u a fie trimis\u a c\u atre utilizator. Codul JavaScript este interpretat de c\u atre browser-ul utilizatorului, deci 
+se execut\u a dup\u a ce s- a f\u acut serializare.\^In browser va ap\u area rezultatul serializ\u arii care fiind \^in format JSON,
+va fi interpretat exact ca crearea unui obiect JavaScript.
+
+Pentru repartizarea culorilor corespunz\u atoare serviciilor reprezentate pe grafic am f\u acut un alogritm,
+care genereaz\u a un num\u ar dorit de culori distincte.Culorile rezultate nu sunt doar distincte ca ton, ci 
+sunt \c si vizibil diferite.Pentru un num\u ar mic de culori diferen\c ta \^intre acestea va fi foarte mare dar se 
+va reduce odat\u a cu cre\c stere num\u arului de culori necesare.Algoritmul este scris \^in JavaScript deoarece 
+cosider c\u a at\^ata timp c\^at nu reprezint\u a un risc de securitate este preferabil ca ma\c sina clientului 
+s\u a efectueae c\^at mai mult din munca necesare. Cu c\^at mai mult\u a procesare este efectuat\u a de c\u atre client,
+cu at\^at mai mult pot reduce \^inc\u arc\u atura server-ului.  
+
+\begin{figure}[ht]
+	\includegraphics[width=\textwidth,keepaspectratio]{ClusterDetails}
+	\label{fig:ClusterDetails}
+\end{figure}
 
 \section{Monitorizarea unui serviciu}
 
@@ -839,10 +899,7 @@ Am considerat ca fiind de interes activitatea unui serviciu \^inregistrat \^in p
 ceea ce m-a determinat s\u a fac o pagin\u a dedicat\u a monitoriz\u arii unui serviciu.
 Dup\u a cum se vede \c si in exemplul din Figura  \ref{fig:ServiceDetails},pagina con\c tine un 
 grafic al activit\u a\c tii serviciului \^intr-un interval de timp precum \c si toate 
-acces\u arile serviciului.Graficul este f\u acut \^in JavaScript, folosind biblioteca
-Chart.js.Prin controller pot returna o pagin\u a care folosind Razor,transform\u a 
-datele din viewmodel-ul pagini \^in structuri de date care pot fi folosite 
-din cod JavaScript.Graficul poate fi minimizat ca \^in pagina de management a cluster-elor,\^intruc\^at nu am dorit s\u a ocup prea 
+acces\u arile serviciului.Graficul poate fi minimizat ca \^in pagina de management a cluster-elor,\^intruc\^at nu am dorit s\u a ocup prea 
 mult din ecranul utilizatorului dac\u a acesta este interesat la momentul respectiv de 
 cererile f\u acute.Sub reprezentarea grafic\u a s afl\u a o list\u a cu fiecare accesare
 a serviciului din intervalul de timp selectat.Pentru fiecare accesare se cunoa\c ste 
@@ -855,6 +912,23 @@ adresa ip de provenien\c t\u a a cererii \c si data la care aceasta a fost f\u a
 	\caption{Pagina de management a unui serviciu \^ in care graficul este minimizat}
 	\includegraphics[width=\textwidth,keepaspectratio]{ServiceDetailsCollapsed}
 	\label{fig:ServiceDetails}
+\end{figure}
+
+
+\section{Introducerea serviciilor}
+
+De\c si serviciile ar trebui s\u a se \^inregistreze singure, \^in cazul \^in care se dore\c ste utilizarea unui
+serviciu de provenien\c t\u a extern\u a, se pot introduce servicii manual prin intermediul interfe\c tei grafice.
+Dup\u a cum se vede \^in figura \ref{fig:AddService},pentru a ad\u auga un serviciu este nevoie s\u a se introduc\u a
+numele de aplica\c tie cu care acesta va fi \^inregistrat, numele cluster-ului din care acesta face parte \c si adresa 
+serviciului.Numele cluster-ului se poate alege dintr-o list\u a ce con\c tine cluster-ele existente sau se poate introduce un
+cluster nou.La ap\u asarea butonului "Congirm" cererea este trimis\u a c\u atre server \c si serviciul este \^inregistrat.
+Dac\u a \^inregistrarea e\c sueaz\u a, utilizatorul va fi \^in\c stiin\c tat.
+
+\begin{figure}[ht]
+	\caption{Pagina ad\u augare a unui serviciu}
+	\includegraphics[width=\textwidth,keepaspectratio]{AddService}
+	\label{fig:AddService}
 \end{figure}
 
 \section{Tratarea errorilor}
