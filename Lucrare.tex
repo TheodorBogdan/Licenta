@@ -383,7 +383,7 @@ de programare limbajului standard.
 Componenta central\u a a SQL Server este motorul bazei de data,care controleaz\u a stocarea datelor, procesarea lor
 \c si securitatea.Acesta include un motor rela\c tional care proceseaz\u a comenzi \c si interog\u ari \c si 
 un motor de stocare ce manageriaz\u a fi\c sierele, tabele, paginile, indec\c si, buffer-ele de date \c si tranzac\c tile.
-Procedurile stocate, trigger-ele,view-urile \c si celelalte obiecte ale bazei de date sunt deasemenea create \c si executate 
+Procedurile stocate, trigger-ele,view-urile \c si celelalte obiecte ale bazei de date sunt de asemenea create \c si executate 
 de motorul bazei de date.\footcite{sqlServer}
 Mai jos dec\^at motorul bezei de date se alfa sistemul de operare al SQL Server(SQLOS) care se ocup\u a
 de opera\c tii de nivel sc\u azut precum managementul memoriei \c si intr\u arilor \c si ie\c sirilor, programarea joburilor 
@@ -793,7 +793,7 @@ ce folose\c ste aceaat\u a pagin\u a de aspect va ap\u area.Numele paginii de as
 Caracterul \_ este foarte important deoarece el \^in\c stiin\c teaz\u a framework-ul s\u a nu trimit\u a niciodat\u a
 direct pagina layout. 
 
-\begin{figure}[ht]
+\begin{figure}[!htb]
 	\includegraphics[width=\textwidth,keepaspectratio]{Layout}
 	\label{fig:Layout}
 \end{figure}
@@ -840,6 +840,35 @@ este c\u a este mai reapid s\u a fi trimise unitar c\u atre client dec\^at separ
 mele am setat un  bundle de fi\c siere CSS \c si unul de fi\c siere JavaScript care sunt folosite de c\u atre toate paginile
 site-ului.
 
+Fi\c sierul CSS con\c tine defini\c tii pentru mai multe clase folosite \^in aplica\c tie. Am ales s\u a organizez 
+partea de prezentare \^in clase CSS deoarece mi se pare cel mai flexibil mod de prezentare a elementelor HTML.
+Un element poate avea multiple clase ceea \c si fiecare poate descrie un aspect diferit as elementului.
+Spre exemplu un element poate avea \^In acela\c si timp clasa dark \c si clasa sm-margin. Clasa dark seteaz\u a culoare fundalului \c si culoarea
+textului din element. Clasa sm-margin adaug\u a o margine mic\u a elemntului. Elementul nu este limitat la numai dou\u a clase \c si 
+acesta va lua propriet\u a\c ti din toate clasele sale. Consider c\u a origanizarea stilurilor pe clase este superioar\u a
+set\u arii propriet\u a\c tilor unui element dup\u a id, deoarece clasele sunt reutilizabile. De asemenea 
+cred c\u a utilizarea claselor este superioar\u a set\u arii propriet\u a\c tiilor tuturor elementrlor de un anumit 
+tip deoarece exist\u a numeroase stitu\c tii \^in care nu dorim ca toate elementele de aclea\c si tip s\u a fie tratate la fel.
+\^In pagina de management al serviciilor din Figura \ref{fig:AllServices}, at\^at cluster-ele c\^at \c si 
+serviciile sunt elemente de tip li, dar acestea arat\u a foarte diferit.  De asemenea clasele pot afecta 
+mai multe tipuri de elemente HTML. Folosind clasa button putem prezenta \c si un button simplu, \c si un submit 
+al unui form \c si un link. De\c si aceastea sunt elemente diferite, se poate s\u a aib\u a roluri similar
+\c si astfel s\u a dorim ca acestea s\u a arate la fel.
+
+Tot pe baza claselor pot schimba comporamentul elementelor prin cod JavaScript. De exemplu,
+atunci c\^and documentul este preg\u atit, toate elementele cu clasa btn-run-addin vor avea 
+evenimentul de click setat. Atunci c\^and utilizatorul va face cick pe aceste elemente, printr-o cerere 
+de tip GET la controller-ul AddInsApiController, se va lansa \^in execut\c tie un add-in.
+
+Fi\c sierele mele JavaScript sunt f\u acute dupa un \c sablon de proiectare numit Module Pattern. Module Pattern 
+este probabil cel mai comun \c sablon de proiectare din  JavaScript.Acesta \^incearc\u a s\u a iimite clasele din limbaje de programare 
+orientate pe obiecte precum C\# sau C++. De\c si nu putem avea toate beneficiile program\u arii orientate pe obiecte, 
+folosind acest \c sablon putem avea o \^incapsulare, return\^and din modul doar ceea ce este public.
+Func\c tile care adaug\u a comportament la elemetele HTML, fac parte din ni\c ste module care 
+se adaug\u a la un obiect principal. Acest obiect con\c tine o metod\u a pentru fiecare fi\c sier 
+\c si acestea sunt apelate prin intermediul acestuia doar atunci c\^and documentul HTML este complet \^incarcat, \^impreun\u a cu
+toate fi\c sierele JavaScript.
+
 Singura pagin\u a din site care nu folose\c ste aspectul comun este pagina de autentificare, deoarece toate 
 func\c tionalit\u a\c tile comune, necesit\u a ca utilizatorul s\u a fie autentificat.
 
@@ -855,10 +884,13 @@ Utilizatorul poate accesa cluster-ele
 pentru a le vedea activitatea mai \^in detaliu,sau poate accesa un serviciu pentru 
 a-i monitoriza activitatea.De asemenea el poate \c sterge servicii din server, sau chiar
 clustere \^intregi.Pentru a efectua o opera\c tie de \c stegere, utilizatorului i se cere 
-confirmarea printr-un alert al browser-ului.
+confirmarea printr-un alert al browser-ului. \c Stergerea se face printr-un apel ajax c\u atre o metod\u a 
+a cotroller-ului ServicesApiController. 
+\^In momentul \^in se prime\c ste un r\u aspuns pozitiv de la server serviciul respectiv este \c sters \c si din pagin\u a
+prin javascript. \^In cazul \^in care r\u aspunsul primit este negativ se afi\c seaz\u a un mesaj de tip alert\u a.
 
 
-\begin{figure}[ht]
+\begin{figure}[!htb]
 	\includegraphics[width=\textwidth,keepaspectratio]{AllServices}
 	\label{fig:AllServices}
 \end{figure}
@@ -869,6 +901,10 @@ Aplica\c tia include \c si o pagin\u a dedicat\u a cluster-elor.\^in aceast\u a 
 un grafic al activit\u a\c tii serviciilor membre al cluster-ului ca \^in figura \ref{fig:ClusterDetails}.Sub grafic se  
 alf\u a lista serviciilor care fac parte din cluster, caracterizate prin numele de aplica\c tie, 
 numele cluster-ului, adresa serviciului \c si data ultimei sale acces\u ari.
+\^In dreptul fiec\u arui serviciu din cluster se afl\u a 2 butoane. Un buton \^indreapt\u a utilizatorul spre pagina 
+dedicat\u a serviciului respectiv \c si un buton \c sterge serviciul. \^In realitate butonul de navigare c\u atre pagina 
+serviciului, nu este un element HTML de tip buton ci este un element de tip link. Diferen\c ta nu es observ\u a deoarece
+acest buton \c si butonul de \c stergere folosesc clase CSS similare.
 
 Graficul este f\u acut \^in JavaScript, folosind biblioteca
 Chart.js.Prin controller poate returna o pagin\u a care folosind Razor,transform\u a 
@@ -888,7 +924,7 @@ cosider c\u a at\^ata timp c\^at nu reprezint\u a un risc de securitate este pre
 s\u a efectueae c\^at mai mult din munca necesare. Cu c\^at mai mult\u a procesare este efectuat\u a de c\u atre client,
 cu at\^at mai mult pot reduce \^inc\u arc\u atura server-ului.  
 
-\begin{figure}[ht]
+\begin{figure}[!htb]
 	\includegraphics[width=\textwidth,keepaspectratio]{ClusterDetails}
 	\label{fig:ClusterDetails}
 \end{figure}
@@ -897,7 +933,7 @@ cu at\^at mai mult pot reduce \^inc\u arc\u atura server-ului.
 
 Am considerat ca fiind de interes activitatea unui serviciu \^inregistrat \^in program,
 ceea ce m-a determinat s\u a fac o pagin\u a dedicat\u a monitoriz\u arii unui serviciu.
-Dup\u a cum se vede \c si in exemplul din Figura  \ref{fig:ServiceDetails},pagina con\c tine un 
+Dup\u a cum se vede \c si in exemplul din Figura  \ref{fig:ServiceDetails}, pagina con\c tine un 
 grafic al activit\u a\c tii serviciului \^intr-un interval de timp precum \c si toate 
 acces\u arile serviciului.Graficul poate fi minimizat ca \^in pagina de management a cluster-elor,\^intruc\^at nu am dorit s\u a ocup prea 
 mult din ecranul utilizatorului dac\u a acesta este interesat la momentul respectiv de 
@@ -906,12 +942,13 @@ a serviciului din intervalul de timp selectat.Pentru fiecare accesare se cunoa\c
 adresa ip de provenien\c t\u a a cererii \c si data la care aceasta a fost f\u acut\u a. 
 
 
-\begin{figure}[ht]
+\begin{figure}[!htb]
 	\caption{Pagina de management a unui serviciu}
 	\includegraphics[width=\textwidth,keepaspectratio]{ServiceDetails}
+	\label{fig:ServiceDetails}
 	\caption{Pagina de management a unui serviciu \^ in care graficul este minimizat}
 	\includegraphics[width=\textwidth,keepaspectratio]{ServiceDetailsCollapsed}
-	\label{fig:ServiceDetails}
+	
 \end{figure}
 
 
@@ -925,7 +962,7 @@ serviciului.Numele cluster-ului se poate alege dintr-o list\u a ce con\c tine cl
 cluster nou.La ap\u asarea butonului "Congirm" cererea este trimis\u a c\u atre server \c si serviciul este \^inregistrat.
 Dac\u a \^inregistrarea e\c sueaz\u a, utilizatorul va fi \^in\c stiin\c tat.
 
-\begin{figure}[ht]
+\begin{figure}[!htb]
 	\caption{Pagina ad\u augare a unui serviciu}
 	\includegraphics[width=\textwidth,keepaspectratio]{AddService}
 	\label{fig:AddService}
@@ -1001,7 +1038,7 @@ av\^and un cache local scade dependen\c ta aplica\c tie de serviciul de \^inregi
 Un alt beneficiu, de data aceasta pentru server, este c\u a serverul nu mai este at\^at de 
 solicitat.
 
-\subsection{Registry Register}
+\subsection{Registry Manager}
 
 A doua component\u a pe care am f\u acut-o este destinat\u a serverlor care vor s\u a se 
 \^inregistreze \^in serviciul de \^inregstrare.Componenta con\c tine on interfa\c t\u a,
@@ -1010,15 +1047,213 @@ care permite \^inregistrarea \c si de\^inregistrarea serviciilor.
 
 \section{Testare}
 
+Este evident c\u a cel mai important lucru la un program este ca acesta s\u a fie func\c tional.
+Singurulul mod \^in care func\c tionarea acestuia poate fi asigurat\u a este testarea programului.
+Testarea trebuie f\u acut\u a la fiecare modificare a aplica\c tie.De\c si modificarea nu afecteaz\u a
+direct alte func\c tionalit\u a\c ti ale aplica\c tie, exist\u a totu\c si riscul ca indirect s\u a afecteze
+alte module. Genul acesta de schimb\u ari nea\c steptate sunt unul din motivele pentru care o aplica\c tie
+trebuie testat\u a frecvent. Cu c\^at calitatea codului este mai ridicat\u a cu at\^at mai putin se vor 
+petrece schimb\u ari nea\c steptate, \^ins\u a indiferent c\^at de sigur a\c s putea fi de modific\u arile 
+pe care le fac \c si de consecin\c tele acetora, lipsa test\u arii este un risc care ar trebui evitat.
+Testarea manual\u a este necesar\u a \c si uneori nu poate fi evitat\u a, dar aceasta consum\u a mult timp.
+Din acest motiv am ales s\u a automatizez procesul de testare scriind test automate.
+
+Am ales s\u a folosesc framework-ul NUnit pentru testarea automat\u a din cadrul proiectului meu.
+NUnit este un framework de testare open source pentru limbajele platformei .NET. NUnit a pornit ca 
+o portare a JUnit, \^ins\u a versiunea curent\u a ,NUnit 3, este rescris\u a complet. Odat\u a cu 
+aceast\u a rescriere, au fost ad\u augate \c si caracteristici noi \c si suport pentru mai multe platforme .NET.
+Folosind NUnit am putut s\u a scriu teste automate cu care s\u a testez componentele aplica\c tiei \^in izolare.
+
+Tot pentru testele automate am folosit biblioteca Moq. Aceast\u a bibliotec\ a \^imi permite crearea unor implement\u ari
+de tip mock a interfe\c telor necesare test\u arii unei clase. De multe ori clasele testate depind de alte clase sau 
+interfe\c te dar c\^and test\u am o clas\u a \^in izolare este de preferat ca clasa respectiv\u a s\u a nu aib\u a depende\c te.
+Cu acest scop se folosesc implement\u arile mock ale interfe\c telor de care clasele depind. Cuv\^antul mock provine din
+englez\u a \c si se poate traduce \^in iimita\c tie. Implement\u arile mock ale interfe\c telor sunt practic ni\c ste iimita\c tii 
+utile doar pentru testare. Acestea sunt mai u\c sor de implemntat \c si au fun\c tionalit\u a\c ti ajut\u atoare.
+De exemplu \^intr-o implementare mock se poate verifica de c\^ate ori a fost apelat\u a o metod\u a sau se pot executa 
+ac\c tiuni dup\u a apelarea unei metode astfel implementate. Tot cu Moq putem face ca implement\u arile unor s\u a se comporte diferit 
+\^in fun\c tie de parametrii primi\c ti sau s\u a se comporte indentic indiferent de parametrii.
+
+Testele automate \^incurajeaz\u a un design cu o cuplare c\^at mai slab\u a \^intre componente deoarece \^in
+caz contrar acestea nu mai pot fi testate \^in izolare. De exemplu, dac\u a \^in loc s\u a structurez aplica\c tia pe 
+straturi a\c s fi avut toat\u a logica aplica\c tiei \^intr-un singur strat deja codul ar deveni mai dificil de testat.
+Mai mult, dac\u a fiecare cerere pe care serverul poate primi ar fi tratat\u a \^in metoda corespunz\u atoare din controller,
+atunci pentru o metod\u a din controller ar trebuie f\u acut c\^ate un test pentru fiecare screnariu.
+Astfel s-ar ajunge la un num\u ar mare de teste din ce \^in ce mai complexe \^in fun\c tie de c\^at e departe \^in execu\c tia metodei 
+va ajunge testul. Pe l\^ang\u a acest\u a problem\u a, pentru multe din testele f\u acute va fi nevoie ca testele s\u a fac\u a 
+o conexiune cu baza de date ceea ce nu doar \^incetine\c ste viteza de execu\c tie a testelor dar \c si cre\c ste posibiliatea de 
+e\c sec a unui test din cauze externe. Cu c\^at testele depind mai mult de alte resurse este mai probabil ca un test s\u a pice 
+din alte motive dec\^at dintr-o problem\u a codului testat ceea ce scade relevan\c ta testelor. Testarea individual\u a \^in izolare, ajut\u a 
+la identificarea problemelor \^in cod, deoarece astfel se \c stie exact componenta \^in care se afl\u a o problem\u a.
+Av\^and la dispozi\c tie suita de teste pe care am scris-o, oric\^and doresc pot detecta dac\u a modific\u arile 
+pe care le fac func\c tioneaz\u a corect. Pentru o astfel de verificare am nevoie de mai pu\c tin de un minut.
+Bine\^inteles acest\u a siguran\c ta pe care o am legat\u a de func\c tionarea aplica\c tiei este limitat\u a
+de scenarile acoperite de teste. \^Intr-o situa\c tie ideal\u a \^in care tot codul ar fi acoperit complet de teste,
+acestea ar fi suficiente pentru a asigura func\c tionarea corect\u a a \^intregii aplica\c tii. 
+
+
+\subsection{Test Driven Development}
+
+
+\begin{figure}[ht]
+	\caption{Procesul de dezvoltare TDD}
+	\includegraphics[width=\textwidth,keepaspectratio]{TDDProcess}
+	\label{fig:TDDProcess}
+\end{figure}
+
+Pentru o parte a dezvolt\u arii am lucrat urm\^ and un proces numit test driven development(TDD).
+Acest proces se bazeaz\u a pe repetarea unui scurt ciclu de dezvoltare. Primul pas al ciclului
+presupune scrierea unui test automat p\^an\u a \^in punctul \^in care codul testat pic\u a testul respectiv.
+Dac\u a codul testului nu poate fi compilat, atunci se consider\u a c\u a testul este picat. Acest lucru se \^int\^ampl\u a
+de exemplu atunci c\^and \^intr-un scenariu de test se folose\c ste o metod\u a care \^inc\u a nu exist\u a.
+\^In pasul al doilea se scrie suficient din codul testat \^inc\^at testul s\u a fie trecut, dar nu mai mult de at\^at.
+Mai exist\u a un pas \^in care se face o refactorizare a codului pentru eliminarea redunda\c telor.
+Robert C. Martin a definit 3 legi ale TDD \footcite{Martin:2011:CCC:1999258} menite s\u a-i men\c tin\u a pe practican\c tii 
+aceste discripline \^intr-un ciclu de aproximativ 30 de secunde:
+\begin{enumerate}
+	\item Nu este permis\u a scrierea codulului de produ\c tie \^inaintea scrierea unui test pe care codul s\u a \^il 
+	pice.
+	\item Nu este permis\u a scrierea a mai mult dintr-un test dec\^at este suficient pentru ca testul s\u a e\c sueze.
+	\item Nu este permis\u a scrierea a mai mult cod de produ\c tie dec\^at este necesar pentru ca testul corespunz\u ator 
+	s\u a fie trecut. 
+\end{enumerate}
+
+Una dintre clasele pe care le-am f\u acut practic\^and TDD este clasa ServicesManager.
+Spre exemplu, am creat metoda GetService din clasa ServicesManager \^incep\^and cu testul GetServiceFoundTest \ref{lst:GetServiceTest}
+care testeaz\u a metoda GetUrl din ServicesManager.
+\c Stiind c\u a clasa manager se folose\c ste de o interfa\c t\u a IServicesRepository, a trebuit s\u a \^incep testul f\u ac\^and 
+un mock pentru interfa\c ta respectiv\u a. Implementarea mock va returna un obiect de tip Service specific atunci c\^and 
+metoda GetService va fi apelat\u a cu parametrii specifica\c ti. Mai apoi instan\c tiez un obiect de tip ServicesManager c\u aruia i-am pasat 
+prin construnctor instan\c ta implement\u arii mock a interfe\c tei IServicesRepository.
+Compilarea codului e\c sueaz\u a deorarece nu exist\u a clasa ServicesManager.
+Din acest moment am trecut la partea urm\u atoare a ciclului, \^in care am \^inceput s\u a scriu clasa.
+Din momentul \^in care am f\u acut constructorul cu parametru m-am \^intors la codul testului.
+Am \^inceput cu verificarea rezultatului metodei pe care o doresc s\c i din nou compilarea se va \^incheia cu e\c sec.
+Atunci a fost momentul s\u a creez metoda GetUrl \c si s\u a implementez fun\c tionalitatea care returneaz\u a 
+url-ul corect din repository.
+\^In final am verificat ca metoda GetService s\u a fi fost apelat\u a.
+
+\begin{lstlisting}[caption={Testul pentru metoda },label={lst:GetServiceTest},breaklines]
+    [Test]
+        [Category("GetService")]
+        public void GetServiceFoundTest()
+        {
+			const string LOCALHOST = "127.0.0.1";
+            Mock<IServicesRepository> mockRepository = new Mock<IServicesRepository>();
+            mockRepository.Setup(t => t.GetService("app", "cluster", LOCALHOST)).Returns(new Service() { AppName = "app", Cluster = new Cluster { Name="cluster" }, Url = "url" })
+                .Verifiable();
+            ServicesManager manager = new ServicesManager(mockRepository.Object);
+            Assert.AreEqual("url", manager.GetUrl("app", "cluster", LOCALHOST));
+            mockRepository.Verify();
+        }
+\end{lstlisting}
+
 
 \chapter{Utilizare}
 
+Serviciul de \^inregistrare \c si site-ul de management al acestuia sunt menite s\u a simplifice dezvolatarea 
+\c si utilizarea microserviciilor. Din acest motiv ele trebuie s\u a fie disponibile dezvoltatorilor acestor 
+microservicii. Aceast\u a apical\c tie nu este destinat\u a unui public larg, ci est g\^andit\u a pentru a fi folosit\u a
+intern \^intr-o companie. Doar membrii autoriza\c ti ai acestei companii au acces la site-ul de management, dar 
+probabil to\c ti cei care sunt implica\c ti \^in dezvoltarea microserviciilor au acces la serviciu de \^inregistrare.
 
+Primul lucru de care este nevoie pentru func\c tionarea srviciului de \^inregistrare \c si a site-ului este baza de date.
+Pentru asta este nevoie \^in primul r\^and e un sistem de gestiune al bazelor de date Microsoft SQL Server.
+Cel mai probabil acesta va fi pe un server separat de aplica\c tii, deci trebuie ca cel ce face instalarea 
+s\u a se asigure c\u a serverul pe care se afl\u a baza de date poate fi accesat de c\u atre celelalte servere.
+Creare efectiv\u a a bazei de date pe server se poate face cu u\c surin\c t\u a folosind scripturile SQL pe care le-am
+f\u acut cu acest scop. Dup\u a ce baza de date a fost creat\u a \c si este fun\c tional\u a, trebuie create conturile 
+utilizatorilor serverului. Acestea trebuie create printr-un script de c\u atre o person\u a autorizat\u a.
+Din moment ce serviciul de \^inregistrare este privat, conturile nu trebuie s\u a poat\u a fi create de oricine.
+Dac\u a conturile are putea fi f\u acute de c\u atre oricine, securitatea serverului ar putea fi compromis\u a.
+ 
+Dup\u a ce baza de date func\c tioneaz\u a \c si conturile au fost create, trebuie instalat serviciul de \^inregistrare.
+Acesta trebuie instalat primul deoarece f\u ar\u a acesta, interfa\c ta de management este inutil\u a, ne av\^and obiectul muncii
+sale. Dup\u a ce  serviciul de \^inregistrare func\ ctioneaz\u a, se poate face instalarea site-ului de management al 
+serviciului.
+
+Nu este important unde este instalat\u a aplica\c tia. Aceasta se poate afla pe Azure, pe un server intern sau se poate
+folosi orice serviciu de g\u azduire. Cu toate acestea poate ar fi mai bine ca serverul de management s\u a fie \^intr-o
+re\c tea de tip intranet. Site-ul nu este nevoie s\u a fie accesibil din afara companiei \c si acest lucru ar 
+putea \^imbun\u at\u a\c ti securitatea.
+
+Dac\u a utilizatorii serviciului de \^inregistrare pl\u anuiesc s\u a dezvolte aplica\c tii \^in C\#,
+atunci ar fi cel mai bine s\u a se foloseasc\u a d componentele de NuGet pe care le-am f\u acut.
+Acestea ar trebui distribuite folosind un server NuGet privat care s\u a apar\c tin\u a companiei.
+Folosind un server NuGet este mai u\c sor pentru utilizatori s\u a actualizeze componentele \^in momentul 
+\^in care apar noi versiuni. Astfel de modific\u ari pot ap\u area atunci c\^and se schimb\u a modul de utilizare 
+al serverului. Dac\u a vor ap\u area noi m\u asuri de securitate \^in contactarea serviciului de \^inregistrare,
+componentele va trebui actualizate pentru a suporta schim\u arile de pe server. Dac\u a nu se poate folosi 
+un Server de NuGet, exist\u a dou\u a solu\c tii alternative. A solu\c tie este crearea unui director \^in care s\u a se afle toate versiunile 
+componentelor \c si utilizarea directorului ca un depozit NuGet local. O alt\u a solu\c tie, mai primitiv\u a 
+este utilizarea direct\u a fi\c sierului dll din pachetul NuGet.
+
+\section{Serviciul de \^inregistrare}
+
+Serviciul de \^inregistrare este menit pentru a fi utilizat de c\u atre alte aplica\c tii, nu de c\u atre persoane.
+Acesta se utilizeaz\u a prin metode HTTP. Pentru ob\c tinerea adresei unui serviciu \^intregistrat, \c si de\^inregistrarea
+ se folose\c ste metoda GET, pentru \^inregistrarea unui serviciu se folose\c ste put.
+\^Inregistrarea unui serviciu prin acest mod ar trebui f\u acut\u a de c\u atre serviciul care dores\c ste 
+s\u a fie \^inregistrat. Dac\u a se dore\c ste \^intregistrarea unui serviciu \^in alt mod, atunci este recomandat\u a 
+folosirea site-ului de management al serviciului de \^inregistrare.
+De\^intregistrarea unui serviciu trebuie f\u acut\u a de c\u atre serviciul care s-a \^inregistrat. Dac\u a 
+se \^incearc\u a \c stregerea unui serviciu de la alt\u a adres\u a ip dec\^at cea de la care acesta a fost \^inregistrat,
+atunci aceast\u a \^incercare va e\c sua. Am ales acest comportament din motive de securitate, posibilitatea de 
+a \c sterge servicii din orice loc este o vulnerabilitate care are premite unui atacator s\u a \c stearg\u a 
+servicii necesare \c si astfel s\u a opreasc\u a func\ tionarea unor aplica\c tii care necesit\u a serviciul respectiv.
+De\c si un serviciu nu poate fi de\^inregistrat prin metoda prezentat\u a anterior din alte servere dec\^at cel care a 
+f\u acut \^integistrarea, asta nu \^inseamn\u a c\u a un serviciu poate s\u a r\u aman\u a ve\c snic \^inregistrat.
+Dac\u a serviciul devine inactiv acesta va fi \c sters automat de c\u atre serviciul de \^inregistrare.
+Dac\u a se dore\c ste eliminarea unui seviciu de\c si acesta func\c tioneaz\u a, acest lucur se poate realiza prin 
+interfa\c ta grafica a site-ului de management.  
+
+\section{Interfa\c ta grafic\u a a servicului de \^inregistrare}
+
+Interfa\c ta grafic\u a a servicului de \^inregistrare se afl\u a pe un server separat de serviciu.
+Prin intermediul acestei interfe\c te grafice se poaet monitoriza activitatea serviciului \c si se poate intera\c tiona 
+cu acesta. \^Interfa\c ta grafic\u a a serviciului const\u a \^intr-un site f\u acut \^in ASP.NET MVC. 
+
+Primul pas 
+necesar pentru interac\c tionarea cu serverul const\u a \^in autentificarea utilizatorului. Autentificarea utilizatorilor 
+se face pe baza conturilor men\c tionate \^in sec\c tiunea anterioar\u a. Autentificarea necesit\u a adresa de email 
+\c si parola utuilizatorului dup\u a cum se poate observa \^in imaginea \ref{fig:LogIn} de la pagina \pageref{fig:LogIn}.  
+Pasul de autentificare este obligatoriu \c si dac\u a utilizatorii \^incearc\u a accesarea oric\u arei alte pagini ale 
+site-ului f\u ar\u a ca \^inainte s\u a treac\u a prin pasul de autentificare, ace\c stia vor fi redirec\c tion\c ti 
+c\u atre pagina de autentificare.
+
+Dup\u a ce autentificarea este reu\c sit\u a utilizatorul ete redirec\c tionat c\u atre pagina pe care se reg\u asesc toate 
+servicile. Dac\u a utilizatorul a \^incercat s\u a acceseze o pagin\u a f\u ar\u a s\u a fie autentificat \c si a fost redirec\c tionat
+c\u atre pagina de autentificare, dup\u a autentificare va fi redirec\c tionat c\u atre pagina pe care a \^incercat s\u a
+o acceseze.
+
+Pagina implicit\u a la care utilizatorul este trimis dup\u a autentificare este pagina din imaginea \ref{fig:AllServices} de la 
+pagina \pageref{fig:AllServices}, prin care se poate interac\c tiona cu toate serviciile. Am ales acest\u a pagin\u a ca pagin\u a 
+deoarece aceasta este pagina care ofer\u a privirea cea mai general\u a asupra serviciilor. pe l\^ang\u a prezentarea unei priviri de ansamblu 
+asupra servicilor, tot prin aceat\u a pagin\u a se poate interac\c tiona cu serviciile \^inregistrate. Prin intermediul paginii
+se pot \c sterge at\^at clustere c\^at \c si servicii individuale. De asemenea aceast\u a pagin\u a ofer\u a \c si un punct de 
+acces c\u atre paginile dedicate clusterelor sau serviciilor.
+
+Pagina dedicat\u a unui cluster informeaz\u a utilizatorul cu privire la activitatea serviciilor din cluster dintr-un interval de timp.
+Dup\u a cum se poate observa \c si pe exemplul din imaginea \ref{fig:ClusterDetails} de la pagina \pageref{fig:ClusterDetails},
+activitatea serviciilor este reprezentat\u a \^intr-un grafic. \^In grafic fiecare serviciu este reprezentat printr-o
+culoare distinct\u a \c si reprezint\u a activitatea serviciilor dup\u a num\u arul de acces\u ari din fiecare zi.
+Graficul poate fi minimizat \^in cazul \^in car utilizatorul este mai interesat de lista serviciilor, afi\c sat\u a 
+sub grafic. Serviciile reprezentate \^in list\u a pot fi \c sterse cluster prin butonul 'Remove Service'. De asemenea 
+prin butonul vecin, 'Details' se poate trece la pagina dedicat\u a serviciului respectiv. 
+
+Prin intermediul paginii pe care sunt afi\c aste toate serviciile \c si al paginii dedicate unui cluster, se poate 
+accesa pagina din figura \ref{fig:ServiceDetails} de la pagina \pageref{fig:ServiceDetails}. Aceast\u a pagin\u a
+este dedicat\u a unui serviciu \c si ofer\u a mai multe detalii despre activitatea acestora. Utilizatorul poate 
+vedea activitatea serviciului dintr-un intervat e timp selectat de el. Activitatea serviciului este reprezentat\u a 
+printr-un grafic. La fel ca \^in cazul graficului din pagina activit\u a\c tii unui cluster, \c si acest graficul 
+de pe aceast\u a pagin\u a este minimizabil. Sub grafic se afl\u a o list\u a cu toate datele \^in care serviciul 
+a fost accesat \c si adresa ip de la care a fost accesat.
 
 \chapter{Planuri de viitor}
 
 Add-Inuri cu javascript
 Testare mai multa
+Securitate
 
 \printbibliography
 
