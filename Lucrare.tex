@@ -798,12 +798,18 @@ direct pagina layout.
 	\label{fig:Layout}
 \end{figure}
 
+\begin{figure}[!htb]
+	\includegraphics[width=\textwidth,keepaspectratio]{LayoutMinimized}
+	\label{fig:LayoutMinimized}
+\end{figure}
+
 \^In cardul aplica\c tiei mele, am introdus \^in pagina de aspect,elementele comune ale tuturor paginilor \ref{fig:Layout}.
 Pagina are o bar\u a de naviga\c tie, mimizabil\u a care poate trimite utilizatorul la pagina de management a
 serviciilor, la pagina de management a add-inurilor sau la pagina de introducere a unui nou serviciu.
 Bara de naviga\c tie se afl\u a \^in parrte din st\^anga a paginii.Butonul din josul barei reduce dimensiunea
-acesteia.Interfa\c ta grafic\u a este receptiv\u a,incluz\^and bara de naviga\c tie.C\^and ecranul este prea mic
-bara va fi \^inlocuit\u a de un buton.La ap\u asarea butonului va ap\u area con\c tinutul barei de naviga\c tie.
+acesteia.Interfa\c ta grafic\u a este receptiv\u a,incluz\^and bara de naviga\c tie. C\^and ecranul este prea mic
+bara va fi \^inlocuit\u a de un buton. La ap\u asarea butonului va ap\u area con\c tinutul barei de naviga\c tie
+ca \^in imaginea \ref{fig:LayoutMinimized}.
 
 Butonul Logout deschide o fereastr\u a modal\u a care cere confimarea utilizatorului pentru a preveni,
 ie\c sira din aplica\c tie neinten\c tionat\u a.Dac\u a utilizatorul confirm\u a deautentificarea,
@@ -1207,6 +1213,15 @@ Dac\u a serviciul devine inactiv acesta va fi \c sters automat de c\u atre servi
 Dac\u a se dore\c ste eliminarea unui seviciu de\c si acesta func\c tioneaz\u a, acest lucur se poate realiza prin 
 interfa\c ta grafica a site-ului de management.  
 
+Comportamentul serviciului de \^inregistrare poate fi modificat printr-un add-in.
+Acesta este un add-in diferit de restul add-inurilor pe care aplica\c tia le accept\u a.
+Acest add-in are rolul de a implementa un algoritm de echilibrare a \^inc\u arc\u aturii(load balancing).
+Odat\u a \^inc\u arcat \^in aplica\c tie add-inul va fi folosit pentru aducerea serviciilor din
+baza de date. Scopul acestui add-in este de a reduce \^inc\u arc\u atura unui singur 
+serviciul de un anumit tip, distribuid cererile \^intre toate serviciile de acela\c si tip.
+Bine\^inteles acest add-in nu este util \^in cazul \^in care exist\u a doar c\^ate un singur 
+serviciu de un anume tip.
+
 \section{Interfa\c ta grafic\u a a servicului de \^inregistrare}
 
 Interfa\c ta grafic\u a a servicului de \^inregistrare se afl\u a pe un server separat de serviciu.
@@ -1249,11 +1264,123 @@ printr-un grafic. La fel ca \^in cazul graficului din pagina activit\u a\c tii u
 de pe aceast\u a pagin\u a este minimizabil. Sub grafic se afl\u a o list\u a cu toate datele \^in care serviciul 
 a fost accesat \c si adresa ip de la care a fost accesat.
 
+\^In st\^anga paginii se afl\u a bara de naviga\c tie a site-ului. Acest\u a bar\u a se afl\u a \^in fiecare pagin\u a a site-ului
+\c si poate fi minimizat\u a de c\u atre utilizator dac\u a acesta dore\c ste mai mult pa\c tiu pentru pagina accesat\u a.
+Bara de naviga\c tie reprezint\u a modul de schimbare a paginilor aplica\c tiei. Dac\u a ecranul utilizatorului nu este destul de 
+\^inc\u apator, bara de naviga\c tie se schimb\u a \^intr-un buton \^in partea din st\^anga sus a ecranului ca \^in imaginea 
+\ref{fig:LayoutMinimized} de la pagina \pageref{fig:LayoutMinimized}.
+
+Interfa\c ta grafic\u a permite \c si ad\u augarea de servicii noi, nu doar \c stergerea celor deja existente.
+Introducerea noilor servicii se face prin pagina din figura \ref{fig:AddService} de la pagina \pageref{fig:AddService}.
+Aceast\u a pagin\u a poate fi accesat\u a prin intermediul barei de naviga\c tie.
+Pentru a ad\u auga un nou serviciu trebuie completate toate c\^ampurile din formularul de pe pagin\u a, mai exact 
+numele aplica\c tiei \^inregistrate, numele cluster-ului din care va face parte \c si adresa la care se g\u ase\c ste acesta.
+C\^ampul \^in care trebuie completat ofer\u a o list\u a cu toate clusterele deja existente din care utilizatorul poate 
+alege, dar permite \c si introducere unui cluster nou.
+
+A treia pagin\u a care poate fi accesat\u a prin intermediul barei denaviga\c tie este pagina de management a add-inurilor.
+Aceast\u a pagin\u a ofer\u a utilizatorului informa\c tii despre add-inurile \^inc\u arcate \^in aplic\c tie \c si 
+posibilitatea posibilitatea de a interac\c tiona cu acestea. O astfel de intera\c tiune este \^nl\u aturarea acestora
+prin intermediul unui buton, la ap\u asarea c\u aruia, utilizatorul este rugat s\u a \^i\c si confirme decizia.
+Pentru add-inurile active, exist\u a un buton care permite lansarea acestora \^in execu\c tie.
+
+Add-inurile sunt un mod avansat \^in care utilizatorii pot interac\c itona cu aplica\c tia. Ace\c stia 
+pot pot decide s\u a extind\u a chiar ei aplica\c tia prin add-inuri. Utilizatorii pot extinde aplica\c tia 
+f\u ar\u a s\u a aib\u a acces la codul surs\u a al acesteia. Le-am pus la dispozi\c tie utilizatoilor libertatea de a extinde 
+aplica\c tia dup\u a nevoia \c si preferin\c tele lor. Aplica\c tia va \^inc\u arca add-inurile pe baza unor 
+fi\c siere cu extensia .sAddIn care descriu add-inul care trebuie \^inc\u arcat.
+
+Pe l\^ang\u a bara ed naviga\c tie mai exist\u a \c si alte elemente comune 
+tututor paginilor site-ului. Un astfel de element const\u a \^in butonul Logout 
+prin care utilizatorul se poate deautentifica. Dup\u a ap\u asarea acestuia 
+utilizatorul autentificat trebuie s\u a confirme op\c tiunea sa printr-o 
+fereastr\u a de confirmare.
+
+Un alt element pe care toate paginile \^il con\c tine este bara de c\u autare.
+Aici utilizatorul poate scrie numele sau pentre din numele unui serviciu sau cluster.
+Dup\u a ap\u asarea butonului de c\u autare, utilizatorului i se va prezenta o pagin\u a 
+\^in care poate vedea rezultatele c\u aut\u arii sale. Din pagina cu rezultatele 
+utilizatorul poate naviga c\u atre pagina corespunz\u atoare rezultatului.
+Dac\u a nu este g\u asit nici un rezultat la cererea de c\u autare a utilizatorului,
+acesta va fi \^in\c stiin\c tat.
+
+L\^ang\u a bara de c\u autare se afl\u a un buton de mesaje. La ap\u asarea acestui buton,
+se va deschide o fereastr\u a \^in care vor ap\u area mesajele pe care utilizatorul 
+autentificat le-a primit.De asemenea \^in acest\u a fereastr\u a exist\u a un buton care 
+duce la o pagin\u a \^in care sunt afi\c sate toate mesaje primite de c\u atre utilizator.
+Utilizatorii nu pot trimite mesaje, acestea pot fi trimise doar de c\u atre aplica\c tie sau de 
+c\u atre add-inuri.
+
 \chapter{Planuri de viitor}
 
-Add-Inuri cu javascript
-Testare mai multa
-Securitate
+\section{Securitatea}
+
+Poate cel mai important lucru care trebuie avut \^in vedere atunci c\^and se pune problema  
+dezvolt\u arii viitoare a aplica\c tiei este securitatea. Serviciul de \^inregistrare 
+poate fi considerat un punct sensibil \^in func\c tionarea multor aplica\c tii, nu pentru c\u a 
+ar fi mai vulnerabil ca alte servicii, ci pentru c\u a de func\c tionarea corect\u a a acestuia 
+depind mai multe aplica\c tii. Dac\u a un server specific unei aplica\c tii \^i\c si va \^intrerupe 
+activitatea, acea aplifa\c tie va avea de suferit, dar dac\u a serviciul de \^inregistrare este inactiv 
+atunci se poate ca zeci de aplica\c tii s\u a aib\u a de suferit. 
+
+De exemplu, \^in cazul unui
+magazin online care folose\c ste o arhitectur\u a orientat\u a pe microservicii, dac\u a
+serviciul de plat\u a devine inactiv, utilizatorii nu vor mai putea finaliza comenzile lor, \^ins\u a
+aces\c stia nu vor fi oprit\c ti din a beneficia de restul site-ului. Utilizatorii vor putea p\u astra 
+produsele dorite \^in co\c si \c si vor da comanda la o alt\u a data. Nefunc\c tionarea 
+serviciului de plat\u a va fi o inconvenien\c t\u a dar nu va dobor\^a \^intreg site-ul.
+
+Pe de alt\u a parte dac\u a magazinul ar folosi serviciul de \^inregistrare \c si acesta ar ceda,
+ar \^inceta \^intreaga activitate a site-ului. Acest\u a problem\u a poate fi atenuat\u a \^in cazul 
+\^in care exist\u a un sitem de caching pentru rezultatele primite de la serviciul de \^inregistrare.
+Depende\c ta servicilor de serviciul de \^inregistrare face ca securitatea acestuia s\u a fie 
+o prioritate \^in dezvoltarea sa.
+
+\^In momentul de fa\c t\u a am implmentat c\^ateva m\u asuri de securitate. Una dintre aceste 
+m\u asuri const\u a \^in procedurile de autentificare \c si autorizare ale site-ului de management 
+al serviciului de \^inregistrare. De\^inregistrarea servicilor este probabil opera\c tia care are 
+cel mai multe nevoie de securitate deoarece acest\u a opera\c tie poate opri \^intreaga fun\c tionare 
+a serverului. Un atacator al serviciului ar putea \c sterge toate servicile din server \c si astfel 
+oprind fun\c tionarea tuturor aplica\c tilor care utilizeaz\u a serviciul de \^inregistrare.
+Pentru a preveni aceast tip de atac am restric\c tionat de\^inregistrarea serviciilor.
+Prin verificarea adresei ip, doar serviciul care a f\u acut \^inregistrarea poate face de\^inregistrarea.
+
+O alt\u a m\u asur\u a de securitate pe care am implementat-o este utilizarea certificatelor pentru 
+\^inregistrarea sau \c stergerea serviciilor de pe server. Servicile care sunt autorizate s\u a se \^inregistreze 
+ar vor avea un certificat \c si pe baza acestuia, serverul le va accepta sau refuza cererea.
+De\c si implementarea pentru acest mecanism a fost f\u acut\u a, \^in momentul de fa\c t\u a
+ea nu este folosit\u a. Aceast\u a metod\u a de autorizare re ar putea reprezenta o alternativ\u a la restric\c tionarea 
+celor care pot face de\^inregistrarea.
+
+Pe l\^ang\u a m\u asurile de securitat pe care le-am prezentat treuie s\u a m\u a sigur c\u a nu exist\u a
+alte vulnerabilit\u a\c ti exploatabile \^in aplica\c tie. \^In sensul acesta, va trebui s\u a folosesc 
+un scanner de vulnerabilit\u a\c ti. Imediat dup\u a descoperirea vulnerabilit\u a\c tilor va trebui s\u a 
+\^incep eliminarea acestora.
+
+\section{Testarea }
+
+Un alt obiectiv pe care va trebui s\u a \^il am \^in vedere este testarea automat\u a.
+De\c si am \^inceput scrierea testelor automate, acestea nu sunt \^inc\u a suficiente pentru 
+a asigura func\c tionarea complet\u a aplica\c tiei conform a\c stept\u arilor mele.
+Ca urmare este nevoie s\u a cresc num\u arul testelor p\^an\u a \^in punctul \^in care 
+codul meu va avea o acoperire de aproape 100\% .
+
+De\c si scrierea tutror testelor necesare 
+se va \^intinde pe o perioad\u a \^indelungat\u a, pe termen lung voi putea economisi mult timp
+care ar fi consumat de testarea manual\u a a tuturor scenarilor de utilizare. Mai mult,
+testele vor reduce timpul petrecut \^in debug deoarece vor oferi o localizare destul de specific\u a
+a erorilor. 
+
+\section{Adaptarea}
+
+Pe m\u asur\u a ce aplica\c tia va fi folosit\u a de c\u atre utilizatori, 
+vor ap\u area \c si noi cerin\c te. Este inevitabil ca utilizatorii 
+s\u a aib\u a propuneri referitoare la caracteristici pe care le doresc 
+\^in aplica\c tie. Astfel eu va trebuie s\u a m\u a conformez cu noile 
+cerin\c te pe care le voi aduna de la utilizatori. Prin arhitectura aplic\c tie 
+am \^incercat s\u a anticipez schimb\u arile. Decizile pe care le-am luat pe parcusrul 
+implement\u arii  fac dezvoltarea acestora 
+c\^at mai u\c soar\u a.
 
 \printbibliography
 
