@@ -40,9 +40,11 @@
 \maketitle
 \tableofcontents
 \chapter{Introducere}
-\section{Arhitectura de microservicii}
 
-Arhitectura de microservicii este o abrodare relativ nou\u a \^ in dezvoltarea de software.
+
+\section{Arhitectur\u a orientat\u a pe microservicii}
+
+Arhitectur\u a orientat\u a pe microservicii este o abrodare relativ nou\u a \^ in dezvoltarea de software.
 Microserviciile reprezint\u a aplica\c tii mici \c si autonome care lucreaz\u a \^ impreun\u a
 \footcite{buildingMicroservices1}. Ele sunt considerate mici relativ la un sistem monolitic care ar
 oferi toate func\c tionalit\u a\c tiile de care aplica\c tia are nevoie.Cu toate acestea un mictoserviciu poate oferi orice
@@ -223,7 +225,7 @@ era asociat\u a cu WebForms, care datorit\u a limit\u arilor sale a fost \^inloc
 Asp.NET MVC reprezint\u a o alternativ\u a la WebForms pentru construc\c tia aplica\c tilor web \^in cadrul
 platformei .NET.Asp.NET MVC are o abordare diferit\u a \^in ceea ce prive\c ste structura aplica\c tiei, folosind
 arhitectura MVC.
-Asp.NET MVC este mai aproape de protocoloul HTTP.spre deosebire de Web Forms care \^incearca s\u a ascunda 
+Asp.NET MVC este mai aproape de protocolul HTTP.spre deosebire de Web Forms care \^incearca s\u a ascunda 
 natura far\u a stare a protocolului.Folosind arhitectura MVC \c si asociind o singur\u a cerere HTTP apel\u arii 
 unei metode, experien\c ta dezvoltatorilor este mai naturala.
 
@@ -623,13 +625,21 @@ care este component\u a principal\u a a proiectului meu.Acesta este un server de
 cu serverul prin intermediul HTTP.Stratul de prezentare din webapi are o arhitectur\u a MVC \^in care lipse\c ste partea
 de View.
 
+Primul server este un serviciu web de tip RESTful API, o interfa\c t\u a de programare a aplica\c tilor care 
+se folose\c ste de protocolul HTTP. Cu rest, componentele din re\c tea sunt tratate ca ni\c ste resurse
+la care se cere acces, \c si a c\u aror implementare este necunoscut\u a. Designul RESTful pleac\u a 
+de la prezum\c tia c\u a toate apelurile sunt f\u ar\u a stare \c si nimic nu se p\u astreaz\u a \^intre 
+cereri. Faptul c\u a apelurile sunt f\u ar\u a stare fac ca aplica\c tile REST s\u a se potriveasc\u a
+perfect aplica\c tilor \^in cloud.  
+
 Al doilea server este interfa\c ta grafic\u a a aplica\c tiei \c si permite administrarea aplica\c tiei.\^In cazul 
 acestui server stratul de prezentare se reg\u ase\c ste \^in sensul clasic.Arhitectura stratului este MVC complet spre
 deosebire de cazul anterior.
 
 Toate starturile precedente sunt comune \^in cele dou\u a servere.
 Separarea aplica\c tiei ini\c tiale \^in dou\u a servere distincte nu doar reduce munca fiec\u arui server,
-dar \c si faciliteaz\u a dezvoltarea.
+dar \c si faciliteaz\u a dezvoltarea. Serviciile RESTful sunt u\c sor de scalat deoarece oricare cerere poate fi 
+trimis\u a c\u atre oricare instan\c t\u a a unei astfel de componente, datorit\u a lipsei unei st\u ari.
 
 \section{Injectarea dependen\c telor}
 
@@ -1382,14 +1392,42 @@ am \^incercat s\u a anticipez schimb\u arile. Decizile pe care le-am luat pe par
 implement\u arii  fac dezvoltarea acestora 
 c\^at mai u\c soar\u a.
 
+\chapter{Concluzii}
+
+Aplica\c tia mea ofer\u a un mod simplificat pentru de dezvoltarea aplica\c tiilor 
+folosind o arhitectur\u a orientat\u a pe microservicii.
+Serviciul de \^inregistrare ofer\u a o metod\u a de a g\u asi adresele microserviciilor necesare aplica\c tie 
+\^intr-un mod dinamic, reduce rigiditatea sistemului.
+
+Deoarece \^inregistrarea pe server este responsabilitatea microserviciilor, 
+asigur\u a faptul c\u a at\^ata timp c\^at exist\u a servicii func\c tionale,
+acestea vor fi folosite de c\u atre aplica\c tii. Restric\c tionarea de\^inregistr\u arii
+\^impiedic\u a \c stergerea mali\c tioas\u a dar permite \c stergerea dac\u a serviciile 
+o necesit\u a.
+
+De asemenea monitorizarea serviciului de \^inregistrare elimin\u a posibilitatea 
+utiliz\u arii unui microserviciu care nu mai este \^intr-o stare de func\c tionare.
+Nu numai c\u a nu vor mai exista servicii inactive, dar acestea sunt  \c si mult mai 
+u\c sor de actualizat. 
+
+Un alt beneficiu al serviciului de \^inregistrare const\u a \^in faptul c\u a acesta
+ac\c tioneaz\u a \c si ca un server de tip load balancer.
+Un serviciu de \^inregistrare se potrive\c ste bine pentru func\c tia de echilibrare a \^inc\u arc\u aturii
+serverelor pe care le gestioneaz\u a. Algoritmul care face echilibrarea poate fi 
+schimbat printr-un Add-In ceea ce faciliteaz\u a \^imbun\u at\u a\c tirea acestuia.
+
+Datorit\u a mecanismului de add-inuri, se pot ad\u auga func\c tionailt\u a\c ti noi
+chiar \c si \^in timp ce aplica\c tia func\c tioneaz\u a. Mai mult,
+chiar \c si utilizatorii au libertatea de a-\c si crea proprile lor add-inuri. 
+
+Cu ajutorul interfe\c tei grafice administratorii sistemului au control deplin 
+asupra serviciilor \c si add-inurilor din aplica\c tie. Utilizarea interfe\c tei grafice 
+a aplica\c tiei nu este limitat\u a la utilizatorii cu drepturi de administratori, 
+pe l\^ang\u a ace\c stia exist\u a \c si utilizatori care nu au dreptul de a modifica serviciile 
+sau add-inurile \^inc\u arcate dar pot utiliza restul aplica\c tiei.
+
+
 \printbibliography
 
-\end{document}
 
-idei:
-bootstrap
-HTML
-css
-jquery
-autofac
-ce e un cookie
+\end{document}

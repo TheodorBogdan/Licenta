@@ -57,6 +57,70 @@
       \field{title}{C\# Language Specification}
       \field{year}{2003}
     \endentry
+    \entry{Freeman:2004:HFD:1076324}{book}{}
+      \name{author}{4}{}{%
+        {{hash=c7ec7724837c159a1bd045c1d7077d7c}{%
+           family={Freeman},
+           familyi={F\bibinitperiod},
+           given={Elisabeth},
+           giveni={E\bibinitperiod}}}%
+        {{hash=9bb9c48289834328b03fe2167f2eb3cc}{%
+           family={Freeman},
+           familyi={F\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=5c0eff8de2e6e98c8e2b5e2cebcdc292}{%
+           family={Bates},
+           familyi={B\bibinitperiod},
+           given={Bert},
+           giveni={B\bibinitperiod}}}%
+        {{hash=e904736cbe85176ef1836de79da638ab}{%
+           family={Sierra},
+           familyi={S\bibinitperiod},
+           given={Kathy},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {O' Reilly \& Associates, Inc.}%
+      }
+      \strng{namehash}{ab158792d3b7b4ab1fd2c82c92184971}
+      \strng{fullhash}{ab158792d3b7b4ab1fd2c82c92184971}
+      \strng{bibnamehash}{ab158792d3b7b4ab1fd2c82c92184971}
+      \strng{authorbibnamehash}{ab158792d3b7b4ab1fd2c82c92184971}
+      \strng{authornamehash}{ab158792d3b7b4ab1fd2c82c92184971}
+      \strng{authorfullhash}{ab158792d3b7b4ab1fd2c82c92184971}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0596007124}
+      \field{title}{Head First Design Patterns}
+      \field{year}{2004}
+    \endentry
+    \entry{cssDef}{book}{}
+      \name{author}{1}{}{%
+        {{hash=7cdf342c0f1c0d10e84bef9a07834166}{%
+           family={Meyer},
+           familyi={M\bibinitperiod},
+           given={Eric\bibnamedelima A.},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{7cdf342c0f1c0d10e84bef9a07834166}
+      \strng{fullhash}{7cdf342c0f1c0d10e84bef9a07834166}
+      \strng{bibnamehash}{7cdf342c0f1c0d10e84bef9a07834166}
+      \strng{authorbibnamehash}{7cdf342c0f1c0d10e84bef9a07834166}
+      \strng{authornamehash}{7cdf342c0f1c0d10e84bef9a07834166}
+      \strng{authorfullhash}{7cdf342c0f1c0d10e84bef9a07834166}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Cascading Style Sheets: The Definitive Guide}
+      \field{year}{2004}
+    \endentry
     \entry{Flanagan:2011:JDG:2029041}{book}{}
       \name{author}{1}{}{%
         {{hash=2caeb722af2e88c021f73029f9740851}{%
@@ -81,6 +145,35 @@
       \field{edition}{6th}
       \field{isbn}{0596805527, 9780596805524}
       \field{title}{JavaScript: The Definitive Guide Activate Your Web Pages}
+      \field{year}{2011}
+    \endentry
+    \entry{Martin:2011:CCC:1999258}{book}{}
+      \name{author}{1}{}{%
+        {{hash=4931846e75da8be6bca9cac98c006a70}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={Robert\bibnamedelima C.},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Upper Saddle River, NJ, USA}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall Press}%
+      }
+      \strng{namehash}{4931846e75da8be6bca9cac98c006a70}
+      \strng{fullhash}{4931846e75da8be6bca9cac98c006a70}
+      \strng{bibnamehash}{4931846e75da8be6bca9cac98c006a70}
+      \strng{authorbibnamehash}{4931846e75da8be6bca9cac98c006a70}
+      \strng{authornamehash}{4931846e75da8be6bca9cac98c006a70}
+      \strng{authorfullhash}{4931846e75da8be6bca9cac98c006a70}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{0137081073, 9780137081073}
+      \field{title}{The Clean Coder: A Code of Conduct for Professional Programmers}
       \field{year}{2011}
     \endentry
     \entry{evolvableWebApi}{book}{}
@@ -269,6 +362,13 @@
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://en.wikipedia.org/wiki/.NET_Framework}}
       \field{title}{.Net Framework}
+    \endentry
+    \entry{wikiHTML}{misc}{}
+      \field{sortinit}{9}
+      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://en.wikipedia.org/wiki/HTML}}
+      \field{title}{HTML}
     \endentry
     \entry{sqlServer}{misc}{}
       \field{sortinit}{9}
