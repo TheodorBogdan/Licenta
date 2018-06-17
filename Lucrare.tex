@@ -47,7 +47,7 @@
 Arhitectur\u a orientat\u a pe microservicii este o abrodare relativ nou\u a \^ in dezvoltarea de software.
 Microserviciile reprezint\u a aplica\c tii mici \c si autonome care lucreaz\u a \^ impreun\u a
 \footcite{buildingMicroservices1}. Ele sunt considerate mici relativ la un sistem monolitic care ar
-oferi toate func\c tionalit\u a\c tiile de care aplica\c tia are nevoie.Cu toate acestea un mictoserviciu poate oferi orice
+oferi toate func\c tionalit\u a\c tiile de care aplica\c tia are nevoie. Cu toate acestea un microserviciu poate oferi orice
 fel de func\c tionalit\u a\c ti,incep\^and cu ceva simplu precum desc\u arcarea de fi\c siere, p\^an\u a la
 complexe precum analizarea imaginilor.
 Aceast\u a aboradare arhitecturala a venit ca o alternativ\u a la arhitectura monolitic\u a, \^in care exist\u a
@@ -58,14 +58,14 @@ trebuie sa cunoa\c stem urm\u atoarele beneficii:
 \begin{itemize}
 	\item Din cauza dimensiunii \c si complexit\u a\c tii unui proiect monolitic,
 	      acesta este dificil de in\c teles \c ,motiv pentru care schimb\u arile sunt mai dificil de facut \c si exist\u a
-	      un risc mai mare ca acestea s\u a produc\u a efecte nedorite.Aceste probleme pot fi atenuate printr-un
-	      cod de calitate dar acest lucru se \^ inatmpla de prea pu\c tine ori. Schimb\u arile aduse unui microserviciu nu afecteaz\u a alte
-	      module \c si datorit\u a dimensiunii reduse a acestora, ele sunt \c si mai u\c sor de \^inteles pentru programtori, astfel
+	      un risc mai mare ca acestea s\u a produc\u a efecte nedorite. Aceste probleme pot fi atenuate printr-un
+	      cod de calitate, dar acest lucru se \^ int\^ ampl\u a de prea pu\c tine ori. Schimb\u arile aduse unui microserviciu nu afecteaz\u a alte
+	      module \c si, datorit\u a dimensiunii reduse a acestora, ele sunt \c si mai u\c sor de \^inteles pentru programatori, astfel
 	      scade probabilitatea erorilor.Se poate spune ca microserviciile duc un pas mai departe principiul singurei responsabilit\u a\c ti,
 	      definit de Robert C. Martin.
 	\item Pentru dezvoltarea unei aplica\c tii monolitice trebuie sa alegem tehnologii standardizate care s\u a poata
-	      realiza toate cerin\c tele aplica\c tiei. Pe de alta parte,daca avem mai multe microservicii care colaboreaz\u a nu exist\u a
-	      aceast\u a limitare,ceea ne permite s\u a alegem unealta cea mai portivit\u a pentru fiecare serviciu.
+	      realiza toate cerin\c tele aplica\c tiei. Pe de alta parte,daca avem mai multe microservicii care colaboreaz\u a, nu exist\u a
+	      aceast\u a limitare,ceea ne permite s\u a alegem unealta cea mai potrivit\u a pentru fiecare serviciu.
 	      S\u a lu\u am spre exemplu un site al unei pizzerii care folose\c ste microservicii (Fig 1).
 	      Partea de front-end doar apeleaz\u a serviciile c\^and are nevoie.Putem avea un server scris
 	      in C\# care folose\c ste un sistem de gestiune a bazei de date Microsoft Sql Server,
@@ -79,14 +79,14 @@ trebuie sa cunoa\c stem urm\u atoarele beneficii:
 	\item O aplica\c tie a c\u arei componente sunt distribuite este mai rezistent\u a, \^in sensul c\u a dac\u a un
 	      serviciu este compromis, func\c tionalita\c tile care nu depind de acel serviciu vor continua s\u a func\c tioneze.
 	      \^In cazul unei aplica\c tii clasice, tot sistemul va fi compromis din cauza unei singure componente.
-	\item Cu un serviciu mare,monolitic, trebuie sa scal\u am totul \^imreun\u a.O parte mic\u a
+	\item Cu un serviciu mare,monolitic, trebuie sa scal\u am totul \^impreun\u a. O parte mic\u a
 	      a \^intregului nostru sistem, este constr\^ans\u a \^in performan\c t\u a, dar dac\u a
 	      acest comportament este blocat \^intr-o aplica\c tie monolitic\u a gigant\u a, trebuie sa scal\u am totul \^impreun\u a
-	      ca o bucat\u a \footcite{buildingMicroservices5}.Acest lucru se face deobicei folosind mai multe servere
+	      ca o bucat\u a \footcite{buildingMicroservices5}.Acest lucru se face de obicei folosind mai multe servere
 	      \c si un server de tip load balancer care s\u a distribuie cererile c\u atre unul din acele servere pentru
 	      a reduce munca depus\u a de un singur server o depune, astfel evit\^and supra\^incarcarea si cresc\^and performan\c ta.
 	      \^In cazul arhitecturii cu microservicii, ajunge s\u a scalam doar acele servicii care au probleme de performan\c ta.
-	\item Microserviciile ofer\u a \c si reutilizabiliate, ele pot fi utilizate de multiple aplica\c tii.
+	\item Microserviciile ofer\u a \c si reutilizabilitate, ele pot fi utilizate de multiple aplica\c tii.
 		  Daca dou\u a aplica\c tii au func\c tionalita\c ti similare, acestea nu trebuie implementate de dou\u a ori, aceast\u a func\c tionalitate
 		  poate fi oferit\u a de un serviciu comun , folosit de ambele aplica\c tii.Uneori acest lucru este chiar necesar, dac\u a un produc\u ator de software
 		  are mai multe aplica\c tii ce necesit\u a autentificare, este mult mai comod pentru utilizator s\u a aib\u a un singur cont cu care s\u a se autentifice in fiecare aplica\c tie 
@@ -96,14 +96,14 @@ trebuie sa cunoa\c stem urm\u atoarele beneficii:
 \end{itemize}
 
 Bine\^in\c teles arhitectura cu microservicii nu este o solu\c tie miraculoas\u a la toate problemele,
-adat\u a cu aceste beneficii, ea vine \c si cu dezavantajele.Fiind un sistem distribuit toate
+adat\u a cu aceste beneficii, ea vine \c si cu dezavantaje. Fiind un sistem distribuit toate
 problemele acestor sisteme afecteaz\u a si microservicii.
 O problem\u a este men\c tinerea leg\u aturii \^intre componentele aplica\c tiei.Un serviciu \^isi poate schimba 
 adresa,poate deveni inactiv sau poate fi \^inlocuit.\^In aceste situa\c tii se va pierde func\c tionalitatea pe care acesta o 
 ofer\u a.Pentru a remedia aceast\u a situa\c tie ar trebui sa schimb\u am adresele la care aplica\c tia se a\c steapt\u a sa 
-gaseasc\u a serviciul respectiv, dup\u a care ar trebui sa to\c ti utilizatorii sa sa fac\u a un update la noua versiune.
-Aceast\u a solu\c tie simpl\u a nu doar c\u a nu este convenabil\u a ,dar devine imposibil\u a dac\u a avem servicii care ruleaz\u a 
-pe ma\c sini virtuale sau containere de docker care suntcreate dinamic \^in func\c tie de nevoie.
+gaseasc\u a serviciul respectiv, dup\u a care ar trebui ca to\c ti utilizatorii s\u a fac\u a un update la noua versiune.
+Aceast\u a solu\c tie simpl\u a nu doar c\u a nu este convenabil\u a, dar devine imposibil\u a dac\u a avem servicii care ruleaz\u a 
+pe ma\c sini virtuale sau containere de docker care sunt create dinamic \^in func\c tie de nevoie.
 \section{Serviciu de \^inregistrare}
 Solu\c tia pe care eu am implementat-o este un sistem de tip service registry.
 Acesta este la baz\u a un serviciu web care face leg\u atura \^intre microservicii.Astfel aplica\c tia \c si serviciile trebuie 
@@ -115,25 +115,25 @@ Serverul de \^ inregistrare ofer\u a trei opera\c tii de baza:
 			Serviciile se pot \^inregistra la server atunci c\^and \^i\c si \^incep func\c tionarea.
 			\^In cazul \^in care serviciu folosit este facut de un alt produc\u ator care nu cunoa\c ste acest 
 			mecanism sau nu este dispus s\u a \^il foloseasc\u a,exist\u a \c si posibilitatea ca administratorul 
-			aplica\c tiei sa \^inregistreze serviciul respectiv manual prin intermediul intefer\c tei grafice.
-	\item \textbf{De\^inregistrarea}
+			aplica\c tiei sa \^inregistreze serviciul respectiv manual prin intermediul interfe\c tei grafice.
+	\item \textbf{Dez\^inregistrarea}
 
-		  Serviciile au posibilitatea de a se de\^inregistra,acest lucru ar trebuie s\u a fie f\u acut la \^inchiderea 
-		  serviciului.\^In cazul in care acestea devin inactive far\u a a se de\^inregistra, serverul le va de\^inregistra
+		  Serviciile au posibilitatea de a se dez\^inregistra,acest lucru ar trebuie s\u a fie f\u acut la \^inchiderea 
+		  serviciului.\^In cazul in care acestea devin inactive far\u a a se dez\^inregistra, serverul le va dez\^inregistra
 		  automat.
 	\item \textbf{C\u autarea}
 
 		  Aplica\c tia \c si microserviciile pot c\u auta un serviciu \^inregistrat \^in server.
 \end{enumerate}	
 \section{Extensibilitate}
-Extensibilitatea este o problem\u a permanent\u a \^in dezvoltarea de software.Un program poate \c si deobicei 
-trebuie dezvoltat continuu.Serviciu de \^inregistrare, din cauza rolulului pe care \^il are, nu ar trebui oprit 
-pentru actuazliz\u ari doar dac\u a acestea sunt absolut necesare \c si acest lucru trebuie s\u a se \^intample
+Extensibilitatea este o problem\u a permanent\u a \^in dezvoltarea de software. Un program poate fi \c si, de obicei, 
+trebuie dezvoltat continuu. Serviciu de \^inregistrare, din cauza rolulului pe care \^il are, nu ar trebui oprit 
+pentru actualiz\u ari doar dac\u a acestea sunt absolut necesare \c si acest lucru trebuie s\u a se \^int\^ample
 c\^at mai rar posibil.\^In acest sens am implementat un mecanism de extensibilitate care nu necesit\u a oprirea
-serverului.Aplica\c tia poate fi extins\u a prin add-inuri.Din acest motiv am expus un API pe care \^il pot folosi 
-pentru dezvoltarea acestor add-inuri.Bine\^inteles, schimb\u arile mai importante nu pot fi f\u acute prin add-inuri
+serverului. Aplica\c tia poate fi extins\u a prin add-inuri.Din acest motiv am expus un API pe care \^il pot folosi 
+pentru dezvoltarea acestor add-inuri.Bine\^inteles, schimb\u arile mai importante nu pot fi f\u acute prin add-inuri,
 dar acestea reprezint\u a un mecanism suficient de bun pentru a ad\u auga func\c tionalit\u ati aplica\c tiei far\u a
-a \^intrerupe fun\c tionarea serverului.Un alt avantaj al acestei abord\u ari const\u a \^in posibilitatea de 
+a \^intrerupe fun\c tionarea serverului. Un alt avantaj al acestei abord\u ari const\u a \^in posibilitatea de 
 ad\u augare de func\c tionalit\u ati la aplica\c tie de c\u atre utilizator. Acesta poate face un add-in 
 folsind API-ul pe care \^il pun la dispozi\c tie.
 Am ales s\u a ofer trei tipuri de add-inuri:
@@ -154,13 +154,13 @@ Am ales s\u a ofer trei tipuri de add-inuri:
 \section{Load Balancer}
 
 Aplica\c tia mea, fiind un serviciu de \^inregistrare trebuie s\u a ia \^in calcul posibilitatea de a avea mai multe servicii
-\^inregistrate cu acela\c si nume.Acest lucru poate p\u area c\u a ar trebui interzis \^ins\u a eu am ales s\u a accept \c si 
+\^inregistrate cu acela\c si nume. Acest lucru poate p\u area c\u a ar trebui interzis, \^ins\u a eu am ales s\u a accept, \c si 
 chiar s\u a \^incurajez aceast\u a situa\c tie.Cu acest scop am ad\u augat func\c tionalitatea de load balancing.
 Load balanacing se traduce mot a mot \^in balansarea \^inc\u arc\u aturii \c si const\u a \^in distribu\c tia cererilor 
 c\u atre un server \^intre mai multe servere identice.Cea mai direct\u a metod\u a de scalare a unui server este 
 multiplicarea lui.Nu este suficient s\u a avem mai multe servere identice \c si s\u a las\u am utilizatorii s\u a
 decid\u a ce server doresc s\u a foloseasc\u a,a\c sa c\u a folosim un load balancer care s\u a decid\u a care dintre
-copiile serverului s\u a proceseze fiecare cerere \^in func\ tie de un algoritm.Doar serverul de balansare 
+copiile serverului s\u a proceseze fiecare cerere \^in func\c tie de un algoritm. Doar serverul de balansare 
 \c stie de existen\c ta serverelor pe care le are \^in grij\u a.
 \begin{figure}[!htb]
 	\includegraphics[width=\textwidth,keepaspectratio]{LoadNotBalanced}
@@ -174,9 +174,9 @@ copiile serverului s\u a proceseze fiecare cerere \^in func\ tie de un algoritm.
 \end{figure}
 
 A\c s fi putut s\u a nu accept \^inregistrarea mai multor servicii cu acela\c si nume \c si echilibrarea \^inc\u arc\u aturii 
-de munc\u a s\u a fie f\u acut\u a de fiecare serviciu \^in parte iar aplica\c tia mea s\u a \^inregistreze doar acest server
-dar dac\u a rezolv \c si responsabilitatea de balansare elimin un punct de e\c sec.Dac\u a toate serviciile care au nevoie 
-de scalare folosesc un load balancer atunci func\c tionarea lor depinde de acesta.Elimin\u and nevoia existen\c tei a \^inc\u a
+de munc\u a s\u a fie f\u acut\u a de fiecare serviciu \^in parte, iar aplica\c tia mea s\u a \^inregistreze doar acest server,
+dar dac\u a rezolv \c si responsabilitatea de balansare, elimin un punct de e\c sec. Dac\u a toate serviciile care au nevoie 
+de scalare folosesc un load balancer, atunci func\c tionarea lor depinde de acesta.Elimin\u and nevoia existen\c tei a \^inc\u a
 unui risc cre\c ste siguran\c ta.
 
 \chapter{Tehnologii}
@@ -184,14 +184,14 @@ unui risc cre\c ste siguran\c ta.
 \section{.NET Framework}
 .NET este o platform\u a de dezvoltare a software-ului gratuit\u a pentru diverse sisteme de operare.
 Platforma include o bibliotec\u a de mari dimensiunii numit\u a Framework Class Library \c si permite interoperabilitatea
-a multor limbaje de programare.Programele scrise \^in .NET Framework ruleaz\u a \^intr-un mediu numit
+mai multor limbaje de programare. Programele scrise \^in .NET Framework ruleaz\u a \^intr-un mediu numit
 Common Language Runtime(CLR), o ma\c sin\u a virtual\u a de aplica\c tie care ofer\u a servicii precum
 securitatea, managementul memoriei \c si tratarea excep\c tiilor.Biblioteca de clase \c si CLR formeaz\u ua 
 .NET Framework.\footcite{wikidotNet}
 
 \section{C\#}
 
-C\# este un limbaj de programare modern, orientat pe obiecte \c si puternic tipizat.C\# \^i\c si are r\u ada\u 1cinile
+C\# este un limbaj de programare modern, orientat pe obiecte \c si puternic tipizat.C\# \^i\c si are r\u ada\u acinile
 \^in familia de limbaje C \c si le este imediat familiar programatorilor C,C++ sau Java.C\# are multe caracteristici care
 ajut\u a la construc\c tia palica\c tilor  robuste \c si durabile:
 \begin{itemize}
@@ -498,7 +498,7 @@ Interfa\c ta IClusterRepository define\c ste metodele clasice ale unui repositor
 filtrare folosind un delegat.
 
 Interfa\c ta IServicesRepository este probabil cea mai important\u a, deoarce corespunde fun\c tionalit\u atii principale ale aplica\c tiei.
-Este evident c\u a aceast\u a trebuie s\u a aib\u a metode pentru \^inregistrarea,de\^inregistrarea \c si g\u asirea serviciilor.
+Este evident c\u a aceast\u a trebuie s\u a aib\u a metode pentru \^inregistrarea, dez\^inregistrarea \c si g\u asirea serviciilor.
 De asemenea este nevoie \c si de o metod\u a pentru a ob\c tine toate serviciile, astfel \^inc\^at acestea s\u a poat\u a fi 
 afi\c sate \^in interfa\c ta grafic\u a.Tot pentru partea vizual\u a a aplica\c tiei am avut nevoie \c si de un mod de a aduce 
 din baza de date toate acces\u arile unui serviciu dintr-un interval e timp.Pe baza dateloe de acces pot realiza staticstici referiotare
@@ -1058,7 +1058,7 @@ solicitat.
 
 A doua component\u a pe care am f\u acut-o este destinat\u a serverlor care vor s\u a se 
 \^inregistreze \^in serviciul de \^inregstrare.Componenta con\c tine on interfa\c t\u a,
-care permite \^inregistrarea \c si de\^inregistrarea serviciilor.
+care permite \^inregistrarea \c si dez\^inregistrarea serviciilor.
 
 
 \section{Testare}
@@ -1207,7 +1207,7 @@ este utilizarea direct\u a fi\c sierului dll din pachetul NuGet.
 \section{Serviciul de \^inregistrare}
 
 Serviciul de \^inregistrare este menit pentru a fi utilizat de c\u atre alte aplica\c tii, nu de c\u atre persoane.
-Acesta se utilizeaz\u a prin metode HTTP. Pentru ob\c tinerea adresei unui serviciu \^intregistrat, \c si de\^inregistrarea
+Acesta se utilizeaz\u a prin metode HTTP. Pentru ob\c tinerea adresei unui serviciu \^intregistrat, \c si dez\^inregistrarea
  se folose\c ste metoda GET, pentru \^inregistrarea unui serviciu se folose\c ste put.
 \^Inregistrarea unui serviciu prin acest mod ar trebui f\u acut\u a de c\u atre serviciul care dores\c ste 
 s\u a fie \^inregistrat. Dac\u a se dore\c ste \^intregistrarea unui serviciu \^in alt mod, atunci este recomandat\u a 
@@ -1217,7 +1217,7 @@ se \^incearc\u a \c stregerea unui serviciu de la alt\u a adres\u a ip dec\^at c
 atunci aceast\u a \^incercare va e\c sua. Am ales acest comportament din motive de securitate, posibilitatea de 
 a \c sterge servicii din orice loc este o vulnerabilitate care are premite unui atacator s\u a \c stearg\u a 
 servicii necesare \c si astfel s\u a opreasc\u a func\ tionarea unor aplica\c tii care necesit\u a serviciul respectiv.
-De\c si un serviciu nu poate fi de\^inregistrat prin metoda prezentat\u a anterior din alte servere dec\^at cel care a 
+De\c si un serviciu nu poate fi dez\^inregistrat prin metoda prezentat\u a anterior din alte servere dec\^at cel care a 
 f\u acut \^integistrarea, asta nu \^inseamn\u a c\u a un serviciu poate s\u a r\u aman\u a ve\c snic \^inregistrat.
 Dac\u a serviciul devine inactiv acesta va fi \c sters automat de c\u atre serviciul de \^inregistrare.
 Dac\u a se dore\c ste eliminarea unui seviciu de\c si acesta func\c tioneaz\u a, acest lucur se poate realiza prin 
@@ -1348,19 +1348,19 @@ o prioritate \^in dezvoltarea sa.
 
 \^In momentul de fa\c t\u a am implmentat c\^ateva m\u asuri de securitate. Una dintre aceste 
 m\u asuri const\u a \^in procedurile de autentificare \c si autorizare ale site-ului de management 
-al serviciului de \^inregistrare. De\^inregistrarea servicilor este probabil opera\c tia care are 
+al serviciului de \^inregistrare. Dez\^inregistrarea servicilor este probabil opera\c tia care are 
 cel mai multe nevoie de securitate deoarece acest\u a opera\c tie poate opri \^intreaga fun\c tionare 
 a serverului. Un atacator al serviciului ar putea \c sterge toate servicile din server \c si astfel 
 oprind fun\c tionarea tuturor aplica\c tilor care utilizeaz\u a serviciul de \^inregistrare.
-Pentru a preveni aceast tip de atac am restric\c tionat de\^inregistrarea serviciilor.
-Prin verificarea adresei ip, doar serviciul care a f\u acut \^inregistrarea poate face de\^inregistrarea.
+Pentru a preveni aceast tip de atac am restric\c tionat dez\^inregistrarea serviciilor.
+Prin verificarea adresei ip, doar serviciul care a f\u acut \^inregistrarea poate face dez\^inregistrarea.
 
 O alt\u a m\u asur\u a de securitate pe care am implementat-o este utilizarea certificatelor pentru 
 \^inregistrarea sau \c stergerea serviciilor de pe server. Servicile care sunt autorizate s\u a se \^inregistreze 
 ar vor avea un certificat \c si pe baza acestuia, serverul le va accepta sau refuza cererea.
 De\c si implementarea pentru acest mecanism a fost f\u acut\u a, \^in momentul de fa\c t\u a
 ea nu este folosit\u a. Aceast\u a metod\u a de autorizare re ar putea reprezenta o alternativ\u a la restric\c tionarea 
-celor care pot face de\^inregistrarea.
+celor care pot face dez\^inregistrarea.
 
 Pe l\^ang\u a m\u asurile de securitat pe care le-am prezentat treuie s\u a m\u a sigur c\u a nu exist\u a
 alte vulnerabilit\u a\c ti exploatabile \^in aplica\c tie. \^In sensul acesta, va trebui s\u a folosesc 
@@ -1394,15 +1394,15 @@ c\^at mai u\c soar\u a.
 
 \chapter{Concluzii}
 
-Aplica\c tia mea ofer\u a un mod simplificat pentru de dezvoltarea aplica\c tiilor 
+Aplica\c tia mea ofer\u a un mod simplificat pentru dezvoltarea aplica\c tiilor 
 folosind o arhitectur\u a orientat\u a pe microservicii.
 Serviciul de \^inregistrare ofer\u a o metod\u a de a g\u asi adresele microserviciilor necesare aplica\c tie 
-\^intr-un mod dinamic, reduce rigiditatea sistemului.
+\^intr-un mod dinamic \c si reduce rigiditatea sistemului.
 
 Deoarece \^inregistrarea pe server este responsabilitatea microserviciilor, 
-asigur\u a faptul c\u a at\^ata timp c\^at exist\u a servicii func\c tionale,
-acestea vor fi folosite de c\u atre aplica\c tii. Restric\c tionarea de\^inregistr\u arii
-\^impiedic\u a \c stergerea mali\c tioas\u a dar permite \c stergerea dac\u a serviciile 
+este asigurat faptul c\u a at\^ata timp c\^at exist\u a servicii func\c tionale,
+acestea vor fi folosite de c\u atre aplica\c tii. Restric\c tionarea dez\^inregistr\u arii
+\^impiedic\u a \c stergerea mali\c tioas\u a, dar permite \c stergerea dac\u a serviciile 
 o necesit\u a.
 
 De asemenea monitorizarea serviciului de \^inregistrare elimin\u a posibilitatea 
@@ -1424,7 +1424,7 @@ Cu ajutorul interfe\c tei grafice administratorii sistemului au control deplin
 asupra serviciilor \c si add-inurilor din aplica\c tie. Utilizarea interfe\c tei grafice 
 a aplica\c tiei nu este limitat\u a la utilizatorii cu drepturi de administratori, 
 pe l\^ang\u a ace\c stia exist\u a \c si utilizatori care nu au dreptul de a modifica serviciile 
-sau add-inurile \^inc\u arcate dar pot utiliza restul aplica\c tiei.
+sau add-inurile \^inc\u arcate, dar pot utiliza restul aplica\c tiei.
 
 
 \printbibliography
