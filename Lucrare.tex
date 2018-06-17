@@ -827,7 +827,7 @@ sesiunea sa va fi distrus\u a \c si data de expirare a cookie-ului s\u au va fi 
 \^inc\^at cookie-ul s\u a fie expirat la ie\c sirea din aplica\c tie.
 
 Dup\u a cum se vede \c si \^in figura \ref{fig:Layout} l\^ang\u a butonul Logout se afl\u a o bar\u a de 
-c\u autare. Aceast\u a bar\u a este folosit\u a pentru a c\u auta servicii sau clustere \^intregistrare \^in 
+c\u autare. Aceast\u a bar\u a este folosit\u a pentru a c\u auta servicii sau clustere \^inregistrare \^in 
 aplica\c tie.Dup\u a ce utilizatorul a scris numele sau o parte a numelui serviciului sau cluster-ului c\u autat,
 c\^and va ap\u asa butonul de c\u autare, va fi trimis c\u atre o pagin\u a ce con\c tine rezultatul c\u aut\u arii
 sale.Dac\u a nu exist\u a nimic care s\u a se potriveasc\u a cu ce a c\u autat el, \^in pagin\u a va fi afi\c sat un mesaj
@@ -986,17 +986,17 @@ Dac\u a \^inregistrarea e\c sueaz\u a, utilizatorul va fi \^in\c stiin\c tat.
 
 \section{Tratarea errorilor}
 
-Func\c tionarea serviciului de \^inregistrare este critic\u a deoarece mai multe 
-aplica\c tii se bazeaz\u a pe acesta.Din cauza rolului important pe care serviciul
-\^il are, acesta trebuie s\u a fie c\^at mai robust.Prima problem\u a care poate  
+Func\c tionarea serviciului de \^inregistrare este critic\u a, deoarece mai multe 
+aplica\c tii se bazeaz\u a pe acesta. Din cauza rolului important pe care serviciul
+\^il are, acesta trebuie s\u a fie c\^at mai robust. Prima problem\u a care poate  
 ap\u area const\u a \^in cererile primite cu parametrii gre\c si\c ti sau cu scop
-mali\c tiios.Fiecare ac\c tiune a aplica\c tiei trebuie s\u a \c stie s\u a returneze
+mali\c tios. Fiecare ac\c tiune a aplica\c tiei trebuie s\u a \c stie s\u a returneze
 un r\u aspuns adecvat, fie el mesaj de eroare, o pagin\u a web sau ni\c ste date.
-Decizia r\u aspunsului \^in cazul \^in care o cerere e\c sueaz\u a se bazeaz\u a pe tipul
+Decizia r\u aspunsului \^in cazul \^in care o cerere e\c sueaz\u a, se bazeaz\u a pe tipul
 de excep\c tie primit \^in metodele controllerului.
 Dac\u a pe parcursul proces\u arii cererii venite prin controller nu apare nici o 
 excep\c tie sau apar doar excep\c tii din care aplica\c tia \^i\c si revine cu succes,
-cererea va primi r\u aspunsul dorit.\^In caz contrar depinde de tipul de cerere f\u acut\u a.
+cererea va primi r\u aspunsul dorit. \^In caz contrar, depinde de tipul de cerere f\u acut\u a.
 Dac\u a utilizatorul \^incearc\u a s\u a acceseze o pagin\u a a site-ului f\u ar\u a a fi
 autentificat, acesta va fi redirec\c tionat c\u atre pagina de autentificare.
 Dac\u a se \^incearc\u a accesarea unei pagini la care utilizatorul nu are acces, acesta 
@@ -1004,10 +1004,10 @@ va fi redirec\c tionat la o pagin\u a de eroare care \^ii va explica situa\c tia
 se afl\u a.\^In ceea ce prive\c ste parte de Web API,unde r\u aspunsul nu este sub form\u a 
 de pagin\u a web,utilizatorul care a f\u acut o cerere eronat\u a va primi un cod de 
 r\u aspuns de eroare,Bad Request sau Not Found.
-Am ales s\u a nu dau mai multe detalii despre eroare, din cauz\u a problemelor de securitate
-care pot fi cauzate de aceste informa\c tii.O persoan\u a r\u au inten\c tionat\u a ar putea 
+Am ales s\u a nu dau mai multe detalii despre eroare, din cauza problemelor de securitate
+care pot fi cauzate de aceste informa\c tii. O persoan\u a r\u au inten\c tionat\u a ar putea 
 profita de informa\c tiile suplimentare pentru a produce daune serverului.
-Bine\^inteles toate excep\c tile care apar pe parcursul derul\u arii aplica\c tiei,
+Bine\^inteles, toate excep\c tile care apar pe parcursul derul\u arii aplica\c tiei
 sunt salvate \^intr-un fi\c sier de tip log.
 
 \section{Componente}
@@ -1015,10 +1015,10 @@ sunt salvate \^intr-un fi\c sier de tip log.
 \subsection{NuGet}
 
 NuGet est un manager de pachete gratuit \c si open-source creat pentru platforma .NET.Acesta a fost creat \^in 2010
-\c si de atunci a devenit din ce \^in ce mai popular.Datorit\u a u\c surin\c tei cu care se pot aduce \^in proiect 
-pachete externe, \c si posibilit\u a\c ti de publicare a acelor pachete, NuGet a devenit omniprezent \^in 
-dezvoltarea aplica\c tiilor \^in cadrul platformei .NET.NuGet faciliteaz\u a dezvolatrea at\^at .NET Framework
-c\^at \c si \^in .NET Core.NuGet este \c si mecanismul de \^imp\u ar\c tit cod sprijinit de Microsoft.
+\c si de atunci a devenit din ce \^in ce mai popular. Datorit\u a u\c surin\c tei cu care se pot aduce \^in proiect 
+pachete externe \c si posibilit\u a\c ti de publicare a acelor pachete, NuGet a devenit omniprezent \^in 
+dezvoltarea aplica\c tiilor \^in cadrul platformei .NET. NuGet faciliteaz\u a dezvoltarea at\^at \^in .NET Framework,
+c\^at \c si \^in .NET Core. NuGet este \c si mecanismul de \^imp\u ar\c tit cod sprijinit de Microsoft.
 NuGet este distribuit ca o extensie de Visual Studio care \^incep\^and cu Visual Studio 2012 vine preinstalat\u a
 \^in IDE.Popularitatea NuGet a condus la integrarea sa complet\u a \^in Visual Studio,\^in Visual Studio 2017 pe 
 l\^ang\u a managementul pachetelor, NuGet poate fi folosit direct din IDE pentru \^impachetarea bibliotecilor
@@ -1039,13 +1039,13 @@ privat, pentru a fi consumat intern \^in compania care folose\c ste serviciul de
 
 Prima bibliotec\u a,IRegistryConnector ofer\u a un mod simplu de utilizare al serviciului.
 Serviciul expune o interfa\c t\u a prin intermediul c\u areia utiliziatorul poate
-cere url-ul pentru un anumit serviciu.Interfa\c ta are dou\u a metode, una pentru ob\c tinerea
+cere url-ul pentru un anumit serviciu. Interfa\c ta are dou\u a metode, una pentru ob\c tinerea
 adresei unui serviciu \c si una pentru re\^improsp\u atarea cache-ului.
 Deoarece implementarea RegistryConnector folose\c ste un mecanism de caching bazat pe un fi\c sier,
 aceast\u a clas\u a trebuie s\u a fie sigur\u a din punct de vedere al lucrului
-cu fire de execu\c tie.Dac\u a acela\c si fi\c sier este folosit din dou\u a fire de execu\c tie 
-diferite pot ap\u area erori.Problemele apar atunci c\^and sunt scrise date \^in fi\c sier,
-iar citirea simutan\u a nu este o problem\u a.Implementarea mea blocheaz\u a opera\c tiile 
+cu fire de execu\c tie. Dac\u a acela\c si fi\c sier este folosit din dou\u a fire de execu\c tie 
+diferite, pot ap\u area erori. Problemele apar atunci c\^and sunt scrise date \^in fi\c sier,
+iar citirea simultan\u a nu este o problem\u a. Implementarea mea blocheaz\u a opera\c tiile 
 ce folosesc fi\c sierul, dac\u a un alt fir de execu\c tie scrie \^in fi\c sier \^in acel moment.
 Dup\u a ce se termin\u a scrierea \^in fi\c sier, se poate opera din nou pe fi\c sier.
 Mul\c tumit\u a sistemului de caching cre\c ste viteza de execu\c tie a programului pentru
@@ -1057,22 +1057,22 @@ solicitat.
 \subsection{Registry Manager}
 
 A doua component\u a pe care am f\u acut-o este destinat\u a serverlor care vor s\u a se 
-\^inregistreze \^in serviciul de \^inregstrare.Componenta con\c tine on interfa\c t\u a,
+\^inregistreze \^in serviciul de \^inregistrare. Componenta con\c tine o interfa\c t\u a,
 care permite \^inregistrarea \c si dez\^inregistrarea serviciilor.
 
 
 \section{Testare}
 
 Este evident c\u a cel mai important lucru la un program este ca acesta s\u a fie func\c tional.
-Singurulul mod \^in care func\c tionarea acestuia poate fi asigurat\u a este testarea programului.
+Singurul mod \^in care func\c tionarea acestuia poate fi asigurat\u a este testarea programului.
 Testarea trebuie f\u acut\u a la fiecare modificare a aplica\c tie.De\c si modificarea nu afecteaz\u a
 direct alte func\c tionalit\u a\c ti ale aplica\c tie, exist\u a totu\c si riscul ca indirect s\u a afecteze
 alte module. Genul acesta de schimb\u ari nea\c steptate sunt unul din motivele pentru care o aplica\c tie
-trebuie testat\u a frecvent. Cu c\^at calitatea codului este mai ridicat\u a cu at\^at mai putin se vor 
+trebuie testat\u a frecvent. Cu c\^at calitatea codului este mai ridicat\u a, cu at\^at mai putin se vor 
 petrece schimb\u ari nea\c steptate, \^ins\u a indiferent c\^at de sigur a\c s putea fi de modific\u arile 
 pe care le fac \c si de consecin\c tele acetora, lipsa test\u arii este un risc care ar trebui evitat.
 Testarea manual\u a este necesar\u a \c si uneori nu poate fi evitat\u a, dar aceasta consum\u a mult timp.
-Din acest motiv am ales s\u a automatizez procesul de testare scriind test automate.
+Din acest motiv am ales s\u a automatizez procesul de testare scriind teste automate.
 
 Am ales s\u a folosesc framework-ul NUnit pentru testarea automat\u a din cadrul proiectului meu.
 NUnit este un framework de testare open source pentru limbajele platformei .NET. NUnit a pornit ca 
@@ -1080,31 +1080,31 @@ o portare a JUnit, \^ins\u a versiunea curent\u a ,NUnit 3, este rescris\u a com
 aceast\u a rescriere, au fost ad\u augate \c si caracteristici noi \c si suport pentru mai multe platforme .NET.
 Folosind NUnit am putut s\u a scriu teste automate cu care s\u a testez componentele aplica\c tiei \^in izolare.
 
-Tot pentru testele automate am folosit biblioteca Moq. Aceast\u a bibliotec\ a \^imi permite crearea unor implement\u ari
+Tot pentru testele automate am folosit biblioteca Moq. Aceast\u a bibliotec\u a \^imi permite crearea unor implement\u ari
 de tip mock a interfe\c telor necesare test\u arii unei clase. De multe ori clasele testate depind de alte clase sau 
-interfe\c te dar c\^and test\u am o clas\u a \^in izolare este de preferat ca clasa respectiv\u a s\u a nu aib\u a depende\c te.
+interfe\c te, dar c\^and test\u am o clas\u a \^in izolare este de preferat ca clasa respectiv\u a s\u a nu aib\u a depende\c te.
 Cu acest scop se folosesc implement\u arile mock ale interfe\c telor de care clasele depind. Cuv\^antul mock provine din
-englez\u a \c si se poate traduce \^in iimita\c tie. Implement\u arile mock ale interfe\c telor sunt practic ni\c ste iimita\c tii 
+englez\u a \c si se poate traduce \^in imita\c tie. Implement\u arile mock ale interfe\c telor sunt practic ni\c ste imita\c tii 
 utile doar pentru testare. Acestea sunt mai u\c sor de implemntat \c si au fun\c tionalit\u a\c ti ajut\u atoare.
-De exemplu \^intr-o implementare mock se poate verifica de c\^ate ori a fost apelat\u a o metod\u a sau se pot executa 
+De exemplu, \^intr-o implementare mock se poate verifica de c\^ate ori a fost apelat\u a o metod\u a sau se pot executa 
 ac\c tiuni dup\u a apelarea unei metode astfel implementate. Tot cu Moq putem face ca implement\u arile unor s\u a se comporte diferit 
 \^in fun\c tie de parametrii primi\c ti sau s\u a se comporte indentic indiferent de parametrii.
 
 Testele automate \^incurajeaz\u a un design cu o cuplare c\^at mai slab\u a \^intre componente deoarece \^in
 caz contrar acestea nu mai pot fi testate \^in izolare. De exemplu, dac\u a \^in loc s\u a structurez aplica\c tia pe 
-straturi a\c s fi avut toat\u a logica aplica\c tiei \^intr-un singur strat deja codul ar deveni mai dificil de testat.
+straturi a\c s fi avut toat\u a logica aplica\c tiei \^intr-un singur strat, deja codul ar deveni mai dificil de testat.
 Mai mult, dac\u a fiecare cerere pe care serverul poate primi ar fi tratat\u a \^in metoda corespunz\u atoare din controller,
-atunci pentru o metod\u a din controller ar trebuie f\u acut c\^ate un test pentru fiecare screnariu.
-Astfel s-ar ajunge la un num\u ar mare de teste din ce \^in ce mai complexe \^in fun\c tie de c\^at e departe \^in execu\c tia metodei 
+atunci pentru o metod\u a din controller ar trebuie f\u acut c\^ate un test pentru fiecare scenariu.
+Astfel, s-ar ajunge la un num\u ar mare de teste din ce \^in ce mai complexe \^in fun\c tie de c\^at de departe \^in execu\c tia metodei 
 va ajunge testul. Pe l\^ang\u a acest\u a problem\u a, pentru multe din testele f\u acute va fi nevoie ca testele s\u a fac\u a 
-o conexiune cu baza de date ceea ce nu doar \^incetine\c ste viteza de execu\c tie a testelor dar \c si cre\c ste posibiliatea de 
-e\c sec a unui test din cauze externe. Cu c\^at testele depind mai mult de alte resurse este mai probabil ca un test s\u a pice 
-din alte motive dec\^at dintr-o problem\u a codului testat ceea ce scade relevan\c ta testelor. Testarea individual\u a \^in izolare, ajut\u a 
+o conexiune cu baza de date, ceea ce nu doar \^incetine\c ste viteza de execu\c tie a testelor, dar \c si cre\c ste posibiliatea de 
+e\c sec a unui test din cauze externe. Cu c\^at testele depind mai mult de alte resurse, este mai probabil ca un test s\u a pice 
+din alte motive dec\^at dintr-o problem\u a codului testat, ceea ce scade relevan\c ta testelor. Testarea individual\u a \^in izolare ajut\u a 
 la identificarea problemelor \^in cod, deoarece astfel se \c stie exact componenta \^in care se afl\u a o problem\u a.
 Av\^and la dispozi\c tie suita de teste pe care am scris-o, oric\^and doresc pot detecta dac\u a modific\u arile 
 pe care le fac func\c tioneaz\u a corect. Pentru o astfel de verificare am nevoie de mai pu\c tin de un minut.
-Bine\^inteles acest\u a siguran\c ta pe care o am legat\u a de func\c tionarea aplica\c tiei este limitat\u a
-de scenarile acoperite de teste. \^Intr-o situa\c tie ideal\u a \^in care tot codul ar fi acoperit complet de teste,
+Bine\^inteles, acest\u a siguran\c t\u a pe care o am legat\u a de func\c tionarea aplica\c tiei este limitat\u a
+de scenariile acoperite de teste. \^Intr-o situa\c tie ideal\u a \^in care tot codul ar fi acoperit complet de teste,
 acestea ar fi suficiente pentru a asigura func\c tionarea corect\u a a \^intregii aplica\c tii. 
 
 
@@ -1125,11 +1125,11 @@ de exemplu atunci c\^and \^intr-un scenariu de test se folose\c ste o metod\u a 
 \^In pasul al doilea se scrie suficient din codul testat \^inc\^at testul s\u a fie trecut, dar nu mai mult de at\^at.
 Mai exist\u a un pas \^in care se face o refactorizare a codului pentru eliminarea redunda\c telor.
 Robert C. Martin a definit 3 legi ale TDD \footcite{Martin:2011:CCC:1999258} menite s\u a-i men\c tin\u a pe practican\c tii 
-aceste discripline \^intr-un ciclu de aproximativ 30 de secunde:
+acestei discipline \^intr-un ciclu de aproximativ 30 de secunde:
 \begin{enumerate}
-	\item Nu este permis\u a scrierea codulului de produ\c tie \^inaintea scrierea unui test pe care codul s\u a \^il 
+	\item Nu este permis\u a scrierea codulului de produc\c tie \^inaintea scrierii unui test pe care codul s\u a \^il 
 	pice.
-	\item Nu este permis\u a scrierea a mai mult dintr-un test dec\^at este suficient pentru ca testul s\u a e\c sueze.
+	\item Nu este permis\u a scrierea unei p\u arti mai mari dintr-un test, dec\^at este suficient pentru ca testul s\u a e\c sueze.
 	\item Nu este permis\u a scrierea a mai mult cod de produ\c tie dec\^at este necesar pentru ca testul corespunz\u ator 
 	s\u a fie trecut. 
 \end{enumerate}
@@ -1140,7 +1140,7 @@ care testeaz\u a metoda GetUrl din ServicesManager.
 \c Stiind c\u a clasa manager se folose\c ste de o interfa\c t\u a IServicesRepository, a trebuit s\u a \^incep testul f\u ac\^and 
 un mock pentru interfa\c ta respectiv\u a. Implementarea mock va returna un obiect de tip Service specific atunci c\^and 
 metoda GetService va fi apelat\u a cu parametrii specifica\c ti. Mai apoi instan\c tiez un obiect de tip ServicesManager c\u aruia i-am pasat 
-prin construnctor instan\c ta implement\u arii mock a interfe\c tei IServicesRepository.
+prin constructor instan\c ta implement\u arii mock a interfe\c tei IServicesRepository.
 Compilarea codului e\c sueaz\u a deorarece nu exist\u a clasa ServicesManager.
 Din acest moment am trecut la partea urm\u atoare a ciclului, \^in care am \^inceput s\u a scriu clasa.
 Din momentul \^in care am f\u acut constructorul cu parametru m-am \^intors la codul testului.
@@ -1167,25 +1167,25 @@ url-ul corect din repository.
 
 \chapter{Utilizare}
 
-Serviciul de \^inregistrare \c si site-ul de management al acestuia sunt menite s\u a simplifice dezvolatarea 
+Serviciul de \^inregistrare \c si site-ul de management al acestuia sunt menite s\u a simplifice dezvoltarea 
 \c si utilizarea microserviciilor. Din acest motiv ele trebuie s\u a fie disponibile dezvoltatorilor acestor 
-microservicii. Aceast\u a apical\c tie nu este destinat\u a unui public larg, ci est g\^andit\u a pentru a fi folosit\u a
+microservicii. Aceast\u a aplica\c tie nu este destinat\u a unui public larg, ci este g\^andit\u a pentru a fi folosit\u a
 intern \^intr-o companie. Doar membrii autoriza\c ti ai acestei companii au acces la site-ul de management, dar 
-probabil to\c ti cei care sunt implica\c ti \^in dezvoltarea microserviciilor au acces la serviciu de \^inregistrare.
+probabil to\c ti cei care sunt implica\c ti \^in dezvoltarea microserviciilor au acces la serviciul de \^inregistrare.
 
-Primul lucru de care este nevoie pentru func\c tionarea srviciului de \^inregistrare \c si a site-ului este baza de date.
+Primul lucru de care este nevoie pentru func\c tionarea serviciului de \^inregistrare \c si a site-ului este baza de date.
 Pentru asta este nevoie \^in primul r\^and e un sistem de gestiune al bazelor de date Microsoft SQL Server.
 Cel mai probabil acesta va fi pe un server separat de aplica\c tii, deci trebuie ca cel ce face instalarea 
 s\u a se asigure c\u a serverul pe care se afl\u a baza de date poate fi accesat de c\u atre celelalte servere.
-Creare efectiv\u a a bazei de date pe server se poate face cu u\c surin\c t\u a folosind scripturile SQL pe care le-am
+Crearea efectiv\u a a bazei de date pe server se poate face cu u\c surin\c t\u a folosind scripturile SQL pe care le-am
 f\u acut cu acest scop. Dup\u a ce baza de date a fost creat\u a \c si este fun\c tional\u a, trebuie create conturile 
 utilizatorilor serverului. Acestea trebuie create printr-un script de c\u atre o person\u a autorizat\u a.
 Din moment ce serviciul de \^inregistrare este privat, conturile nu trebuie s\u a poat\u a fi create de oricine.
-Dac\u a conturile are putea fi f\u acute de c\u atre oricine, securitatea serverului ar putea fi compromis\u a.
+Dac\u a conturile ar putea fi f\u acute de c\u atre oricine, securitatea serverului ar putea fi compromis\u a.
  
 Dup\u a ce baza de date func\c tioneaz\u a \c si conturile au fost create, trebuie instalat serviciul de \^inregistrare.
-Acesta trebuie instalat primul deoarece f\u ar\u a acesta, interfa\c ta de management este inutil\u a, ne av\^and obiectul muncii
-sale. Dup\u a ce  serviciul de \^inregistrare func\ ctioneaz\u a, se poate face instalarea site-ului de management al 
+Acesta trebuie instalat primul, deoarece f\u ar\u a acesta interfa\c ta de management este inutil\u a, neav\^and obiectul muncii
+sale. Dup\u a ce  serviciul de \^inregistrare func\c tioneaz\u a, se poate face instalarea site-ului de management al 
 serviciului.
 
 Nu este important unde este instalat\u a aplica\c tia. Aceasta se poate afla pe Azure, pe un server intern sau se poate
@@ -1194,14 +1194,14 @@ re\c tea de tip intranet. Site-ul nu este nevoie s\u a fie accesibil din afara c
 putea \^imbun\u at\u a\c ti securitatea.
 
 Dac\u a utilizatorii serviciului de \^inregistrare pl\u anuiesc s\u a dezvolte aplica\c tii \^in C\#,
-atunci ar fi cel mai bine s\u a se foloseasc\u a d componentele de NuGet pe care le-am f\u acut.
+atunci ar fi cel mai bine s\u a se foloseasc\u a de componentele de NuGet pe care le-am f\u acut.
 Acestea ar trebui distribuite folosind un server NuGet privat care s\u a apar\c tin\u a companiei.
 Folosind un server NuGet este mai u\c sor pentru utilizatori s\u a actualizeze componentele \^in momentul 
 \^in care apar noi versiuni. Astfel de modific\u ari pot ap\u area atunci c\^and se schimb\u a modul de utilizare 
 al serverului. Dac\u a vor ap\u area noi m\u asuri de securitate \^in contactarea serviciului de \^inregistrare,
-componentele va trebui actualizate pentru a suporta schim\u arile de pe server. Dac\u a nu se poate folosi 
-un Server de NuGet, exist\u a dou\u a solu\c tii alternative. A solu\c tie este crearea unui director \^in care s\u a se afle toate versiunile 
-componentelor \c si utilizarea directorului ca un depozit NuGet local. O alt\u a solu\c tie, mai primitiv\u a 
+componentele vor trebui actualizate pentru a suporta schimb\u arile de pe server. Dac\u a nu se poate folosi 
+un Server de NuGet, exist\u a dou\u a solu\c tii alternative. O solu\c tie este crearea unui director \^in care s\u a se afle toate versiunile 
+componentelor \c si utilizarea directorului ca un depozit NuGet local. O alt\u a solu\c tie, mai primitiv\u a, 
 este utilizarea direct\u a fi\c sierului dll din pachetul NuGet.
 
 \section{Serviciul de \^inregistrare}
@@ -1209,18 +1209,18 @@ este utilizarea direct\u a fi\c sierului dll din pachetul NuGet.
 Serviciul de \^inregistrare este menit pentru a fi utilizat de c\u atre alte aplica\c tii, nu de c\u atre persoane.
 Acesta se utilizeaz\u a prin metode HTTP. Pentru ob\c tinerea adresei unui serviciu \^intregistrat, \c si dez\^inregistrarea
  se folose\c ste metoda GET, pentru \^inregistrarea unui serviciu se folose\c ste put.
-\^Inregistrarea unui serviciu prin acest mod ar trebui f\u acut\u a de c\u atre serviciul care dores\c ste 
-s\u a fie \^inregistrat. Dac\u a se dore\c ste \^intregistrarea unui serviciu \^in alt mod, atunci este recomandat\u a 
+\^Inregistrarea unui serviciu prin acest mod ar trebui f\u acut\u a de c\u atre serviciul care dore\c ste 
+s\u a fie \^inregistrat. Dac\u a se dore\c ste \^inregistrarea unui serviciu \^in alt mod, atunci este recomandat\u a 
 folosirea site-ului de management al serviciului de \^inregistrare.
-De\^intregistrarea unui serviciu trebuie f\u acut\u a de c\u atre serviciul care s-a \^inregistrat. Dac\u a 
+De\^inregistrarea unui serviciu trebuie f\u acut\u a de c\u atre serviciul care s-a \^inregistrat. Dac\u a 
 se \^incearc\u a \c stregerea unui serviciu de la alt\u a adres\u a ip dec\^at cea de la care acesta a fost \^inregistrat,
 atunci aceast\u a \^incercare va e\c sua. Am ales acest comportament din motive de securitate, posibilitatea de 
-a \c sterge servicii din orice loc este o vulnerabilitate care are premite unui atacator s\u a \c stearg\u a 
-servicii necesare \c si astfel s\u a opreasc\u a func\ tionarea unor aplica\c tii care necesit\u a serviciul respectiv.
+a \c sterge servicii din orice loc este o vulnerabilitate care ar permite unui atacator s\u a \c stearg\u a 
+servicii necesare \c si astfel s\u a opreasc\u a func\c tionarea unor aplica\c tii care necesit\u a serviciul respectiv.
 De\c si un serviciu nu poate fi dez\^inregistrat prin metoda prezentat\u a anterior din alte servere dec\^at cel care a 
 f\u acut \^integistrarea, asta nu \^inseamn\u a c\u a un serviciu poate s\u a r\u aman\u a ve\c snic \^inregistrat.
 Dac\u a serviciul devine inactiv acesta va fi \c sters automat de c\u atre serviciul de \^inregistrare.
-Dac\u a se dore\c ste eliminarea unui seviciu de\c si acesta func\c tioneaz\u a, acest lucur se poate realiza prin 
+Dac\u a se dore\c ste eliminarea unui seviciu de\c si acesta func\c tioneaz\u a, acest lucru se poate realiza prin 
 interfa\c ta grafica a site-ului de management.  
 
 Comportamentul serviciului de \^inregistrare poate fi modificat printr-un add-in.
@@ -1228,14 +1228,14 @@ Acesta este un add-in diferit de restul add-inurilor pe care aplica\c tia le acc
 Acest add-in are rolul de a implementa un algoritm de echilibrare a \^inc\u arc\u aturii(load balancing).
 Odat\u a \^inc\u arcat \^in aplica\c tie add-inul va fi folosit pentru aducerea serviciilor din
 baza de date. Scopul acestui add-in este de a reduce \^inc\u arc\u atura unui singur 
-serviciul de un anumit tip, distribuid cererile \^intre toate serviciile de acela\c si tip.
-Bine\^inteles acest add-in nu este util \^in cazul \^in care exist\u a doar c\^ate un singur 
+serviciu de un anumit tip, distribuind cererile \^intre toate serviciile de acela\c si tip.
+Bine\^inteles, acest add-in nu este util \^in cazul \^in care exist\u a doar c\^ate un singur 
 serviciu de un anume tip.
 
 \section{Interfa\c ta grafic\u a a servicului de \^inregistrare}
 
 Interfa\c ta grafic\u a a servicului de \^inregistrare se afl\u a pe un server separat de serviciu.
-Prin intermediul acestei interfe\c te grafice se poaet monitoriza activitatea serviciului \c si se poate intera\c tiona 
+Prin intermediul acestei interfe\c te grafice se poate monitoriza activitatea serviciului \c si se poate intera\c tiona 
 cu acesta. \^Interfa\c ta grafic\u a a serviciului const\u a \^intr-un site f\u acut \^in ASP.NET MVC. 
 
 Primul pas 
@@ -1246,36 +1246,36 @@ Pasul de autentificare este obligatoriu \c si dac\u a utilizatorii \^incearc\u a
 site-ului f\u ar\u a ca \^inainte s\u a treac\u a prin pasul de autentificare, ace\c stia vor fi redirec\c tion\c ti 
 c\u atre pagina de autentificare.
 
-Dup\u a ce autentificarea este reu\c sit\u a utilizatorul ete redirec\c tionat c\u atre pagina pe care se reg\u asesc toate 
+Dup\u a ce autentificarea este reu\c sit\u a, utilizatorul este redirec\c tionat c\u atre pagina pe care se reg\u asesc toate 
 servicile. Dac\u a utilizatorul a \^incercat s\u a acceseze o pagin\u a f\u ar\u a s\u a fie autentificat \c si a fost redirec\c tionat
 c\u atre pagina de autentificare, dup\u a autentificare va fi redirec\c tionat c\u atre pagina pe care a \^incercat s\u a
 o acceseze.
 
 Pagina implicit\u a la care utilizatorul este trimis dup\u a autentificare este pagina din imaginea \ref{fig:AllServices} de la 
-pagina \pageref{fig:AllServices}, prin care se poate interac\c tiona cu toate serviciile. Am ales acest\u a pagin\u a ca pagin\u a 
-deoarece aceasta este pagina care ofer\u a privirea cea mai general\u a asupra serviciilor. pe l\^ang\u a prezentarea unei priviri de ansamblu 
-asupra servicilor, tot prin aceat\u a pagin\u a se poate interac\c tiona cu serviciile \^inregistrate. Prin intermediul paginii
-se pot \c sterge at\^at clustere c\^at \c si servicii individuale. De asemenea aceast\u a pagin\u a ofer\u a \c si un punct de 
+pagina \pageref{fig:AllServices}, prin care se poate interac\c tiona cu toate serviciile. Am ales acest\u a pagin\u a ca pagin\u a implicit\u a
+deoarece aceasta este pagina care ofer\u a privirea cea mai general\u a asupra serviciilor. Pe l\^ang\u a prezentarea unei priviri de ansamblu 
+asupra serviciilor, tot prin aceat\u a pagin\u a se poate interac\c tiona cu serviciile \^inregistrate. Prin intermediul paginii
+se pot \c sterge at\^at cluster-e, c\^at \c si servicii individuale. De asemenea, aceast\u a pagin\u a ofer\u a \c si un punct de 
 acces c\u atre paginile dedicate clusterelor sau serviciilor.
 
 Pagina dedicat\u a unui cluster informeaz\u a utilizatorul cu privire la activitatea serviciilor din cluster dintr-un interval de timp.
 Dup\u a cum se poate observa \c si pe exemplul din imaginea \ref{fig:ClusterDetails} de la pagina \pageref{fig:ClusterDetails},
 activitatea serviciilor este reprezentat\u a \^intr-un grafic. \^In grafic fiecare serviciu este reprezentat printr-o
 culoare distinct\u a \c si reprezint\u a activitatea serviciilor dup\u a num\u arul de acces\u ari din fiecare zi.
-Graficul poate fi minimizat \^in cazul \^in car utilizatorul este mai interesat de lista serviciilor, afi\c sat\u a 
-sub grafic. Serviciile reprezentate \^in list\u a pot fi \c sterse cluster prin butonul 'Remove Service'. De asemenea 
+Graficul poate fi minimizat \^in cazul \^in care utilizatorul este mai interesat de lista serviciilor, afi\c sat\u a 
+sub grafic. Serviciile reprezentate \^in list\u a pot fi \c sterse din cluster prin butonul 'Remove Service'. De asemenea 
 prin butonul vecin, 'Details' se poate trece la pagina dedicat\u a serviciului respectiv. 
 
 Prin intermediul paginii pe care sunt afi\c aste toate serviciile \c si al paginii dedicate unui cluster, se poate 
 accesa pagina din figura \ref{fig:ServiceDetails} de la pagina \pageref{fig:ServiceDetails}. Aceast\u a pagin\u a
 este dedicat\u a unui serviciu \c si ofer\u a mai multe detalii despre activitatea acestora. Utilizatorul poate 
-vedea activitatea serviciului dintr-un intervat e timp selectat de el. Activitatea serviciului este reprezentat\u a 
-printr-un grafic. La fel ca \^in cazul graficului din pagina activit\u a\c tii unui cluster, \c si acest graficul 
+vedea activitatea serviciului dintr-un interval de timp selectat de el. Activitatea serviciului este reprezentat\u a 
+printr-un grafic. La fel ca \^in cazul graficului din pagina activit\u a\c tii unui cluster, \c si graficul 
 de pe aceast\u a pagin\u a este minimizabil. Sub grafic se afl\u a o list\u a cu toate datele \^in care serviciul 
 a fost accesat \c si adresa ip de la care a fost accesat.
 
 \^In st\^anga paginii se afl\u a bara de naviga\c tie a site-ului. Acest\u a bar\u a se afl\u a \^in fiecare pagin\u a a site-ului
-\c si poate fi minimizat\u a de c\u atre utilizator dac\u a acesta dore\c ste mai mult pa\c tiu pentru pagina accesat\u a.
+\c si poate fi minimizat\u a de c\u atre utilizator dac\u a acesta dore\c ste mai mult spa\c tiu pentru pagina accesat\u a.
 Bara de naviga\c tie reprezint\u a modul de schimbare a paginilor aplica\c tiei. Dac\u a ecranul utilizatorului nu este destul de 
 \^inc\u apator, bara de naviga\c tie se schimb\u a \^intr-un buton \^in partea din st\^anga sus a ecranului ca \^in imaginea 
 \ref{fig:LayoutMinimized} de la pagina \pageref{fig:LayoutMinimized}.
@@ -1286,38 +1286,38 @@ Aceast\u a pagin\u a poate fi accesat\u a prin intermediul barei de naviga\c tie
 Pentru a ad\u auga un nou serviciu trebuie completate toate c\^ampurile din formularul de pe pagin\u a, mai exact 
 numele aplica\c tiei \^inregistrate, numele cluster-ului din care va face parte \c si adresa la care se g\u ase\c ste acesta.
 C\^ampul \^in care trebuie completat ofer\u a o list\u a cu toate clusterele deja existente din care utilizatorul poate 
-alege, dar permite \c si introducere unui cluster nou.
+alege, dar permite \c si introducerea unui cluster nou.
 
-A treia pagin\u a care poate fi accesat\u a prin intermediul barei denaviga\c tie este pagina de management a add-inurilor.
-Aceast\u a pagin\u a ofer\u a utilizatorului informa\c tii despre add-inurile \^inc\u arcate \^in aplic\c tie \c si 
-posibilitatea posibilitatea de a interac\c tiona cu acestea. O astfel de intera\c tiune este \^nl\u aturarea acestora
+A treia pagin\u a care poate fi accesat\u a prin intermediul barei de naviga\c tie este pagina de management a add-inurilor.
+Aceast\u a pagin\u a ofer\u a utilizatorului informa\c tii despre add-inurile \^inc\u arcate \^in aplica\c tie \c si 
+posibilitatea de a interac\c tiona cu acestea. O astfel de intera\c tiune este \^inl\u aturarea acestora
 prin intermediul unui buton, la ap\u asarea c\u aruia, utilizatorul este rugat s\u a \^i\c si confirme decizia.
 Pentru add-inurile active, exist\u a un buton care permite lansarea acestora \^in execu\c tie.
 
-Add-inurile sunt un mod avansat \^in care utilizatorii pot interac\c itona cu aplica\c tia. Ace\c stia 
-pot pot decide s\u a extind\u a chiar ei aplica\c tia prin add-inuri. Utilizatorii pot extinde aplica\c tia 
-f\u ar\u a s\u a aib\u a acces la codul surs\u a al acesteia. Le-am pus la dispozi\c tie utilizatoilor libertatea de a extinde 
+Add-inurile sunt un mod avansat \^in care utilizatorii pot interac\c tiona cu aplica\c tia. Ace\c stia 
+pot decide s\u a extind\u a chiar ei aplica\c tia prin add-inuri. Utilizatorii pot extinde aplica\c tia 
+f\u ar\u a s\u a aib\u a acces la codul surs\u a al acesteia. Le-am pus la dispozi\c tie utilizatorilor libertatea de a extinde 
 aplica\c tia dup\u a nevoia \c si preferin\c tele lor. Aplica\c tia va \^inc\u arca add-inurile pe baza unor 
 fi\c siere cu extensia .sAddIn care descriu add-inul care trebuie \^inc\u arcat.
 
-Pe l\^ang\u a bara ed naviga\c tie mai exist\u a \c si alte elemente comune 
+Pe l\^ang\u a bara de naviga\c tie mai exist\u a \c si alte elemente comune 
 tututor paginilor site-ului. Un astfel de element const\u a \^in butonul Logout 
-prin care utilizatorul se poate dezautentifica. Dup\u a ap\u asarea acestuia 
+prin care utilizatorul se poate dezautentifica. Dup\u a ap\u asarea acestuia, 
 utilizatorul autentificat trebuie s\u a confirme op\c tiunea sa printr-o 
 fereastr\u a de confirmare.
 
-Un alt element pe care toate paginile \^il con\c tine este bara de c\u autare.
-Aici utilizatorul poate scrie numele sau pentre din numele unui serviciu sau cluster.
+Un alt element pe care toate paginile \^il con\c tin este bara de c\u autare.
+Aici utilizatorul poate scrie numele sau o patre din numele unui serviciu sau cluster.
 Dup\u a ap\u asarea butonului de c\u autare, utilizatorului i se va prezenta o pagin\u a 
-\^in care poate vedea rezultatele c\u aut\u arii sale. Din pagina cu rezultatele 
+\^in care poate vedea rezultatele c\u aut\u arii sale. Din pagina cu rezultate 
 utilizatorul poate naviga c\u atre pagina corespunz\u atoare rezultatului.
 Dac\u a nu este g\u asit nici un rezultat la cererea de c\u autare a utilizatorului,
 acesta va fi \^in\c stiin\c tat.
 
 L\^ang\u a bara de c\u autare se afl\u a un buton de mesaje. La ap\u asarea acestui buton,
 se va deschide o fereastr\u a \^in care vor ap\u area mesajele pe care utilizatorul 
-autentificat le-a primit.De asemenea \^in acest\u a fereastr\u a exist\u a un buton care 
-duce la o pagin\u a \^in care sunt afi\c sate toate mesaje primite de c\u atre utilizator.
+autentificat le-a primit.De asemenea, \^in acest\u a fereastr\u a exist\u a un buton care 
+duce la o pagin\u a \^in care sunt afi\c sate toate mesajele primite de c\u atre utilizator.
 Utilizatorii nu pot trimite mesaje, acestea pot fi trimise doar de c\u atre aplica\c tie sau de 
 c\u atre add-inuri.
 
@@ -1330,15 +1330,15 @@ dezvolt\u arii viitoare a aplica\c tiei este securitatea. Serviciul de \^inregis
 poate fi considerat un punct sensibil \^in func\c tionarea multor aplica\c tii, nu pentru c\u a 
 ar fi mai vulnerabil ca alte servicii, ci pentru c\u a de func\c tionarea corect\u a a acestuia 
 depind mai multe aplica\c tii. Dac\u a un server specific unei aplica\c tii \^i\c si va \^intrerupe 
-activitatea, acea aplifa\c tie va avea de suferit, dar dac\u a serviciul de \^inregistrare este inactiv 
+activitatea, acea aplica\c tie va avea de suferit, dar dac\u a serviciul de \^inregistrare este inactiv, 
 atunci se poate ca zeci de aplica\c tii s\u a aib\u a de suferit. 
 
 De exemplu, \^in cazul unui
 magazin online care folose\c ste o arhitectur\u a orientat\u a pe microservicii, dac\u a
 serviciul de plat\u a devine inactiv, utilizatorii nu vor mai putea finaliza comenzile lor, \^ins\u a
-aces\c stia nu vor fi oprit\c ti din a beneficia de restul site-ului. Utilizatorii vor putea p\u astra 
-produsele dorite \^in co\c si \c si vor da comanda la o alt\u a data. Nefunc\c tionarea 
-serviciului de plat\u a va fi o inconvenien\c t\u a dar nu va dobor\^a \^intreg site-ul.
+aces\c stia nu vor fi opri\c ti din a beneficia de restul site-ului. Utilizatorii vor putea p\u astra 
+produsele dorite \^in co\c s \c si vor da comanda la o alt\u a data. Nefunc\c tionarea 
+serviciului de plat\u a va fi o inconvenien\c t\u a, dar nu va dobor\^i \^intreg site-ul.
 
 Pe de alt\u a parte dac\u a magazinul ar folosi serviciul de \^inregistrare \c si acesta ar ceda,
 ar \^inceta \^intreaga activitate a site-ului. Acest\u a problem\u a poate fi atenuat\u a \^in cazul 
@@ -1346,23 +1346,23 @@ ar \^inceta \^intreaga activitate a site-ului. Acest\u a problem\u a poate fi at
 Depende\c ta servicilor de serviciul de \^inregistrare face ca securitatea acestuia s\u a fie 
 o prioritate \^in dezvoltarea sa.
 
-\^In momentul de fa\c t\u a am implmentat c\^ateva m\u asuri de securitate. Una dintre aceste 
+\^In momentul de fa\c t\u a am implementat c\^ateva m\u asuri de securitate. Una dintre aceste 
 m\u asuri const\u a \^in procedurile de autentificare \c si autorizare ale site-ului de management 
 al serviciului de \^inregistrare. Dez\^inregistrarea servicilor este probabil opera\c tia care are 
-cel mai multe nevoie de securitate deoarece acest\u a opera\c tie poate opri \^intreaga fun\c tionare 
+cel mai mult nevoie de securitate, deoarece acest\u a opera\c tie poate opri \^intreaga fun\c tionare 
 a serverului. Un atacator al serviciului ar putea \c sterge toate servicile din server \c si astfel 
-oprind fun\c tionarea tuturor aplica\c tilor care utilizeaz\u a serviciul de \^inregistrare.
+ar opri func\c tionarea tuturor aplica\c tilor care utilizeaz\u a serviciul de \^inregistrare.
 Pentru a preveni aceast tip de atac am restric\c tionat dez\^inregistrarea serviciilor.
 Prin verificarea adresei ip, doar serviciul care a f\u acut \^inregistrarea poate face dez\^inregistrarea.
 
 O alt\u a m\u asur\u a de securitate pe care am implementat-o este utilizarea certificatelor pentru 
-\^inregistrarea sau \c stergerea serviciilor de pe server. Servicile care sunt autorizate s\u a se \^inregistreze 
-ar vor avea un certificat \c si pe baza acestuia, serverul le va accepta sau refuza cererea.
+\^inregistrarea sau \c stergerea serviciilor de pe server. Serviciile care sunt autorizate s\u a se \^inregistreze 
+vor avea un certificat \c si pe baza acestuia, serverul le va accepta sau refuza cererea.
 De\c si implementarea pentru acest mecanism a fost f\u acut\u a, \^in momentul de fa\c t\u a
-ea nu este folosit\u a. Aceast\u a metod\u a de autorizare re ar putea reprezenta o alternativ\u a la restric\c tionarea 
+ea nu este folosit\u a. Aceast\u a metod\u a de autorizare ar putea reprezenta o alternativ\u a la restric\c tionarea 
 celor care pot face dez\^inregistrarea.
 
-Pe l\^ang\u a m\u asurile de securitat pe care le-am prezentat treuie s\u a m\u a sigur c\u a nu exist\u a
+Pe l\^ang\u a m\u asurile de securitate pe care le-am prezentat trebuie s\u a m\u a asigur c\u a nu exist\u a
 alte vulnerabilit\u a\c ti exploatabile \^in aplica\c tie. \^In sensul acesta, va trebui s\u a folosesc 
 un scanner de vulnerabilit\u a\c ti. Imediat dup\u a descoperirea vulnerabilit\u a\c tilor va trebui s\u a 
 \^incep eliminarea acestora.
@@ -1371,13 +1371,13 @@ un scanner de vulnerabilit\u a\c ti. Imediat dup\u a descoperirea vulnerabilit\u
 
 Un alt obiectiv pe care va trebui s\u a \^il am \^in vedere este testarea automat\u a.
 De\c si am \^inceput scrierea testelor automate, acestea nu sunt \^inc\u a suficiente pentru 
-a asigura func\c tionarea complet\u a aplica\c tiei conform a\c stept\u arilor mele.
+a asigura func\c tionarea complet\u a a aplica\c tiei conform a\c stept\u arilor mele.
 Ca urmare este nevoie s\u a cresc num\u arul testelor p\^an\u a \^in punctul \^in care 
 codul meu va avea o acoperire de aproape 100\% .
 
-De\c si scrierea tutror testelor necesare 
+De\c si scrierea tuturor testelor necesare 
 se va \^intinde pe o perioad\u a \^indelungat\u a, pe termen lung voi putea economisi mult timp
-care ar fi consumat de testarea manual\u a a tuturor scenarilor de utilizare. Mai mult,
+care ar fi consumat de testarea manual\u a a tuturor scenariilor de utilizare. Mai mult,
 testele vor reduce timpul petrecut \^in debug deoarece vor oferi o localizare destul de specific\u a
 a erorilor. 
 
@@ -1386,17 +1386,17 @@ a erorilor.
 Pe m\u asur\u a ce aplica\c tia va fi folosit\u a de c\u atre utilizatori, 
 vor ap\u area \c si noi cerin\c te. Este inevitabil ca utilizatorii 
 s\u a aib\u a propuneri referitoare la caracteristici pe care le doresc 
-\^in aplica\c tie. Astfel eu va trebuie s\u a m\u a conformez cu noile 
-cerin\c te pe care le voi aduna de la utilizatori. Prin arhitectura aplic\c tie 
-am \^incercat s\u a anticipez schimb\u arile. Decizile pe care le-am luat pe parcusrul 
+\^in aplica\c tie. Astfel, eu va trebui s\u a m\u a conformez cu noile 
+cerin\c te pe care le voi aduna de la utilizatori. Prin arhitectura aplica\c tiei 
+am \^incercat s\u a anticipez schimb\u arile. Deciziile pe care le-am luat pe parcursul 
 implement\u arii  fac dezvoltarea acestora 
-c\^at mai u\c soar\u a.
+mai u\c soar\u a.
 
 \chapter{Concluzii}
 
 Aplica\c tia mea ofer\u a un mod simplificat pentru dezvoltarea aplica\c tiilor 
 folosind o arhitectur\u a orientat\u a pe microservicii.
-Serviciul de \^inregistrare ofer\u a o metod\u a de a g\u asi adresele microserviciilor necesare aplica\c tie 
+Serviciul de \^inregistrare ofer\u a o metod\u a de a g\u asi adresele microserviciilor necesare aplica\c tiilor 
 \^intr-un mod dinamic \c si reduce rigiditatea sistemului.
 
 Deoarece \^inregistrarea pe server este responsabilitatea microserviciilor, 
@@ -1416,9 +1416,9 @@ Un serviciu de \^inregistrare se potrive\c ste bine pentru func\c tia de echilib
 serverelor pe care le gestioneaz\u a. Algoritmul care face echilibrarea poate fi 
 schimbat printr-un Add-In ceea ce faciliteaz\u a \^imbun\u at\u a\c tirea acestuia.
 
-Datorit\u a mecanismului de add-inuri, se pot ad\u auga func\c tionailt\u a\c ti noi
+Datorit\u a mecanismului de add-inuri, se pot ad\u auga func\c tionalit\u a\c ti noi
 chiar \c si \^in timp ce aplica\c tia func\c tioneaz\u a. Mai mult,
-chiar \c si utilizatorii au libertatea de a-\c si crea proprile lor add-inuri. 
+chiar \c si utilizatorii au libertatea de a-\c si crea propriile lor add-inuri. 
 
 Cu ajutorul interfe\c tei grafice administratorii sistemului au control deplin 
 asupra serviciilor \c si add-inurilor din aplica\c tie. Utilizarea interfe\c tei grafice 
